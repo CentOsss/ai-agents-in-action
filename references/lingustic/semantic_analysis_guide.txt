@@ -1,0 +1,338 @@
+RUDN Journal of Language Studies, Semiotics and Semantics
+
+2019 Vol. 10 No. 4 731—739
+
+
+
+Вестник РУДН. Серия: ТЕОРИЯ ЯЗЫКА. СЕМИОТИКА. СЕМАНТИКА
+
+http://journals.rudn.ru/semioticssemantics
+
+
+
+Лингвистическая семантика,
+
+лингвосемиотика и текстология
+
+Linguistic Semantics and Semiotics.
+
+Literary Text Studies
+
+DOI: 10.22363/2313-2299-2019-10-4-731-739
+
+УДК 81'37:003
+
+Pедакционная статья / Editorial article
+
+Функциональная семантика
+
+и лингвосемиотика: современные тенденции
+
+О.В. Лазарева
+
+Российский университет дружбы народов
+
+ул. Миклухо-Маклая, 6, Москва, Росская Федерация, 117198
+
+Functional Semantics and Linguosemiotics:
+
+modern trends
+
+O.V. Lazarevа
+
+Peoples’ Friendship University of Russia (RUDN University)
+
+6, Miklukho-Maklaya street, Moscow, 117198, Russian Federation Выпуск журнала Вестник Российского университета дружбы народов. Серия: Теория языка. Семиотика Семантика объединяет статьи таких направлений, как
+
+«Функциональная семантика», «Семиотика и коммуникация» и «Семиотика и поэтика художественного текста».
+
+Направление «Функциональная семантика» открывает статья В.Н. Денисенко
+
+и Чжан Кэ, (Российский университет дружбы народов, Москва, Российская Федерация) «Графически заимствованное слово из японского языка в современном
+
+китайском языке». Японские графические заимствования осваиваются в китайском
+
+языке и фонетически, и графически и представлены двумя группами: 1) графические заимствования, включая собственно японские слова, которые зафиксированы
+
+китайскими иероглифами, и 2) слова, созданные японцами с использованием
+
+китайских иероглифов для передачи лексем других языков, включая лексику древне-китайского языка. Как показал анализ материала, способы заимствования и осво-EDITORIAL NOTE 731
+
+Лазарева О.В. Вестник РУДН. Серия: Теория языка. Семиотика. Семантика. 2019. Т. 10. № 4. С. 731—739
+
+ения заимствованных языковых единиц, в том числе графических, определяются
+
+системным характером лексики и в целом такими свойствами языковой системы, как открытость, динамичность и адаптивность. В статье Клаудии Беднаровой-Гибовой (Университет Прешова, Словацкая Республика) «Основная терминоло-гия лексикологии английского языка» используется лингвокультурный подход
+
+к англоязычному семантическому континууму. Он основан на идее Ф. Шарифиана
+
+о том, что метаязык английской лексической семантики является хранилищем культурных концептов, которые отражаются в актуальной терминологической практике.
+
+Тем не менее, английские термины, семантика которых предполагает существен-ное языковое пространство для их синонимического объединения, зачастую подвер-гаются неправильному концептуальному декодированию. Цель статьи Е.Ф. Кирова
+
+(Гос. ИРЯ им. А.С. Пушкина, Москва, Российская Федерация) «Значение слова
+
+в модели понимания» предложить общую модели понимания смыла высказывания
+
+на примере описании модели понимания в процессе коммуникации. Основной
+
+метод исследования — теоретико-описательный. Результатом исследования стало
+
+создание модели значения слов с опорой на его знаковую символическую природу.
+
+В публикации Н.В. Перфильевой (Российский университет дружбы народов, Москва, Российская Федерация) и И.И. Галанкиной (РГАУ—МСХА им. К.А. Ти-мирязева, Москва, Российская Федерация) «Элементы инкорпорации в русском
+
+коммерческом нейминге» поставлена цель определить границы словообразовательной инкорпорации в русском языке. Инкорпорация исследуется на материале
+
+российского коммерческого нейминга интернет-сайтов: это коммерческие названия, или эргонимы, которые представляют собой инкопорационные комплексы —
+
+вывески продуктовых магазинов, ресторанов, кафе и других коммерческих заведе-ний. В результате проведенного исследования разработана классификация эрго-нимов, образованных по инкорпорационной словообразовательной модели в современном русском языке.
+
+Статья А.Ф. Дремова (МГИМО МИД РФ, Москва, Российская Федерация)
+
+«Зоны и таксис: локативная семантика русских падежей с позиций современной
+
+системной лингвистики» представлены результаты анализа локативной семантики
+
+падежей в ракурсе современной системной лингвистики. Падеж трактуется как
+
+формально-грамматическая категория имени, возникшая в русском языке как типич-ном представителе языков флективного типа в ответ на функциональный запрос
+
+языковой системы обеспечить компрессию и формальное выражение содержатель-ной (предикативной, логической) связности первообразного текста, необходимого
+
+для исчерпывающего описания события.
+
+О.И. Александрова (Российский университет дружбы народов, Москва, Российская Федерация) в публикации на тему: «Семантическая трансформация
+
+названий кинофильмов, переведенных на русский язык» предпринимается
+
+попытка выделения в названиях смыслового центра и их классификации по типу
+
+смыслового центра. Название как вербальный компонент комплексной едини-цы — кинотекста участвует в формировании первого впечатления у потенциаль-732
+
+ОТ РЕДАКЦИОННОЙ КОЛЛЕГИИ
+
+Lazarevа O.V. RUDN Journal of Language Studies, Semiotics and Semantics, 2019, 10 (4), 731—739
+
+ного зрителя. Трансформации названия могут повлечь за собой смещение фокуса
+
+адресата и повлиять на восприятие им кинотекста в целом. В ходе исследования
+
+обнаружена общая тенденция смещения при переводе от абстрактного к конкрет-ному и от персонального к событийному.
+
+В статье Е.Н. Батуриной (Биробиджан, Российская Федерация) «Десакрали-зация слова человек в русском языке и его духовный потенциал» обсуждается
+
+семантике скрытых сакральных смыслов слова на примере лексических значений
+
+слова человек и люди (людин) в разные периоды его функционирования, прежде
+
+всего в языке XIX—XX веков с опорой на минимальные контексты из текстов
+
+Священного Писания.
+
+В данный раздел также вошли статьи, отражающие тенденции в развитии
+
+теории и практики функциональной семантики: Э.С. Денисовой и А.В. Проску-риной (КГУ, Кемерово, Российская Федерация) «Внутренняя форма языка как
+
+детерминанта его лексического своеобразия (на материале паремий русского
+
+и телеутского языков)»; О.Л. Зимаревой и С.А. Песиной (МГТУ им. Г.И. Носова, Магнитогорск, Российская Федерация) «Кластерный анализ семантической струк-туры полисемантов в свете инвариантной теории», Э.А. Дилановой (КГУ, Курск, Российская Федерация) «Метафорический потенциал сленгового языка молодежи: некоторые результаты пилотного эксперимента»; П.С. Сёминой (Российский университет дружбы народов, Москва, Российская Федерация) «Тематическое много-образие бельгийских паремий (на лексикографическом материале)»; Б.Ш. Курба-нова (Узбекский государственный университет мировых языков, Ташкент, Узбе-кистан) «Непроизводные и производные омонимы русского и узбекского языков»
+
+и Эль-Завави М. Амра (Университет Александрии, Египет) «Телевидение: пря-мой репортаж (пилотное исследование в контрастивном жанровом аспекте)». В центре внимания авторов этих публикаций — полисеманты, паремии, жанровые и слен-говые номинации, исследование которых объединяется методологией и методами
+
+функциональной семантики.
+
+Раздел «Семиотики и коммуникации» открывает статья О.И. Максименко
+
+и П.Н. Хроменкова (МГОУ, Мытищи, Российская Федерация) «Полисемиотиче-ские элементы государственных гербов — лингвоконфликтологический анализ».
+
+В ней главные символы государства рассматриваются как поликодовый текст, вклю-чающий вербальный компонент (девиз, название страны) и иконические геральди-ческие составляющие. В статье дается лингвосемиотический анализ гербов всех
+
+стран мира на предмет их гипотетической конфликтогенности и приводятся результаты интерпретации реципиентами потенциально конфликтосодержащих составляющих гербов.
+
+А.Л. Новиков и И.А. Новикова (Российский университет дружбы народов, Москва, Российская Федерация) в статье «Этнические стереотипы в контексте
+
+межкультурной коммуникации: психологические и семантические аспекты» на примере конкретных эмпирических исследований этнических стереотипов в контексте
+
+межкультурной коммуникации показан эвристический потенциал метода семанти-EDITORIAL NOTE 733
+
+Лазарева О.В. Вестник РУДН. Серия: Теория языка. Семиотика. Семантика. 2019. Т. 10. № 4. С. 731—739
+
+ческого дифференциала для диагностики этнических стереотипов как феноменов, с одной стороны, отражающих различные аспекты межкультурного восприя-тия и диалога, а, с другой — оказывающих непосредственное влияние на протека-ние межкультурного взаимодействия. Что имеет высокую практическую значимость
+
+для разработки программ повышения межкультурной компетентности, востребован-ные в сферах образования, бизнеса, туризма и др.
+
+В центре внимания статьи А.А. Горностаевой (МГЛУ, Москва, Российская
+
+Федерация) «Ирония как культурный и языковой феномен» — ирония как много-плановое явление, находящееся на стыке нескольких наук: истории, философии, культурологии, литературоведения, лингвистики и т.д. Ирония рассматривается
+
+как культурно-исторический и как языковой феномен. Цель статьи — проанали-зировать закономерности функционирования иронии в дискурсе и определить
+
+условия эффективности иронического общения. Ирония, как категория дискурса, является совместным продуктом говорящего и слушающего.
+
+А.В. Сытько (МГЛУ, Минск, Республика Беларусь) «Говорящий как субъект
+
+деонтики в политической речи (на материале немецкого и русского языков)» статья
+
+посвящена семантической и функциональной вариативности деонтических конструкций, составляющих ядро политического дискурса в немецкой и русской линг-вокультурах. Метод функционально-семантического описания с учетом социокуль-турного контекста позволяет выявить дискурсивную полифункциональность данных
+
+конструкций.
+
+В ходе анализа, проведенного в статье Д.С. Мухортова и Я.С. Малявиной
+
+(МГУ им. М.В. Ломоносова, Москва, Российская Федерация) «Модели коммуни-кативного поведения женщины-политика», показано, что женщины-политики, успешно ведущие феминистский политический курс, склонны прибегать к комму-никативно типично женскому виду риторики. В этой связи рассматриваются некоторые типичные особенности женской речи: некатегорические высказывания, использование хедж-маркеров, употребление лексики, относящейся к разряду соци-альной и когнитивной языковой подсистемы.
+
+Статьи С.В. Герасимовой (ВШПиМ МПУ, Москва, Российская Федерация)
+
+«Юродство, потемневшие иконы и механизм забвения в контексте семиотической
+
+системы культуры» и Гидо Техерина (Российский университет дружбы народов, Москва, Российская Федерация) «Las tendencias contemporáneas del lenguaje español y los cambios sociales en la sociedad» объединяет общий подход к синтези-рованному анализу вербальных и невербальных семиотических феноменов в си-стеме культуры.
+
+Раздел «Семантика и поэтика художественного текста» объединяет работы
+
+нескольких направлений научных исследований, его открывает статья В.П. Си-нячкина, У.М. Бахтикиреевой и О.А. Валиковой (Российский университет
+
+дружбы народов, Москва, Российская Федерация) «Сообщение межкультурной
+
+коммуникации: психологические и семантические аспекты литературных доменов
+
+в поликультурном тексте». Авторы рассматривают семиотические системы разно-734
+
+ОТ РЕДАКЦИОННОЙ КОЛЛЕГИИ
+
+Lazarevа O.V. RUDN Journal of Language Studies, Semiotics and Semantics, 2019, 10 (4), 731—739
+
+го уровня организованности как базы данных — домены, которые на протяжении
+
+времени накапливают численность ретранслируемых единиц и сообщаются друг
+
+с другом, порождая новые вместилища культурной информации. Механизмом
+
+сообщения между доменами можно назвать диалогом (в широком смысле), а его
+
+разновидностями — интертекстуальную перекличку, аллюзии, модификацию пре-цедентных феноменов.
+
+В публикации Г.В. Векшина и М.М. Лемешевой (Московский политехниче-ский университет, Москва, Российская Федерация) «Поэт как речевая роль: к семантике и прагматике русского поэтизма» анализируется семантика и прагматика
+
+русских поэтизмов как дейктических указателей на сферу поэтического и одну
+
+из шести универсальных социокультурных ролей — роль поэта-сочинителя. В связи
+
+с разграничением стилистики языка и речи рассматривается отличие поэтического
+
+стиля языка, который представляет собой хранилище поэтизмов; дается разверну-тое определение поэтического языка. Поэтизмы рассматриваются на разных уров-нях языковой системы. Дается анализ типичного текста массовой поэзии с обилием
+
+поэтизмов. Используется опыт составления поэтического корпуса «Живого стили-стического словаря русского языка», возможности его диагностики стилистиче-ской семантики слова и первичной оценки художественного качества текста.
+
+Н.Д. Стрельникова (СПбГЭТУ «ЛЭТИ», Санкт-Петербург, Российская
+
+Федерация) в статье «Семантическое пространство романа А. Николаенко Убить
+
+Бобрыкина. История одного убийства» анализирует роман лауреата премии «Русский Букер» 2017 года А. Николаенко «Убить Бобрыкина. История одного убийства» как гетерогенный текст. Семиотически осложненный текст анализируется
+
+сквозь призму культурных кодов, что позволяет прочитать роман А. Николаенко
+
+на другом семиотическом уровне, проследив многочисленные отсылки, в том числе
+
+имплицитные — к символистскому роману Серебряного века.
+
+В работе Г.И. Шляховой (Литературный институт имени А.М. Горького, Москва, Российская Федерация) «Узуальное и индивидуально-авторское функци-онирование лексем грёза и мечта в поэзии Игоря-Северянина» представлен анализ
+
+употребления лексики ментальной сферы в поэзии Игоря-Северянина. Относящиеся
+
+к ментальному полю лексемы грёза и мечта выступают в творчестве эгофутуриста
+
+лейтмотивными, смыслообразующими элементами. Сопоставление контекстуаль-ных значений лексем со словарными показывает, как в стихотворениях художест-венный образ наполняется новыми смыслами, расширяя семантическое поле слова.
+
+Лексемы ментальной сферы представляют собой ключ к пониманию идиостиля
+
+Игоря-Северянина как основоположника литературного течения эгофутуризма.
+
+
+
+***
+
+The issue of the RUDN University journal of LANGUAGE STUDIES, SEMIOTICS
+
+AND SEMANTICS combines the sets of articles forming up three sections: Functional Semantics, Semiotics and Communication and Literary Text Semantics and Poetics.
+
+Functional Semantics section starts with the article of V.N. Denisenko, Zhang Ke (RUDN University, Moscow, Russian Federation) “Graphically Loanword from the EDITORIAL NOTE 735
+
+Лазарева О.В. Вестник РУДН. Серия: Теория языка. Семиотика. Семантика. 2019. Т. 10. № 4. С. 731—739
+
+Japanese Language in Modern Chinese Language” is discussing Japanese graphic borrowings which are acquired in the Chinese language both — phonetically and graphically and form two groups: 1) graphic borrowings including original Japanese words fixed in Chenese hyerogliphs, and 2) words created by the Japanese on the basis of Chinese hyieroglipha as well to render lexemes of other languages, including Ancient Chinese.
+
+The analysis demonstrated that borrowing and their acquisition including graphic ones, are determined by the systemic character of lexis and on the whole by such linguistic system properties as openness, dynamism and adaptation.
+
+The article by K. Bednárová-Gibová (University of Prešov, Prešov, Slovak Republic) “In Selected English Lexical Semantics Terms” approves the chosen linguocultural approach to the English semantic continuum. Based on the F. Sharrifian’s ides of understanding the English semantic metalanguage as a treasury of cultural concepts to be reflect-ed in the actual terminological practice. Neverthe less, English terms belonging to the es-sential core linguistic space to synonymize them, are quite often conceptually misdecoded.
+
+The goal of thearticle by E.F. Kirov (Moscow, Russian Federation) (Pushkin State Russian Language Institute, Moscow, Russia) “The Meaning of the Word in the Model of Understanding” is formulated to put forward the general model to understanding the sense of an utterance in the communicative process. Main method is a theoretical and descriptional one. As a result, the model of word meaning emerged to reveal its semiottic symbolic nature.
+
+The published material by N.V. Perfilieva (RUDN University, Moscow, Russian Federation) and I.I. Galankina (RSAU-MTAA named after K.A. Timiryazev, Moscow, Russian Federation) “Elements of Incorporation in the Russian Commercial Naming” is trying to define the limits of word-formation incorporation in Russian. Incorporation means are treated on the samples of Russian commercial namings, or ergonyms retrieved fron Internet sites and present so called incorporational complexes — grocery store signs, restuarants, cafes, and other commercial locations. Research results brought the ergonym classification while ergonyms were formed according to the incorporational word-derivation in Russian.
+
+The article of A.F. Dremov (MGIMO-University, Moscow, Russian Federation)
+
+“Zones and Taxis: Locative Semantics of Russian Cases in Terms of Modern Systems Linguistics” sums up the results to analyse locative semantics of Russian cases in terms of modern systemic kinguistics. Case is treated as a formal grammar category of a niun which in Russian emerged as a typicalo phenomenon of inflexional languages and a re-sponse to functional demand of language system to provide for compression and formal expression of content cohesion (predicative and logic) inrelation to the original text to describe an event in detail.
+
+O.I. Aleksandrova (RUDN University, Moscow, Russian Federation) in the article on “Semantic Transformation of Film Titles, Translated to Russian” attempts to extract the meaningful center in film tuitles and accordingly, elaborate their classification. The title as a verbal componentof a complex unit — a filmtext participates in the formation of the first ompression of apotential movie-goer. Title transformations may lead to the displacement of the addressee focus and influence the whole filmtext perception. The 736
+
+ОТ РЕДАКЦИОННОЙ КОЛЛЕГИИ
+
+Lazarevа O.V. RUDN Journal of Language Studies, Semiotics and Semantics, 2019, 10 (4), 731—739
+
+general trent of displacement in translationa process takes place in the direction from abstract to concrete; fron personal/ individual to eventful ones.
+
+The article of E.N. Baturina (Birobidzhan, Russian Federation) “Desacralization of the word MAN in the Russian language and its spiritual potential” discusses the semantics of latent sacred word senses as of examples of lexical meanings of the words man and men/people in varioyus times of their functioning, firstly, in XIX—XX centuries proceeding from the text and minimal contexts of the Holy Writ.
+
+The section also includes the artcles reflecting emerging trend in theory and practice of functional semantics studies, namely, the artucles are: E.S. Denisova and A.V. Pro-skurina (Kemerovo State University, Kemerovo, Russian Federation) “Inner Language Form as a Determinant of its Lexical Peculiarity (based on the Study Material of the Russian and the Teleut Languages Paroemia)”. Several articles of the section develop the study of functional semantics, those are: O.L. Zimareva, S.A. Pesina (Nosov Magni-togorsk State Technical University, Magnitigorsk, Russian Federation) “Cluster Analysis of Polysemous Word Semantic Structure in the Light of Invariant Theory”; E.A. Dila-nova (Kursk State University, Kursk, Russian Federation) “Metaphorical Potential of Slang Language: some Results of the Pilot Experiment”; D.A. Shliakhovoi (Military University of the Ministry of Defense of the RF, Moscow, Russian Federation) “Modeling of a generalized speech portrait of a blogger (as exemplified in the German military blogosphere)”; P.S. Syomina (RUDN University, Moscow, Russian Federation) “Subject variety of the Belgian paroemias (on lexicographical material)”; B.Sh. Kurbanov (Uzbek State University of World Languages, Tashkent, Uzbekistan) “Non-Derivative and Derivative Homonyms in the Russian and Uzbek Languages” and M. Amr El-Zawawy (University of Alexandria, Egypt) “TV Live Reporting: a Pilot Study in Contrastive Genre Analysis”. The atten tion of those authores is focued on polysemy, paremea, slang and other nominational studies using same methodology and methods of functional semantics.
+
+Studies of “Semotics аnd Communication” are opened wit the article by O.I. Mak-simenko, P.N. Khromenkov (Moscow Region State University, Mytischi, Russian Federation) “Polysemiotic Elements of the State Emblems”. It studies the state main symbols as polycode texts, combining verbal components (motto,or name of a country) and iconic heraldic components. The article applies linguosemiotic analysis of state emblems of the countries worldwide in the angle of their hypothetic conflictogeneity and their components as wel to be perceived by various recipients.
+
+A.L. Novikov, I.A. Novikova (RUDN University, Moscow, Russian Federation) in the article of “Ethnic Stereotypes in Intercultural Communication: Psychological and Semantic Aspects” demonstrate the empiric study of ethnic stereotypes within the context of intercultural communication and the euristic potential of semantic differentiation to diagnose ethnic stereotypes as phenomena, on the one hand, reflecting various aspects of crosscultural perception and dialogue, and on the other hand, — revealing immeduiate influence of crosscultural interaction, which brings high efficiency to upgrade crosscultural competenhces in the fields of education, business, tourism, etc.
+
+The focus of the article by A.A. Gornostaeva (Moscow State Linguistic University, Moscow, Russian Federation) “Irony as a Cultural and Language Phenomenon” deter-EDITORIAL NOTE 737
+
+Лазарева О.В. Вестник РУДН. Серия: Теория языка. Семиотика. Семантика. 2019. Т. 10. № 4. С. 731—739
+
+mines irony as a multidimensional phenomenon across a number of studies in philosophy, history, cultural sciences, philology, linguistics, etc. Irony is both cultural and historical and linguistic phenomenon as well. The goal of the article is to analyse the regularities of functioning irony in discourse and determin the conditions of efficient ironic communication. As a discourse category, irony is a common product af a soeaker and a hearer.
+
+A.W. Sytko (Minsk State linguistic university, Minsk, Republic of Belarus) wrote the article on “Speaker as a deontic agent in political speech (on the material of German and Russian languages)” which is devoted to the semantic and functional variability of deontic constructions, where the speaker is a deontic agent, in the nuclear genre of political discourse — political speech — in German and Russian linguistic cultures.
+
+On the basis of contextual analysis the semantic polysemy of theses modal constructions is defined as determined by the socio-cultural context.
+
+The analysis carried out in the article by D.S. Mukhortov and Y.S. Malyavina (Lo-monosov Moscow State University, Moscow, Russian Federation) “Cross-situational consistency of female politicians’ language use” is atated that women-politicians success-fully carrying out feminist political course are inclined to apply typically feminine rethoric.
+
+In this relation, a few typical peculiarities of female speech are discussed such as non-stricr (categoric) utterances, hedge-markers, lexical use dealing with social and cognitive lib-guistic subsystems.
+
+The articles by S.V. Gerasimova (Moscow Polytechnic University, Moscow, Russian Federation) “Foolishness, Darkened Icons and the Mechanism of Oblivion in the Context of the Semiotic System of Culture”; use” and Guido Tejerina (RUDN University, Moscow, Russian Federation) “Contemporary Trends in Spanish Language and Social Changes in the Spanish-habitat Society)” apply common principles to synthetic analysis of verbal and non-verbal semiotiv phenomena in the system of culture.
+
+Literary Text Semantics аnd Poetics section brings together a few more aspects of linguistic studies and starts with the following article by V.P. Sinyachkin, U.M. Bakh-tikireeva and O.A. Valikova (RUDN University, Moscow, Russian Federation) “Literary Domains’ connection in a Poly-cultural Text”. The authors analyse semiotic systems of various structures organized as databases or domains, which with time, accumilate the larger quantity of retranslated units and are interacting among themselves thus generating new volumes of cultural data. Message mechanism among the domains might be named a dialogue (in broader sense), and the varieties be understood as an intertextual dialogue, allusion and modification of precedent phenomena.
+
+The article by G.V. Vekshin, M.M. Lemesheva (Moscow Polytechnic University, Moscow, Russian Federation) “Poet as a Role: on the Semantics and Pragmatics of Russian Poeticism” analyses semantics and pragmatics of Russian “poetisms” as deiktic markers of the poetic sphere and one of the six universal socio-cultural roles — the riole of a poet-composer. In connection with the distinction between the stylistics of language and speech, the poetic style of language becomes a concervation of poetisms, and a detailed description of poetic language follows. Poetisms belong to various levels of kinguistic system, and typical text of mass poetry is given. The article relies on the poetic 738
+
+ОТ РЕДАКЦИОННОЙ КОЛЛЕГИИ
+
+Lazarevа O.V. RUDN Journal of Language Studies, Semiotics and Semantics, 2019, 10 (4), 731—739
+
+ldatabase ov “Live Stylistic Russian Dictionary”, its potential to diagnose stylistic semantics of words and preliminary evaluation of literary text quality.
+
+N.D. Strelnikova’s article (Saint-Petersburg State Electrotecnical University “LETI”, St. Petersburg, Russian Federation) “The semantic space in the novel of A. Nikolaenko
+
+‘To kill Bobrykin. The History of one Murder’” treats the novel by the Russian Booker-2017 prize winner, A. Nikilaenko ‘To kill Bobrykin. The History of one Murder’”, as a heterogeneic text. Semiuotically complicated text is presented through the prism of cultural codes which help read the novel by A. Nikolaenko as if belonging to some other semiotic sphere, and following multiple references — vivid and implicit ones — to the type of sybbolic novel of the Silver Age.
+
+The work of G.I. Shliakhova (Maxim Gorky Institute of Literature and Creative Writing, Moscow, Russian Federation) “Usual and Individual Authorial Functioning of Lexemes ‘Dream’ and ‘Reverie’ in Igor Severyanin’s Poetry” presents the review of using lexis describing mental sphere in the proetry of Igor Severyanin. Mental semantic field lexemes — Dream and Reverie are sense-forming lexemes in the creative work of the ego-futurist I. Severyanin. Comparison of contextual meanings with those of dictionary entries explains the changes of meanings concerning poetic characters. Mental lexemes are keys to understand the poetry and idiostyle of I. Severyanin — the founder of egofurism.
+
+Сведения об авторе:
+
+Лазарева Олеся Викторовна, кандидат филологических наук, доцент кафедры общего
+
+и русского языкознания РУДН. Сфера научных интересов: теоретические вопросы языкознания, теория заимствований, неология, лексическая семантика, лингвосемиотика; e-mail: lazareva-ov@rudn.ru
+
+Information about the author:
+
+Olesya V. Lazareva, PhD in Philology, Assistant Professor of the General and Russian Linguistics Department, Philological Faculty, RUDN University. Academic interests include theoretical issues of linguistics; theory of loan words, neology, linguistic semantics and linguosemiotics; e-mail: lazareva-ov@rudn.ru
+
+
+
+
+

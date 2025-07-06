@@ -1,0 +1,160 @@
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pyw
+*.pyz
+
+# Byte-compiled / optimized / DLL files
+development/projects/GPT-Agents/__pycache__/
+development/projects/GPT-Agents/*.py[cod]
+development/projects/GPT-Agents/*$py.class
+
+# C extensions
+development/projects/GPT-Agents/*.so
+
+# Distribution / packaging
+development/projects/GPT-Agents/.Python
+development/projects/GPT-Agents/build/
+development/projects/GPT-Agents/develop-eggs/
+development/projects/GPT-Agents/dist/
+development/projects/GPT-Agents/downloads/
+development/projects/GPT-Agents/eggs/
+development/projects/GPT-Agents/.eggs/
+development/projects/GPT-Agents/lib/
+development/projects/GPT-Agents/lib64/
+development/projects/GPT-Agents/parts/
+development/projects/GPT-Agents/sdist/
+development/projects/GPT-Agents/var/
+development/projects/GPT-Agents/wheels/
+development/projects/GPT-Agents/share/python-wheels/
+development/projects/GPT-Agents/*.egg-info/
+development/projects/GPT-Agents/.installed.cfg
+development/projects/GPT-Agents/*.egg
+development/projects/GPT-Agents/MANIFEST
+
+# PyInstaller
+development/projects/GPT-Agents/*.manifest
+development/projects/GPT-Agents/*.spec
+
+# Installer logs
+development/projects/GPT-Agents/pip-log.txt
+development/projects/GPT-Agents/pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+development/projects/GPT-Agents/htmlcov/
+development/projects/GPT-Agents/.tox/
+development/projects/GPT-Agents/.nox/
+development/projects/GPT-Agents/.coverage
+development/projects/GPT-Agents/.coverage.*
+development/projects/GPT-Agents/.cache
+development/projects/GPT-Agents/nosetests.xml
+development/projects/GPT-Agents/coverage.xml
+development/projects/GPT-Agents/*.cover
+development/projects/GPT-Agents/*.py,cover
+development/projects/GPT-Agents/.hypothesis/
+development/projects/GPT-Agents/.pytest_cache/
+development/projects/GPT-Agents/cover/
+
+# Translations
+development/projects/GPT-Agents/*.mo
+development/projects/GPT-Agents/*.pot
+
+# Django stuff:
+development/projects/GPT-Agents/*.log
+development/projects/GPT-Agents/local_settings.py
+development/projects/GPT-Agents/db.sqlite3
+development/projects/GPT-Agents/db.sqlite3-journal
+
+# Flask stuff:
+development/projects/GPT-Agents/instance/
+development/projects/GPT-Agents/.webassets-cache
+
+# Scrapy stuff:
+development/projects/GPT-Agents/.scrapy
+
+# Sphinx documentation
+development/projects/GPT-Agents/docs/_build/
+
+# PyBuilder
+development/projects/GPT-Agents/.pybuilder/
+development/projects/GPT-Agents/target/
+
+# Jupyter Notebook
+development/projects/GPT-Agents/.ipynb_checkpoints
+
+# IPython
+development/projects/GPT-Agents/profile_default/
+development/projects/GPT-Agents/ipython_config.py
+
+# pyenv
+development/projects/GPT-Agents/.python-version
+
+# pipenv
+development/projects/GPT-Agents/Pipfile.lock
+
+# poetry
+development/projects/GPT-Agents/poetry.lock
+
+# pdm
+development/projects/GPT-Agents/pdm.lock
+development/projects/GPT-Agents/.pdm.toml
+
+# PEP 582
+development/projects/GPT-Agents/__pypackages__/
+
+# Celery stuff
+development/projects/GPT-Agents/celerybeat-schedule
+development/projects/GPT-Agents/celerybeat.pid
+
+# SageMath parsed files
+development/projects/GPT-Agents/*.sage.py
+
+# Environments
+development/projects/GPT-Agents/.venv
+development/projects/GPT-Agents/env/
+development/projects/GPT-Agents/venv/
+development/projects/GPT-Agents/ENV/
+development/projects/GPT-Agents/env.bak/
+development/projects/GPT-Agents/venv.bak/
+
+# Spyder project settings
+development/projects/GPT-Agents/.spyderproject
+development/projects/GPT-Agents/.spyproject
+
+# Rope project settings
+development/projects/GPT-Agents/.ropeproject
+
+# mkdocs documentation
+development/projects/GPT-Agents/site
+
+# mypy
+development/projects/GPT-Agents/.mypy_cache/
+development/projects/GPT-Agents/.dmypy.json
+development/projects/GPT-Agents/dmypy.json
+
+# Pyre type checker
+development/projects/GPT-Agents/.pyre/
+
+# pytype static type analyzer
+development/projects/GPT-Agents/.pytype/
+
+# Cython debug symbols
+development/projects/GPT-Agents/cython_debug/
+
+# PyCharm
+development/projects/GPT-Agents/.idea/
+
+development/projects/GPT-Agents/**/.promptflow/
+
+development/projects/GPT-Agents/*.bin
+development/projects/GPT-Agents/*.db
+
+development/projects/GPT-Agents/*.sqlite3
+
+development/projects/GPT-Agents/OAI_CONFIG_LIST
+
+development/projects/GPT-Agents/tmp*
+
+.env
