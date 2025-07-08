@@ -1,0 +1,55 @@
+---
+description: AI rules derived by SpecStory from the project AI interaction history
+globs: *
+---
+
+## HEADERS
+
+This document outlines the rules and guidelines for the AI coding assistant. It covers project standards, tech stack, workflow, and best practices. All contributions and interactions should adhere to these rules to maintain consistency and quality.
+
+## TECH STACK
+
+*   [List existing tech stack items here]
+    (No existing items to list)
+
+## PROJECT DOCUMENTATION & CONTEXT SYSTEM
+
+*   [Describe the project documentation structure, context system and versioning]
+    (No existing items to list)
+
+## CODING STANDARDS
+
+*   [Define coding style, naming conventions, and code structure]
+    (No existing items to list)
+
+## WORKFLOW & RELEASE RULES
+
+*   [Describe the workflow for development, testing, and deployment]
+    (No existing items to list)
+
+## DEBUGGING
+
+*   [Describe debugging strategies and common pitfalls]
+    (No existing items to list)
+
+## COURSE-SPECIFIC RULES
+
+*   Answer in Russian.
+*   Provide detailed explanations with examples.
+*   Offer interactive elements: clarifying questions.
+*   Give practical recommendations.
+*   Add instructions to the practical part of the lesson if needed.
+*   When starting a new section (e.g. "2.3 Prompting"), the AI must:
+    1.  Read and summarize the material in a lecture format (detailed, in Russian, with examples).
+    2.  Maintain interactive chat: ask clarifying questions, engage in discussion.
+    3.  Formulate test questions on the section.
+    4.  Create a mind map of the section material (in .mm format).
+    5.  Create and save the following files:
+        *   `2.3_prompting_detailed.md` — detailed exposition.
+        *   `2.3_prompting_summary.md` — brief summary.
+        *   `2.3_prompting_practice.md` — practical part (if there are tasks).
+        *   `2.3_prompting_quiz.md` — self-check questions.
+        *   `2.3_prompting.mm` — mind map.
+    6.  Record progress in the course log (`references/tech/course_log.md`).
+    7.  After completion, check that all materials have been created, and only then proceed to the next stage.
+
