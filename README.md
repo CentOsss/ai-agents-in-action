@@ -98,10 +98,6 @@ pip install -r requirements.txt
 
 MIT
 
-## Автор
-
-Shvalev Ostap
-
 ## Благодарности
 
 - Michael Lanham за книгу "AI Agents in Action"
