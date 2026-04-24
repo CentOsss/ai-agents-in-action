@@ -1,0 +1,34 @@
+5.3 Introducing Semantic Kernel
+
+
+
+
+Semantic Kernel (SK) is another open source project from Microsoft intended to help build AI applications, which we call agents. At its core, the project is best used to define actions, or what the platform calls semantic plugins, which are wrappers for skills and functions.
+
+
+
+Figure 5.5 shows how the SK can be used as a plugin and a consumer of OpenAI plugins. The SK relies on the OpenAI plugin definition to define a plugin. That way, it can consume and publish itself or other plugins to other systems.
+
+
+
+
+
+Figure 5.5 How the Semantic Kernel integrates as a plugin and can also consume plugins
+
+
+
+
+An OpenAI plugin definition maps precisely to the function definitions in listing 5.4. This means that SK is the orchestrator of API tool calls, aka plugins. That also means that SK can help organize multiple plugins with a chat interface or an agent.
+
+
+
+Note  The team at SK originally labeled the functional modules as skills. However, to be more consistent with OpenAI, they have since renamed skills to plugins. What is more confusing is that the code still uses the term skills. Therefore, throughout this chapter, we’ll use skills and plugins to mean the same thing.
+
+
+
+SK is a useful tool for managing multiple plugins (actions for agents) and, as we’ll see later, can also assist with memory and planning tools. For this chapter, we’ll focus on the actions/plugins. In the next section, we look at how to get started using SK.
+
+
+
+
+

@@ -1,0 +1,156 @@
+6.1.2 Deciding on behavior trees
+
+
+
+
+Numerous other AI control systems have benefits and are worth exploring in controlling agentic systems. They can demonstrate the benefits of behavior trees and provide other options for specific use cases. The behavior tree is an excellent pattern, but it isn’t the only one, and it’s worth learning about others.
+
+
+
+Table 6.2 highlights several other systems we may consider for controlling AI systems. Each item in the table describes what the method does, its shortcomings, and its possible application to agentic AI control.
+
+
+
+
+
+Table 6.2 Comparison of other AI control systems
+
+
+Control name
+
+Description
+
+Shortcomings
+
+Control agentic AI?
+
+
+
+Finite state machine a (FSM)
+
+FSMs model AI using a set of states and transitions triggered by events or conditions.
+
+FSMs can become unwieldy with increasing complexity.
+
+FSMs aren’t practical for agents because they don’t scale well.
+
+
+
+Decision tree b
+
+Decision trees use a tree-like model of decisions and their possible consequences.
+
+Decision trees can suffer from overfitting and lack generalization in complex scenarios.
+
+Decision trees can be adapted and enhanced with behavior trees.
+
+
+
+Utility-based system b
+
+Utility functions evaluate and select the best action based on the current situation.
+
+These systems require careful design of utility functions to balance priorities.
+
+This pattern can be adopted within a behavior tree.
+
+
+
+Rule-based system a
+
+This set of if-then rules define the behavior of the AI.
+
+These systems can become cumbersome with many rules, leading to potential conflicts.
+
+These aren’t very practical when paired with agentic systems powered by LLMs.
+
+
+
+Planning system c
+
+Planning systems generate a sequence of actions to achieve a specific goal using planning algorithms.
+
+These systems are computationally expensive and require significant domain knowledge.
+
+Agents can already implement such patterns on their own as we’ll see in later chapters.
+
+
+
+Behavioral cloning c
+
+Behavioral cloning refers to learning policies by mimicking expert demonstrations.
+
+This system may struggle with generalization to unseen situations.
+
+This can be incorporated into behavior trees or into a specific task.
+
+
+
+Hierarchical Task Network (HTN) d
+
+HTNs decompose tasks into smaller, manageable subtasks arranged in a hierarchy.
+
+These are complex to manage and design for very large tasks.
+
+HTNs allow for better organization and execution of complex tasks. This pattern can be used for larger agentic systems.
+
+
+
+Blackboard system b
+
+These systems feature collaborative problem-solving using a shared blackboard for different subsystems.
+
+These systems are difficult to implement and manage communication between subsystems.
+
+Agentic systems can implement similar patterns using conversation or group chats/threads.
+
+
+
+Genetic algorithm (GA) d
+
+These optimization techniques are inspired by natural selection to evolve solutions to solve problems.
+
+GAs are computationally intensive and may not always find the optimal solution.
+
+GAs have potential and could even be used to optimize behavior trees.
+
+
+
+a Not practical when considering complex agentic systems
+
+b Exists in behavior trees or can easily be incorporated
+
+c Typically applied at the task or action/condition level
+
+d Advanced systems that would require heavy lifting when applied to agents
+
+
+
+
+
+In later chapters of this book, we’ll investigate some of the patterns discussed in table 6.2. Overall, several patterns can be enhanced or incorporated using behavior trees as the base. While other patterns, such as FSMs, may be helpful for small experiments, they lack the scalability of behavior trees.
+
+
+
+Behavior trees can provide several benefits as an AI control system, including scalability. The following list highlights other notable benefits of using behavior trees:
+
+
+
+Modularity and reusability—Behavior trees promote a modular approach to designing behaviors, allowing developers to create reusable components. Nodes in a behavior tree can be easily reused across different parts of the tree or even in different projects, enhancing maintainability and reducing development time.
+
+Scalability—As systems grow in complexity, behavior trees handle the addition of new behaviors more gracefully than other methods, such as FSMs. Behavior trees allow for the hierarchical organization of tasks, making it easier to manage and understand large behavior sets.
+
+Flexibility and extensibility—Behavior trees offer a flexible framework where new nodes (actions, conditions, decorators) can be added without drastically altering the existing structure. This extensibility makes it straightforward to introduce new behaviors or modify existing ones to adapt to new requirements.
+
+Debugging and visualization—Behavior trees provide a clear and intuitive visual representation of behaviors, which is beneficial for debugging and understanding the decision-making process. Tools that support behavior trees often include graphical editors that allow developers to visualize and debug the tree structure, making it easier to identify and fix problems.
+
+Decoupling of decision logic—Behavior trees separate the decision-making and execution logic, promoting a clear distinction between high-level strategy and low-level actions. This decoupling simplifies the design and allows for more straightforward modifications and testing of specific behavior parts without affecting the entire system.
+
+
+
+Having made a strong case for behavior trees, we should now consider how to implement them in code. In the next section, we look at how to build a simple behavior tree, using Python code.
+
+
+
+
+

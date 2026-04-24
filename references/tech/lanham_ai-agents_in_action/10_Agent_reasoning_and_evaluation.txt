@@ -1,0 +1,39 @@
+10 Agent reasoning and evaluation
+
+
+
+
+
+This chapter covers
+
+
+Using various prompt engineering techniques to extend large language model functions
+
+Engaging large language models with prompt engineering techniques that engage reasoning
+
+Employing an evaluation prompt to narrow and identify the solution to an unknown problem
+
+
+
+
+
+Now that we’ve examined the patterns of memory and retrieval that define the semantic memory component in agents, we can take a look at the last and most instrumental component in agents: planning. Planning encompasses many facets, from reasoning, understanding, and evaluation to feedback.
+
+
+
+To explore how LLMs can be prompted to reason, understand, and plan, we’ll demonstrate how to engage reasoning through prompt engineering and then expand that to planning. The planning solution provided by the Semantic Kernel (SK) encompasses multiple planning forms. We’ll finish the chapter by incorporating adaptive feedback into a new planner.
+
+
+
+Figure 10.1 demonstrates the high-level prompt engineering strategies we’ll cover in this chapter and how they relate to the various techniques we’ll cover. Each of the methods showcased in the figure will be explored in this chapter, from the basics of solution/direct prompting, shown in the top-left corner, to self-consistency and tree of thought (ToT) prompting, in the bottom right.
+
+
+
+
+
+Figure 10.1 How the two planning prompt engineering strategies align with the various techniques
+
+
+
+
+

@@ -1,0 +1,35 @@
+6.3.4 Posting YouTube videos to X
+
+
+
+
+In this section’s exercise, we look at an ABT that can do the following:
+
+
+
+Search for videos on YouTube for a given topic and return the latest videos.
+
+Download the transcripts for all the videos your search provided.
+
+Summarize the transcripts.
+
+Review the summarized transcripts and select a video to write an X (formerly Twitter) post about.
+
+Write an exciting and engaging post about the video, ensuring it’s less than 280 characters.
+
+Review the post and then post it on X.
+
+
+
+Figure 6.9 shows the ABT assembled with each of the different assistants. In this exercise, we use a sequence node for the root, and each assistant performs a different action. Also, to keep things simple, each assistant interaction will always occur in a new thread. This isolates each assistant’s interaction into a concise conversation that’s easier to debug if something goes wrong.
+
+
+
+
+
+Figure 6.9 The YouTube social media ABT
+
+
+
+
+

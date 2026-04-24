@@ -1,0 +1,1165 @@
+B.6 Using VS Code Dev Containers (Docker)
+
+
+
+
+When working with advanced agents and agents that can generate and execute code, running them in isolated containers is generally recommended. Container isolation prevents operating system disruption or corruption and provides a base for deploying agents.
+
+
+
+Getting familiar with containers and platforms such as Docker can be an extensive undertaking to grasp everything. Fortunately, it takes very little knowledge to start using containers, and VS Code extensions make this even more accessible.
+
+
+
+You’ll first need to install a container toolset. Docker is free (provided you use the tool as a hobby or you’re a student) and the most accessible. Follow these instructions to install Docker and get started working with containers:
+
+
+
+Go to the Docker Desktop download page at www.docker.com/products/docker-desktop.
+
+Download and install Docker for your operating system. Follow any other instructions as requested.
+
+Launch the Docker desktop application. Completing this step will confirm you have Docker installed and working as expected.
+
+Open VS Code, and confirm that the Docker extensions listed in section 1.4 are installed.
+
+
+
+With Docker and VS Code configured, you can move on to using Dev Containers by following these steps:
+
+
+
+Open a new instance of VS Code.
+
+Select to open a remote window, as shown in figure B.3.
+
+
+
+
+
+Figure B.3 Opening a remote window to a container in VS Code
+
+
+
+
+3. Select Open Folder in Container to start a container from a folder, or select New Dev Container to start without a folder.
+
+
+
+After the container is launched, your VS Code environment will be connected. This allows you to develop code on the container without worrying about dependencies not working.
+
+
+
+
+
+index
+
+
+
+
+SYMBOLS
+
+
+
+.vscode/launch.json file
+
+
+
+A
+
+
+
+aggregate block
+
+
+
+agent memory, exercises
+
+
+
+agent planning and feedback
+
+
+
+agent platforms
+
+
+
+actions and tools, 2nd
+
+
+
+agent engines
+
+
+
+developing profiles and personas for agents
+
+
+
+overview of, 2nd
+
+
+
+ABTs (agentic behavior trees), 2nd
+
+
+
+managing assistants with assistants
+
+
+
+actions
+
+
+
+defining
+
+
+
+empowering agents with
+
+
+
+executing OpenAI functions
+
+
+
+exercises
+
+
+
+agent planning
+
+
+
+exercises
+
+
+
+agentops package
+
+
+
+autonomous assistants
+
+
+
+conversational autonomous multi-agents
+
+
+
+exercises
+
+
+
+agents
+
+
+
+component systems of, 2nd
+
+
+
+defining, 2nd
+
+
+
+empowering with actions
+
+
+
+overview of
+
+
+
+reasoning and evaluation
+
+
+
+rise of
+
+
+
+agent_action decorator
+
+
+
+Api parameter
+
+
+
+advanced parameters
+
+
+
+agent profiles
+
+
+
+AGI (artificial general intelligence)
+
+
+
+assistant role
+
+
+
+AI agents, AI interface
+
+
+
+Azure OpenAI Studio
+
+
+
+B
+
+
+
+blackboards
+
+
+
+BaseAgent class
+
+
+
+behavior trees, 2nd
+
+
+
+building with back chaining, 2nd
+
+
+
+deciding on, 2nd
+
+
+
+execution
+
+
+
+running with Python and py_trees
+
+
+
+C
+
+
+
+ChatGPT, engaging assistants through, 2nd
+
+
+
+conversational AI systems
+
+
+
+crewai_agentops.py file
+
+
+
+connecting.py code
+
+
+
+create_plan function
+
+
+
+cosine_similarity function
+
+
+
+chat completions
+
+
+
+Connection parameter
+
+
+
+coding challenge ABT (agentic behavior tree)
+
+
+
+create_assistant_condition helper function
+
+
+
+context variables
+
+
+
+create_manager_assistant action
+
+
+
+D
+
+
+
+DAG (direct acyclic graph)
+
+
+
+Direct Prompting
+
+
+
+direct solution prompting, 2nd
+
+
+
+few-shot prompting, 2nd
+
+
+
+question and answer prompting, 2nd
+
+
+
+describe_image function
+
+
+
+E
+
+
+
+evaluate_recommendation block
+
+
+
+evaluation prompt techniques
+
+
+
+evaluation, employing for consistent solutions
+
+
+
+F
+
+
+
+functions
+
+
+
+actioning function calls, 2nd
+
+
+
+feedback
+
+
+
+application of feedback to agentic/assistant applications, 2nd
+
+
+
+flow.dag.yaml file, 2nd
+
+
+
+for-each function
+
+
+
+first_function.py Python script
+
+
+
+G
+
+
+
+GPT Assistants Playground, 2nd
+
+
+
+getting assistant to run code locally
+
+
+
+installing and running
+
+
+
+installing assistants database
+
+
+
+investigating assistant process through logs
+
+
+
+using and building custom actions
+
+
+
+get_response function
+
+
+
+generative models
+
+
+
+GPTs (Generative Pretrained Transformers)
+
+
+
+customizing, 2nd
+
+
+
+GPT (Generative Pretrained Transformer) assistants
+
+
+
+OpenAI Assistants, 2nd
+
+
+
+building, 2nd
+
+
+
+exercises
+
+
+
+publishing, 2nd
+
+
+
+GroupChat
+
+
+
+get_response_stream function
+
+
+
+group chat with agents and AutoGen
+
+
+
+get_top_movie_by_genre function
+
+
+
+I
+
+
+
+input tokens
+
+
+
+Inputs block
+
+
+
+import_plugin function
+
+
+
+IDEs (integrated development environments)
+
+
+
+initiate_chat call
+
+
+
+J
+
+
+
+JSON Lines (JSONL)
+
+
+
+K
+
+
+
+KnowledgeManager class
+
+
+
+knowledge
+
+
+
+compression
+
+
+
+extending assistants’ knowledge using file uploads
+
+
+
+stores
+
+
+
+knowledge/memory
+
+
+
+L
+
+
+
+load_dotenv function
+
+
+
+launch.json file
+
+
+
+LM Studio
+
+
+
+installing and running
+
+
+
+serving LLM locally with
+
+
+
+LLMs (large language models), 2nd, 3rd, 4th
+
+
+
+adding functions to API calls
+
+
+
+choosing optimal, 2nd
+
+
+
+exercises
+
+
+
+open source LLMs with LM Studio, 2nd
+
+
+
+M
+
+
+
+multi-agent systems, 2nd
+
+
+
+AutoGen, 2nd
+
+
+
+building agent crew with CrewAI
+
+
+
+exercises
+
+
+
+revisiting coding agents with CrewAI, 2nd
+
+
+
+with AutoGen Studio
+
+
+
+Max_tokens parameter
+
+
+
+manager_llm class
+
+
+
+memory
+
+
+
+consuming memory stores in Nexus
+
+
+
+implementing in agentic systems, 2nd
+
+
+
+max_rpm (maximum requests per minute)
+
+
+
+Model parameter
+
+
+
+N
+
+
+
+native functions
+
+
+
+applying
+
+
+
+NPCs (nonplayer characters)
+
+
+
+Nexus
+
+
+
+developing
+
+
+
+running
+
+
+
+O
+
+
+
+one-shot model
+
+
+
+OpenAI
+
+
+
+accessing accounts and keys
+
+
+
+OAI_CONFIG_LIST file
+
+
+
+OpenAI API
+
+
+
+connecting to chat completions model
+
+
+
+request and response, 2nd
+
+
+
+P
+
+
+
+prompt engineering, 2nd, 3rd
+
+
+
+adopting personas
+
+
+
+creating detailed queries
+
+
+
+providing examples
+
+
+
+specifying output length
+
+
+
+specifying steps
+
+
+
+systematic
+
+
+
+using delimiters
+
+
+
+planning agents, 2nd
+
+
+
+pip command
+
+
+
+planning
+
+
+
+parsing_results block
+
+
+
+py_trees package
+
+
+
+PCA (principal component analysis)
+
+
+
+prompt flow
+
+
+
+agent profiles, evaluating, 2nd
+
+
+
+grounding evaluation with LLM profile
+
+
+
+setting up, 2nd
+
+
+
+prompt_engineering.py file, 2nd
+
+
+
+planning/feedback
+
+
+
+Python
+
+
+
+installing VS code
+
+
+
+profiles
+
+
+
+comparing, 2nd
+
+
+
+Q
+
+
+
+question_answer LLM prompt
+
+
+
+R
+
+
+
+reasoning
+
+
+
+in prompt engineering
+
+
+
+retrieval
+
+
+
+rubber ducking
+
+
+
+rubrics, 2nd
+
+
+
+RLHF (reinforcement learning with human feedback)
+
+
+
+reasoning prompts
+
+
+
+reasoning agents, exercises
+
+
+
+RAG (Retrieval Augmented Generation), 2nd, 3rd
+
+
+
+applying to building agent knowledge, 2nd
+
+
+
+constructing with LangChain, 2nd
+
+
+
+run_conversation function
+
+
+
+requirements.txt file
+
+
+
+recommender_with_LLM_evaluation flows visual editor
+
+
+
+S
+
+
+
+search_wikipedia action
+
+
+
+Stop parameter
+
+
+
+semantic services, writing
+
+
+
+semantic skills, creating, 2nd
+
+
+
+single-path reasoning
+
+
+
+st.spinner control
+
+
+
+stepwise planner, OpenAI Strawberry, 2nd
+
+
+
+SEO (search engine optimization)
+
+
+
+self-consistency prompting, 2nd
+
+
+
+sequential planning process
+
+
+
+semantic functions, 2nd, 3rd
+
+
+
+creating and registering, 2nd
+
+
+
+embedding native functions within
+
+
+
+Streamlit
+
+
+
+building chat applications, 2nd
+
+
+
+creating streaming chat applications
+
+
+
+overview, 2nd
+
+
+
+skills/plugin folder
+
+
+
+SK (Semantic Kernel), 2nd, 3rd, 4th
+
+
+
+as interactive service agent
+
+
+
+context variables
+
+
+
+semantic functions, 2nd
+
+
+
+sequential planners, 2nd
+
+
+
+step-by-step with prompt chaining, 2nd
+
+
+
+semantic plugins, creating
+
+
+
+system role
+
+
+
+semantic search, 2nd
+
+
+
+st.write_stream control
+
+
+
+scoring block
+
+
+
+skills directory
+
+
+
+semantic memory
+
+
+
+T
+
+
+
+TMDbService, 2nd
+
+
+
+tokenization, splitting documents by token with LangChain
+
+
+
+Temperature parameter
+
+
+
+TMDB (The Movie Database)
+
+
+
+ToT (tree of thought)
+
+
+
+TF-IDF (Term Frequency-Inverse Document Frequency)
+
+
+
+ToT (tree of thought) prompting, 2nd
+
+
+
+tmdb.py file
+
+
+
+temperature conversion plugin
+
+
+
+TMDbService class, 2nd, 3rd
+
+
+
+U
+
+
+
+UserProxy agent
+
+
+
+user role
+
+
+
+unstructured memory/knowledge concepts
+
+
+
+ulk_recommend.jsonl file
+
+
+
+V
+
+
+
+vector similarity search
+
+
+
+Inverse Document Frequency (IDF)
+
+
+
+TF-IDF calculation, 2nd
+
+
+
+Term Frequency (TF)
+
+
+
+document embeddings
+
+
+
+querying document embeddings from Chroma
+
+
+
+VS Code
+
+
+
+installing
+
+
+
+installing Python extensions
+
+
+
+VS Code Dev Containers (Docker)
+
+
+
+vector databases
+
+
+
+VS Code (Visual Studio Code), 2nd, 3rd, 4th
+
+
+
+creating new Python environment with
+
+
+
+W
+
+
+
+weather information plugin
+
+
+
+web APIs
+
+
+
+WSL (Windows Subsystem for Linux)
+
+
+
+Write Clear Instructions strategy
+
+
+
+working_dir folder
+
+
+
+X
+
+
+
+X (formerly Twitter)
+
+
+
+required setup
+
+
+
+Y
+
+
+
+YouTube
+
+
+
+posting videos to X
+
+
+
+required assistants
+
+
+
+search and spam
+
+
+
+Z
+
+
+
+zero-shot CoT prompting
+
+
+
+zero-shot prompting
+
+
+
+zero-shot learning
+
+
+
+
+

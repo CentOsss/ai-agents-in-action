@@ -1,0 +1,34 @@
+6.1.1 Understanding behavior tree execution
+
+
+
+
+Understanding how behavior trees execute is crucial to designing and implementing behavior trees. Unlike most concepts in computer science, behavior trees operate in terms of success and failure. When a node in a behavior tree executes, it will return either success or failure; this even applies to conditions and selector nodes.
+
+
+
+Behavior trees execute from top to bottom and left to right. Figure 6.2 shows the process and what happens if a node fails or succeeds. In the example, the AI the tree controls has an apple but no pear. In the first sequence node, a condition checks if the AI has an apple. Because the AI doesn’t have an apple, it aborts the sequence and falls back to the selector. The selector then selects its next child node, another sequence, that checks if the AI has a pear, and because it does, the AI eats the apple.
+
+
+
+
+
+Figure 6.2 The execution process of a simple behavior tree
+
+
+
+
+Behavior trees provide control over how an AI system will execute at a macro or micro level. Regarding robotics, behavior trees will typically be designed to operate at the micro level, where each action or condition is a small event, such as detecting the apple. Conversely, behavior trees can also control more macro systems, such as NPCs in games, where each action may be a combination of events, like attacking the player.
+
+
+
+For agentic systems, behavior trees support controlling an agent or assistant at your chosen level. We’ll explore controlling agents at the task and, in later chapters, the planning levels. After all, with the power of LLMs, agents can construct their own behavior tree.
+
+
+
+Of course, several other forms of AI control could be used to control agentic systems. The next section will examine those different systems and compare them to behavior trees.
+
+
+
+
+

@@ -10,6 +10,7 @@ __pycache__/
 development/projects/GPT-Agents/__pycache__/
 development/projects/GPT-Agents/*.py[cod]
 development/projects/GPT-Agents/*$py.class
+development/projects/GPT-Agents/.venv/
 
 # C extensions
 development/projects/GPT-Agents/*.so

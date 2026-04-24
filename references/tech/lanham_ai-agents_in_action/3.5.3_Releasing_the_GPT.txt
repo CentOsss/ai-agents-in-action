@@ -1,0 +1,36 @@
+3.5.3 Releasing the GPT
+
+
+
+
+Okay, you’re happy with your GPT and how it operates, and you see real benefit from giving it to others. Publishing GPTs for public (subscribers) consumption is easy, as shown in figure 3.14. After selecting the GPT Store as the option and clicking Save, you’ll now have the option to set the category and provide links back to you.
+
+
+
+
+
+Figure 3.14 Selecting the options after clicking Save to publish to the GPT Store
+
+
+
+
+That is easy, so here are a few more things you’ll want to consider before publishing your GPT:
+
+
+
+GPT description —Create a good description, and you may even want to ask ChatGPT to help you build a description that increases the search engine optimization (SEO) of your GPT. GPTs are now showing up in Google searches, so good search engine optimization can help increase exposure to your assistant. A good description will also help users decide if they want to take the time to use your assistant.
+
+The logo —A nice, clean logo that identifies what your assistant does can undoubtedly help. Logo design for GPTs is effectively a free service, but taking the time to iterate over a few images can help draw users to your assistant.
+
+The category —By default, the category will already be selected, but make sure it fits your assistant. If you feel it doesn’t, than change the category, and you may even want to select Other and define your own.
+
+Links —Be sure to set reference links for your social media and perhaps even a GitHub repository that you use to track problems for the GPT. Adding links to your GPT demonstrates to users that they can reach out to the builder if they encounter problems or have questions.
+
+
+
+Further requirements may likely emerge as the GPT Store matures. The business model remains to be established, and other learnings will likely follow. Whether you decide to build GPTs for yourself or others, doing so can help improve your understanding of how to build agents and assistants. As we’ll see throughout the rest of this book, GPT assistants are a useful foundation for your knowledge.
+
+
+
+
+

@@ -1,0 +1,109 @@
+4.2.1 Installing and consuming AutoGen
+
+
+
+
+This next exercise will look at coding a basic multi-agent system that uses a user proxy and conversable agent. Before we do that, though, we want to make sure AutoGen is installed and configured correctly.
+
+
+
+Open a terminal in VS Code, and run the entire chapter 4 install directions per appendix B, or run the pip command in listing 4.4. If you’ve installed the requirements.txt file, you’ll also be ready to run AutoGen.
+
+
+
+
+
+Listing 4.4 Installing AutoGen
+
+
+pip install pyautogen
+
+
+
+
+
+Next, copy the chapter_04/OAI_CONFIG_LIST.example to OAI_CONFIG_LIST, removing .example from the file name. Then, open the new file in VS Code, and enter your OpenAI or Azure configuration in the OAI_CONFIG_LIST file in listing 4.5. Fill in your API key, model, and other details per your API service requirements. AutoGen will work with any model that adheres to the OpenAI client. That means you can use local LLMs via LM Studio or other services such as Groq, Hugging Face, and more.
+
+
+
+
+
+Listing 4.5 OAI_CONFIG_LIST
+
+
+[ { "model": "gpt-4", #1 "api_key": "<your OpenAI API key here>", #2 "tags": ["gpt-4", "tool"] }, { "model": "<your Azure OpenAI deployment name>", #3 "api_key": "<your Azure OpenAI API key here>", #4 "base_url": "<your Azure OpenAI API base here>", #5 "api_type": "azure", "api_version": "2024-02-15-preview" } ]
+
+#1 Select the model; GPT-4 is recommended.
+
+#2 Use the service key you would typically use.
+
+#3 Select the model; GPT-4 is recommended.
+
+#4 Use the service key you would typically use.
+
+#5 Changing the base URL allows you to point to other services, not just Azure OpenAI.
+
+
+
+
+
+Now, we can look at the code for a basic multi-agent chat using the out-of-the-box UserProxy and ConversableAgent agents. Open autogen_start.py in VS Code, shown in the following listing, and review the parts before running the file.
+
+
+
+
+
+Listing 4.6 autogen_start.py
+
+
+from autogen import ConversableAgent, UserProxyAgent, config_list_from_json config_list = config_list_from_json( env_or_file="OAI_CONFIG_LIST") #1 assistant = ConversableAgent( "agent", llm_config={"config_list": config_list}) #2 user_proxy = UserProxyAgent( #3 "user", code_execution_config={ "work_dir": "working", "use_docker": False, }, human_input_mode="ALWAYS", is_termination_msg=lambda x: x.get("content", "") .rstrip() .endswith("TERMINATE"), #4 ) user_proxy.initiate_chat(assistant, message="write a solution ↪ for fizz buzz in one line?") #5
+
+#1 Loads your LLM configuration from the JSON file OAI_CONFIG_LIST
+
+#2 This agent talks directly to the LLM.
+
+#3 This agent proxies conversations from the user to the assistant.
+
+#4 Setting the termination message allows the agent to iterate.
+
+#5 A chat is initiated with the assistant through the user_proxy to complete a task.
+
+
+
+
+
+Run the code by running the file in VS Code in the debugger (F5). The code in listing 4.6 uses a simple task to demonstrate code writing. Listing 4.7 shows a few examples to choose from. These coding tasks are also some of the author’s regular baselines to assess an LLMs’ strength in coding.
+
+
+
+
+
+Listing 4.7 Simple coding task examples
+
+
+write a Python function to check if a number is prime code a classic sname game using Pygame #1 code a classic asteroids game in Python using Pygame #1
+
+#1 To enjoy iterating over these tasks, use Windows Subsystem for Linux (WSL) on Windows, or use Docker.
+
+
+
+
+
+After the code starts in a few seconds, the assistant will respond to the proxy with a solution. At this time, the proxy will prompt you for feedback. Press Enter, essentially giving no feedback, and this will prompt the proxy to run the code to verify it operates as expected.
+
+
+
+Impressively, the proxy agent will even take cues to install required packages such as Pygame. Then it will run the code, and you’ll see the output in the terminal or as a new window or browser. You can play the game or use the interface if the code shelled a new window/browser.
+
+
+
+Note that the spawned window/browser won’t close on Windows and will require exiting the entire program. To avoid this problem, run the code through Windows Subsystem for Linux (WSL) or Docker. AutoGen explicitly recommends using Docker for code execution agents, and if you’re comfortable with containers, this is a good option.
+
+
+
+Either way, after the proxy generates and runs the code, the working_dir folder set earlier in listing 4.6 should now have a Python file with the code. This will allow you to run the code at your leisure, make changes, or even ask for improvements, as we’ll see. In the next section, we’ll look at how to improve the capabilities of the coding agents.
+
+
+
+
+

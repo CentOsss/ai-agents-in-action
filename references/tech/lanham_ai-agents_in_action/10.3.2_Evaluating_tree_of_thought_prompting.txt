@@ -1,0 +1,97 @@
+10.3.2 Evaluating tree of thought prompting
+
+
+
+
+As mentioned earlier, ToT prompting, as shown in figure 10.6, combines self-evaluation and prompt chaining techniques. As such, it breaks down the sequence of planning into a chain of prompts, but at each step in the chain, it provides for multiple evaluations. This creates a tree that can be executed and evaluated at each level, breadth-first, or from top to bottom, depth-first.
+
+
+
+Figure 10.10 shows the difference between executing a tree using breadth-first or depth-first. Unfortunately, due to the DAG execution pattern of prompt flow, we can’t quickly implement the depth-first method, but breadth-first works just fine.
+
+
+
+
+
+Figure 10.10 Breadth-first vs. depth-first execution on a ToT pattern
+
+
+
+
+Open tree-of-thought-evaluation/flow.dag.yaml in VS Code. The visual of the flow is shown in figure 10.11. This flow functions like a breadth-first ToT pattern—the flow chains together a series of prompts asking the LLM to return multiple plans at each step.
+
+
+
+
+
+Figure 10.11 ToT pattern expressed and prompt flow
+
+
+
+
+Because the flow executes in a breadth-first style, each level output of the nodes is also evaluated. Each node in the flow uses a pair of semantic functions—one to generate the answer and the other to evaluate the answer. The semantic function is a custom Python flow block that processes multiple inputs and generates multiple outputs.
+
+
+
+Listing 10.19 shows the semantic_function.py tool. This general tool is reused for multiple blocks in this flow. It also demonstrates the embedding functionality from the SK for direct use within prompt flow.
+
+
+
+
+
+Listing 10.19 semantic_function.py
+
+
+@tool def my_python_tool( input: str, input_node: int, history: str, semantic_function: str, evaluation_function: str, function_name: str, skill_name: str, max_tokens: int, temperature: float, deployment_name: str, connection: Union[OpenAIConnection, AzureOpenAIConnection], #1 ) -> str: if input is None or input == "": #2 return "" kernel = sk.Kernel(log=sk.NullLogger()) # code for setting up the kernel and LLM connection omitted function = kernel.create_semantic_function( semantic_function, function_name=function_name, skill_name=skill_name, max_tokens=max_tokens, temperature=temperature, top_p=0.5) #3 evaluation = kernel.create_semantic_function( evaluation_function, function_name="Evaluation", skill_name=skill_name, max_tokens=max_tokens, temperature=temperature, top_p=0.5) #4 async def main(): query = f"{history}\n{input}" try: eval = int((await evaluation.invoke_async(query)).result) if eval > 25: #5 return await function.invoke_async(query) #6 except Exception as e: raise Exception("Evaluation failed", e) try: result = asyncio.run(main()).result return result except Exception as e: print(e) return ""
+
+#1 Uses a union to allow for different types of LLM connections
+
+#2 Checks to see if the input is empty or None; if so, the function shouldn’t be executed.
+
+#3 Sets up the generation function that creates a plan
+
+#4 Sets up the evaluation function
+
+#5 Runs the evaluate function and determines if the input is good enough to continue
+
+#6 If the evaluation score is high enough, generates the next step
+
+
+
+
+
+The semantic function tool is used in the tree’s experts, nodes, and answer blocks. At each step, the function determines if any text is being input. If there is no text, the block returns with no execution. Passing no text to a block means that the previous block failed evaluation. By evaluating before each step, ToT short-circuits the execution of plans it deems as not being valid.
+
+
+
+This may be a complex pattern to grasp at first, so go ahead and run the flow in VS Code. Listing 10.20 shows just the answer node output of a run; these results may vary from what you see but should be similar. Nodes that return no text either failed evaluation or their parents did.
+
+
+
+
+
+Listing 10.20 Output from tree-of-thought-evaluation flow
+
+
+{ "answer_1_1": "", #1 "answer_1_2": "", "answer_1_3": "", "answer_2_1": "Alex spends a total of 29 days in the past before he sees the end of the battle.", "answer_2_2": "", #2 "answer_2_3": "Alex spends a total of 29 days in the past before he sees the end of the battle.", "answer_3_1": "", #3 "answer_3_2": "Alex spends a total of 29 days in the past before he sees the end of the battle.", "answer_3_3": "Alex spends a total of 9 days in the past before he sees the end of the battle.",
+
+#1 Represents that the first node plans weren’t valid and not executed
+
+#2 The plan for node 2 and answer 2 failed evaluation and wasn’t run.
+
+#3 The plan for this node failed to evaluate and wasn’t run.
+
+
+
+
+
+The output in listing 10.20 shows how only a select set of nodes was evaluated. In most cases, the evaluated nodes returned an answer that could be valid. Where no output was produced, it means that the node itself or its parent wasn’t valid. When sibling nodes all return empty, the parent node fails to evaluate.
+
+
+
+As we can see, ToT is valid for complex problems but perhaps not very practical. The execution of this flow can take up to 27 calls to an LLM to generate an output. In practice, it may only do half that many calls, but that’s still a dozen or more calls to answer a single problem.
+
+
+
+
+

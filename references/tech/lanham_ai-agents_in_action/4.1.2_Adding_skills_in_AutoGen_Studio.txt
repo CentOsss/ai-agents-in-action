@@ -1,0 +1,100 @@
+4.1.2 Adding skills in AutoGen Studio
+
+
+
+
+Skills and tools, or actions, as we refer to them in this book, are the primary means by which agents can extend themselves. Actions give agents the ability to execute code, call APIs, or even further evaluate and inspect generated output. AutoGen Studio currently begins with just a basic set of tools to fetch web content or generate images.
+
+
+
+Note  Many agentic systems employ the practice of allowing agents to code to solve goals. However, we discovered that code can be easily broken, needs to be maintained, and can change quickly. Therefore, as we’ll discuss in later chapters, it’s better to provide agents with skills/actions/tools to solve problems.
+
+
+
+In the following exercise scenario, we’ll add a skill/action to inspect an image using the OpenAI vision model. This will allow the proxy agent to provide feedback if we ask the assistant to generate an image with particular content.
+
+
+
+With AutoGen Studio running, go to the Build tab and click Skills, as shown in figure 4.5. Then, click the New Skill button to open a code panel where you can copy–paste code to. From this tab, you can also configure models, agents, and agent workflows.
+
+
+
+
+
+Figure 4.5 Steps to creating a new skill on the Build tab
+
+
+
+
+Enter the code shown in listing 4.2 and also provided in the book’s source code as describe_image.py. Copy and paste this code into the editor window, and then click the Save button at the bottom.
+
+
+
+
+
+Listing 4.2 describe_image.py
+
+
+import base64 import requests import os def describe_image(image_path='animals.png') -> str: """ Uses GPT-4 Vision to inspect and describe the contents of the image. :param input_path: str, the name of the PNG file to describe. """ api_key = os.environ['OPEN_API_KEY'] # Function to encode the image def encode_image(image_path): #1 with open(image_path, "rb") as image_file: return base64.b64encode(image_file.read()).decode('utf-8') # Getting the base64 string base64_image = encode_image(image_path) headers = { "Content-Type": "application/json", "Authorization": f"Bearer {api_key}" } payload = { "model": "gpt-4-turbo", "messages": [ { "role": "user", "content": [ { "type": "text", "text": "What’s in this image?" }, { "type": "image_url", "image_url": { "url": f"data:image/jpeg;base64,{base64_image}" #2 } } ] } ], "max_tokens": 300 } response = requests.post( "https://api.openai.com/v1/chat/completions", headers=headers, json=payload) return response.json()["choices"][0]["message"] #3 ["content"] #3
+
+#1 Function to load and encode the image as a Base64 string
+
+#2 Including the image string along with the JSON payload
+
+#3 Unpacking the response and returning the content of the reply
+
+
+
+
+
+The describe_image function uses the OpenAI GPT-4 vision model to describe what is in the image. This skill can be paired with the existing generate_image skill as a quality assessment. The agents can confirm that the generated image matches the user’s requirements.
+
+
+
+After the skill is added, it must be added to the specific agent workflow and agent for use. Figure 4.6 demonstrates adding the new skill to the primary assistant agent in the general or default agent workflow.
+
+
+
+
+
+Figure 4.6 Configuring the primary_assistant agent with the new skill
+
+
+
+
+Now that the skill is added to the primary assistant, we can task the agent with creating a specific image and validating it using the new describe_image skill. Because image generators notoriously struggle with correct text, we’ll create an exercise task to do just that.
+
+
+
+Enter the text shown in listing 4.3 to prompt the agents to create a book image cover for this book. We’ll explicitly say that the text needs to be correct and insist that the agent uses the new describe_image function to verify the image.
+
+
+
+
+
+Listing 4.3 Prompting for a book cover
+
+
+Please create a cover for the book GPT Agents In Action, use the describe_image skill to make sure the title of the book is spelled correctly on the cover
+
+
+
+
+
+After the prompt is entered, wait for a while, and you may get to see some dialogue exchanged about the image generation and verification process. In the end, though, if everything works correctly, the agents will return with the results shown in figure 4.7.
+
+
+
+
+
+Figure 4.7 The generated file outputs from the agent work on the image generation task
+
+
+
+
+Remarkably, the agent coordination completed the task in just a couple of iterations. Along with the images, you can also see the various helper code snippets generated to assist with task completion. AutoGen Studio is impressive in its ability to integrate skills that the agents can further adapt to complete some goal. The following section will show how these powerful agents are implemented in code.
+
+
+
+
+

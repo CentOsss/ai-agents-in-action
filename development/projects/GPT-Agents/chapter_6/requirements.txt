@@ -1,0 +1,9 @@
+scikit-learn
+plotly
+openai
+python-dotenv
+chromadb
+langchain
+langchain-community
+unstructured
+tiktoken

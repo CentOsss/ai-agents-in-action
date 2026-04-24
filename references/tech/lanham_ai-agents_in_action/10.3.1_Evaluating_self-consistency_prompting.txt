@@ -1,0 +1,161 @@
+10.3.1 Evaluating self-consistency prompting
+
+
+
+
+Consistency in prompting is more than just lowering the temperature parameter we send to an LLM. Often, we want to generate a consistent plan or solution and still use a high temperature to better evaluate all the variations to a plan. By evaluating multiple different plans, we can get a better sense of the overall value of a solution.
+
+
+
+Self-consistent prompting is the technique of generating multiple plans/solutions for a given problem. Then, those plans are evaluated, and the more frequent or consistent plan is accepted. Imagine three plans generated, where two are similar, but the third is different. Using self-consistency, we evaluate the first two plans as the more consistent answer.
+
+
+
+Open prompt_flow/self-consistency-prompting/flow.dag.yaml in the VS Code prompt flow visual editor. The flow diagram shows the simplicity of the prompt generation flow in figure 10.7. Next to it in the diagram is the self-consistency evaluation flow.
+
+
+
+
+
+Figure 10.7 The self-consistency prompt generation beside the evaluation flow
+
+
+
+
+Prompt flow uses a direct acyclic graph (DAG) format to execute the flow logic. DAGs are an excellent way of demonstrating and executing flow logic, but because they are acyclic, meaning they can’t repeat, they can’t execute loops. However, because prompt flow provides a batch processing mechanism, we can use that to simulate loops or repetition in a flow.
+
+
+
+Referring to figure 10.6, we can see that self-consistency processes the input three times before collecting the results and determining the best plan/reply. We can apply this same pattern but use batch processing to generate the outputs. Then, the evaluation flow will aggregate the results and determine the best answer.
+
+
+
+Open the self-consistency-prompting/cot.jinja2 prompt template in VS Code (see listing 10.16). The listing was shortened, as we’ve seen parts before. This prompt uses two (few-shot prompt) examples of a CoT to demonstrate the thought reasoning to the LLM.
+
+
+
+
+
+Listing 10.16 self-consistency-prompting/cot.jinja2
+
+
+system: "In a time travel movie, Sarah travels back… " #1 Chain of Thought: Initial Assumption: … #2 Conclusion: Sarah spends 729 days in the past before the day of the event. "In a complex time travel movie plot, Max, a 25 year old…" #3 Chain of Thought: Starting Point: Max starts … #4 Conclusion: After the final jump, Max finds himself in the year 1980 and he is 75 years old. Think step by step, but only show the final answer to the statement. #5 user: {{statement}}
+
+#1 The Sarah time travel problem
+
+#2 Sample CoT, cut for brevity
+
+#3 The Max time travel problem
+
+#4 Sample CoT, cut for brevity
+
+#5 Final guide and statement to constrain output
+
+
+
+
+
+Open the self-consistency-prompting/flow.dag.yaml file in VS Code. Run the example in batch mode by clicking Batch Run (the beaker icon) from the visual editor. Figure 10.8 shows the process step by step:
+
+
+
+Click Batch Run.
+
+Select the JSON Lines (JSONL) input.
+
+Select statements.jsonl.
+
+Click the Run link.
+
+
+
+
+
+Figure 10.8 The step-by-step process of launching a batch process
+
+
+
+
+TIP  If you need to review the process, refer to chapter 9, which covers this process in more detail.
+
+
+
+Listing 10.17 shows the JSON output from executing the flow in batch mode. The statements.jsonl file has five identical Alex time travel problem entries. Using identical entries allows us to simulate the prompt executing five times on the duplicate entry.
+
+
+
+
+
+Listing 10.17 self-consistency-prompting batch execution output
+
+
+{ "name": "self-consistency-prompting_default_20240203_100322_912000", "created_on": "2024-02-03T10:22:30.028558", "status": "Completed", "display_name": "self-consistency-prompting_variant_0_202402031022", "description": null, "tags": null, "properties": { "flow_path": "…prompt_flow/self-consistency-prompting", #1 "output_path": "…/.promptflow/.runs/self- ↪ consistency-prompting_default_20240203_100322_912000", #2 "system_metrics": { "total_tokens": 4649, "prompt_tokens": 3635, "completion_tokens": 1014, "duration": 30.033773 } }, "flow_name": "self-consistency-prompting", "data": "…/prompt_flow/self-consistency-prompting/ ↪ statements.jsonl", #3 "output": "…/.promptflow/.runs/self-consistency-↪ ↪ prompting_default_20240203_100322_912000/flow_outputs" }
+
+#1 The path where the flow was executed from
+
+#2 The folder containing the outputs of the flow (note this path)
+
+#3 The data used to run the flow in batch
+
+
+
+
+
+You can view the flow produced by pressing the Ctrl key and clicking the output link, highlighted in listing 10.17. This will open another instance of VS Code, showing a folder with all the output from the run. We now want to check the most consistent answer. Fortunately, the evaluation feature in prompt flow can help us identify consistent answers using similarity matching.
+
+
+
+Open self-consistency-evaluation/flow.dag.yaml in VS Code (see figure 10.7). This flow embeds the predicted answer and then uses an aggregation to determine the most consistent answer.
+
+
+
+From the flow, open consistency.py in VS Code, as shown in listing 10.18. The code for this tool function calculates the cosine similarity for all pairs of answers. Then, it finds the most similar answer, logs it, and outputs that as the answer.
+
+
+
+
+
+Listing 10.18 consistency.py
+
+
+from promptflow import tool from typing import List import numpy as np from scipy.spatial.distance import cosine @tool def consistency(texts: List[str], embeddings: List[List[float]]) -> str: if len(embeddings) != len(texts): raise ValueError("The number of embeddings ↪ ↪ must match the number of texts.") mean_embedding = np.mean(embeddings, axis=0) #1 similarities = [1 - cosine(embedding, mean_embedding) ↪ ↪ for embedding in embeddings] #2 most_similar_index = np.argmax(similarities) #3 from promptflow import log_metric log_metric(key="highest_ranked_output", value=texts[most_similar_index]) #4 return texts[most_similar_index] #5
+
+#1 Calculates the mean of all the embeddings
+
+#2 Calculates cosine similarity for each pair of embeddings
+
+#3 Finds the index of the most similar answer
+
+#4 Logs the output as a metric
+
+#5 Returns the text for the most similar answer
+
+
+
+
+
+We need to run the evaluation flow in batch mode as well. Open self-consistency-evaluation/flow.dag.yaml in VS Code and run the flow in batch mode (beaker icon). Then, select Existing Run as the flow input, and when prompted, choose the top or the last run you just executed as input.
+
+
+
+Again, after the flow completes processing, you’ll see an output like that shown in listing 10.17. Ctrl-click on the output folder link to open a new instance of VS Code showing the results. Locate and open the metric.json file in VS Code, as shown in figure 10.9.
+
+
+
+
+
+Figure 10.9 The VS Code is open to the batch run output folder. Highlighted are the metrics.json file and the output showing the most similar answer.
+
+
+
+
+The answer shown in figure 10.9 is still incorrect for this run. You can continue a few more batch runs of the prompt and/or increase the number of runs in a batch and then evaluate flows to see if you get better answers. This technique is generally more helpful for more straightforward problems but still demonstrates an inability to reason out complex problems.
+
+
+
+Self-consistency uses a reflective approach to evaluate the most likely thought. However, the most likely thing is certainly not always the best. Therefore, we must consider a more comprehensive approach in the next section.
+
+
+
+
+

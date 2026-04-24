@@ -1,0 +1,63 @@
+10.2.2 Zero-shot CoT prompting
+
+
+
+
+As our time travel demonstrates, CoT prompting can be expensive in terms of prompt generation for a specific class of problem. While not as effective, there are techniques similar to CoT that don’t use examples and can be more generalized. This section will examine a straightforward phrase employed to elicit reasoning in LLMs.
+
+
+
+Open prompt_flow/zero-shot-cot-prompting/flow.dag.yaml in the VS Code prompt flow visual editor. This flow is very similar to the previous CoT, as shown in figure 10.4. The next lsting shows the YAML pseudocode that describes the flow.
+
+
+
+
+
+Listing 10.10 zero-shot-CoT-prompting flow
+
+
+Inputs: statement : the statement problem to be solved expected : the expected solution to the problem LLM: cot (the prompt used to solve the problem) inputs: statement outputs: the predicted answer given the problem statement LLM: evaluate_answer (the prompt used to evaluate the solution) inputs: statement: -> input.statement expected: -> input.expected predicted: -> output.cot outputs: a score of how well the problem was answered Outputs: statement: -> input.statement expected: -> input.expected predicted: -> output.cot evaluation_score: output.evaluate_answer ### Example Output { "evaluation_score": "1", #1 "expected": "After the final jump, ↪ ↪ Max finds himself in the year 1980 and he is 75 years old.", #2 "predicted": "Max starts in… ↪ ↪ Therefore, after the final jump, ↪ ↪ Max is 75 years old and in the year 1980.", #3 "statement": "In a complex time travel …" #4 }
+
+#1 The final evaluation score
+
+#2 The expected answer
+
+#3 The predicted answer (the steps have been omitted showing the final answer)
+
+#4 The initial problem statement
+
+
+
+
+
+Run/test the flow in VS Code by pressing Shift-F5 while in the visual editor. The flow will run, and you should see output similar to that shown in listing 10.10. This exercise example performs better than the previous example on the same problem.
+
+
+
+Open the cot.jinja2 prompt in VS Code, as shown in listing 10.11. This is a much simpler prompt than the previous example because it only uses zero-shot. However, one key phrase turns this simple prompt into a powerful reasoning engine. The line in the prompt Let’s think step by step triggers the LLM to consider internal context showing reasoning. This, in turn, directs the LLM to reason out the problem in steps.
+
+
+
+
+
+Listing 10.11 cot.jinja2
+
+
+system: You are an expert in solving time travel problems. You are given a time travel problem and you have to solve it. Let's think step by step. #1 Please finalize your answer in a single statement. #2 user: {{statement}} #3
+
+#1 A magic line that formulates reasoning from the LLM
+
+#2 Asks the LLM to provide a final statement of the answer
+
+#3 The problem statement the LLM is asked to solve
+
+
+
+
+
+Similar phrases asking the LLM to think about the steps or asking it to respond in steps also extract reasoning. We’ll demonstrate a similar but more elaborate technique in the next section.
+
+
+
+
+

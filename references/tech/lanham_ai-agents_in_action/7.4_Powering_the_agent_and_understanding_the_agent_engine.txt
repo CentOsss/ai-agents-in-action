@@ -1,0 +1,73 @@
+7.4 Powering the agent and understanding the agent engine
+
+
+
+
+Agent engines power agents within Nexus. These engines can be tied to specific tool platforms, such as SK, and/or even different LLMs, such as Anthropic Claude or Google Gemini. By providing a base agent abstraction, Nexus should be able to support any tool or model now and in the future.
+
+
+
+Currently, Nexus only implements an OpenAI API–powered agent. We’ll look at how the base agent is defined by opening the agent_manager.py file from the Nexus/ nexus/nexus_base folder.
+
+
+
+Listing 7.9 shows the BaseAgent class functions. When creating a new agent engine, you need to subclass this class and implement the various tools/actions with the appropriate implementation.
+
+
+
+
+
+Listing 7.9 agent_manager.py:BaseAgent
+
+
+class BaseAgent: def __init__(self, chat_history=None): self._chat_history = chat_history or [] self.last_message = "" self._actions = [] self._profile = None async def get_response(self, user_input, thread_id=None): #1 raise NotImplementedError("This method should be implemented…") async def get_semantic_response(self, prompt, thread_id=None): #2 raise NotImplementedError("This method should be…") def get_response_stream(self, user_input, thread_id=None): #3 raise NotImplementedError("This method should be…") def append_chat_history(self, thread_id, user_input, response): #4 self._chat_history.append( {"role": "user", "content": user_input, "thread_id": thread_id} ) self._chat_history.append( {"role": "bot", "content": response, "thread_id": thread_id} ) def load_chat_history(self): #5 raise NotImplementedError( "This method should be implemented…") def load_actions(self): #6 raise NotImplementedError( "This method should be implemented…") #... not shown – property setters/getters
+
+#1 Calls the LLM and returns a response
+
+#2 Executes a semantic function
+
+#3 Calls the LLM and returns a response
+
+#4 Appends a message to the agent’s internal chat history
+
+#5 Loads the chat history and allows the agent to reload various histories
+
+#6 Loads the actions that the agent has available to use
+
+
+
+
+
+Open the nexus_agents/oai_agent.py file in VS Code. Listing 7.10 shows an agent engine implementation of the get_response function that directly consumes the OpenAI API. self.client is an OpenAI client created earlier during class initialization, and the rest of the code you’ve seen used in earlier examples.
+
+
+
+
+
+Listing 7.10 oai_agent.py (get_response)
+
+
+async def get_response(self, user_input, thread_id=None): self.messages += [{"role": "user", "content": user_input}] #1 response = self.client.chat.completions.create( #2 model=self.model, messages=self.messages, temperature=0.7, #3 ) self.last_message = str(response.choices[0].message.content) return self.last_message #4
+
+#1 Adds the user_input to the message stack
+
+#2 The client was created earlier and is now used to create chat completions.
+
+#3 Temperature is hardcoded but could be configured.
+
+#4 Returns the response from the chat completions call
+
+
+
+
+
+Like the agent profiles, Nexus uses a plugin system that allows you to place new agent engine definitions in the nexus_agents folder. If you create your agent, it just needs to be placed in this folder for Nexus to discover.
+
+
+
+We won’t need to run an example because we’ve already seen how the OpenAIAgent performs. In the next section, we’ll look at agent functions that agents can develop, add, and consume.
+
+
+
+
+

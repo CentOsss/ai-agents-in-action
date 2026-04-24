@@ -1,0 +1,190 @@
+8.3.1 Applying vector similarity search
+
+
+
+
+Let’s look now at how a document can be transformed into a semantic vector, or a representation of text that can then be used to perform distance or similarity matching. There are numerous ways to convert text into a semantic vector, so we’ll look at a simple one.
+
+
+
+Open the chapter_08 folder in a new Visual Studio Code (VS Code) workspace. Create a new environment and pip install the requirements.txt file for all the chapter dependencies. If you need help setting up a new Python environment, consult appendix B.
+
+
+
+Now open the document_vector_similarity.py file in VS Code, and review the top section in listing 8.1. This example uses Term Frequency–Inverse Document Frequency (TF–IDF). This numerical statistic reflects how important a word is to a document in a collection or set of documents by increasing proportionally to the number of times a word appears in the document and offset by the frequency of the word in the document set. TF–IDF is a classic measure of understanding one document’s importance within a set of documents.
+
+
+
+
+
+Listing 8.1 document_vector_similarity (transform to vector)
+
+
+import plotly.graph_objects as go from sklearn.feature_extraction.text import TfidfVectorizer from sklearn.metrics.pairwise import cosine_similarity documents = [ #1 "The sky is blue and beautiful.", "Love this blue and beautiful sky!", "The quick brown fox jumps over the lazy dog.", "A king's breakfast has sausages, ham, bacon, eggs, toast, and beans", "I love green eggs, ham, sausages and bacon!", "The brown fox is quick and the blue dog is lazy!", "The sky is very blue and the sky is very beautiful today", "The dog is lazy but the brown fox is quick!" ] vectorizer = TfidfVectorizer() #2 X = vectorizer.fit_transform(documents) #3
+
+#1 Samples of documents
+
+#2 Vectorization using TF–IDF
+
+#3 Vectorize the documents.
+
+
+
+
+
+Let’s break down TF–IDF into its two components using the sample sentence, “The sky is blue and beautiful,” and focusing on the word blue.
+
+
+
+
+
+Term Frequency (TF)
+
+
+
+
+Term Frequency measures how frequently a term occurs in a document. Because we’re considering only a single document (our sample sentence), the simplest form of the TF for blue can be calculated as the number of times blue appears in the document divided by the total number of words in the document. Let’s calculate it:
+
+
+
+Number of times blue appears in the document: 1
+
+
+
+Total number of words in the document: 6
+
+
+
+TF = 1 ÷ 6TF = .16
+
+
+
+
+
+Inverse Document Frequency (IDF)
+
+
+
+
+Inverse Document Frequency measures how important a term is within the entire corpus. It’s calculated by dividing the total number of documents by the number of documents containing the term and then taking the logarithm of that quotient:
+
+
+
+IDF = log(Total number of documents ÷ Number of documents containing the word)
+
+
+
+In this example, the corpus is a small collection of eight documents, and blue appears in four of these documents.
+
+
+
+IDF = log(8 ÷ 4)
+
+
+
+
+
+TF–IDF calculation
+
+
+
+
+Finally, the TF–IDF score for blue in our sample sentence is calculated by multiplying the TF and the IDF scores:
+
+
+
+TF–IDF = TF × IDF
+
+
+
+Let’s compute the actual values for TF–IDF for the word blue using the example provided; first, the term frequency (how often the word occurs in the document) is computed as follows:
+
+
+
+TF = 1 ÷ 6
+
+
+
+Assuming the base of the logarithm is 10 (commonly used), the inverse document frequency is computed as follows:
+
+
+
+IDF = log10 (8 ÷ 4)
+
+
+
+Now let’s calculate the exact TF–IDF value for the word blue in the sentence, “The sky is blue and beautiful”:
+
+
+
+The Term Frequency (TF) is approximately 0.1670.
+
+
+
+The Inverse Document Frequency (IDF) is approximately 0.301.
+
+
+
+Thus, the TF–IDF (TF × IDF) score for blue is approximately 0.050.
+
+
+
+This TF–IDF score indicates the relative importance of the word blue in the given document (the sample sentence) within the context of the specified corpus (eight documents, with blue appearing in four of them). Higher TF–IDF scores imply greater importance.
+
+
+
+We use TF–IDF here because it’s simple to apply and understand. Now that we have the elements represented as vectors, we can measure document similarity using cosine similarity. Cosine similarity is a measure used to calculate the cosine of the angle between two nonzero vectors in a multidimensional space, indicating how similar they are, irrespective of their size.
+
+
+
+Figure 8.4 shows how cosine distance compares the vector representations of two pieces or documents of text. Cosine similarity returns a value from –1 (not similar) to 1 (identical). Cosine distance is a normalized value ranging from 0 to 2, derived by taking 1 minus the cosine similarity. A cosine distance of 0 means identical items, and 2 indicates complete opposites.
+
+
+
+
+
+Figure 8.4 How cosine similarity is measured
+
+
+
+
+Listing 8.2 shows how the cosine similarities are computed using the cosine_similarity function from scikit-learn. Similarities are calculated for each document against all other documents in the set. The computed matrix of similarities for documents is stored in the cosine_similarities variable. Then, in the input loop, the user can select the document to view its similarities to the other documents.
+
+
+
+
+
+Listing 8.2 document_vector_similarity (cosine similarity)
+
+
+cosine_similarities = cosine_similarity(X) #1 while True: #2 selected_document_index = input(f"Enter a document number ↪ (0-{len(documents)-1}) or 'exit' to quit: ").strip() if selected_document_index.lower() == 'exit': break if not selected_document_index.isdigit() or ↪ not 0 <= int(selected_document_index) < len(documents): print("Invalid input. Please enter a valid document number.") continue selected_document_index = int(selected_document_index) #3 selected_document_similarities = cosine_similarities[selected_document_index] #4 # code to plot document similarities omitted
+
+#1 Computes the document similarities for all vector pairs
+
+#2 The main input loop
+
+#3 Gets the selected document index to compare with
+
+#4 Extracts the computed similarities against all documents
+
+
+
+
+
+Figure 8.5 shows the output of running the sample in VS Code (F5 for debugging mode). After you select a document, you’ll see the similarities between the various documents in the set. A document will have a cosine similarity of 1 with itself. Note that you won’t see a negative similarity because of the TF–IDF vectorization. We’ll look later at other, more sophisticated means of measuring semantic similarity.
+
+
+
+
+
+Figure 8.5 The cosine similarity between selected documents and the document set
+
+
+
+
+The method of vectorization will dictate the measure of semantic similarity between documents. Before we move on to better methods of vectorizing documents, we’ll examine storing vectors to perform vector similarity searches.
+
+
+
+
+

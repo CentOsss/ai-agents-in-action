@@ -1,0 +1,182 @@
+6.6 Exercises
+
+
+
+
+Complete the following exercises to improve your knowledge of the material:
+
+
+
+Exercise 1—Creating a Travel Planner ABT
+
+
+
+Objective —Build an agentic behavior tree (ABT) to plan a travel itinerary using assistants.
+
+
+
+Tasks:
+
+
+
+Set up the GPT Assistants Playground on your local machine.
+
+Create an ABT to plan a travel itinerary. The tree should have the following structure: Action: Use the Travel assistant to gather information about potential destinations.
+
+Action: Use the Itinerary Planner to create a day-by-day travel plan.
+
+Condition: Verify the completeness and feasibility of the itinerary using another Travel Assistant.
+
+
+
+
+
+Implement and run the ABT to create a complete travel itinerary.
+
+
+
+
+
+Exercise 2—Building an ABT for Customer Support Automation
+
+
+
+Objective —Create an ABT that automates customer support responses using assistants.
+
+
+
+Tasks:
+
+
+
+Set up the GPT Assistants Playground on your local machine.
+
+Create an ABT with the following structure: Action: Use the Customer Query Analyzer assistant to categorize customer queries.
+
+Action: Use the Response Generator assistant to draft responses based on the query categories.
+
+Action: Use the Customer Support assistant to send the responses to customers.
+
+
+
+
+
+Implement and run the ABT to automate the process of analyzing and responding to customer queries.
+
+
+
+
+
+Exercise 3—Managing Inventory with an ABT
+
+
+
+Objective —Learn how to create and manage inventory levels using an ABT.
+
+
+
+Tasks:
+
+
+
+Set up the GPT Assistants Playground on your local machine.
+
+Create an ABT that manages inventory for a retail business: Action: Use the Inventory Checker assistant to review current stock levels.
+
+Action: Use the Order assistant to place orders for low-stock items.
+
+Condition: Verify that orders have been placed correctly and update inventory records.
+
+
+
+
+
+Implement and run the ABT to manage inventory dynamically.
+
+
+
+
+
+Exercise 4—Creating a Personal Fitness Trainer ABT
+
+
+
+Objective —Create an ABT that provides personalized fitness training plans using assistants.
+
+
+
+Tasks:
+
+
+
+Set up the GPT Assistants Playground on your local machine.
+
+Create an ABT to develop a personalized fitness plan: Action: Use the Fitness Assessment assistant to evaluate the user’s current fitness level.
+
+Action: Use the Training Plan Generator to create a custom fitness plan based on the assessment.
+
+Condition: Verify the plan’s suitability and safety using another Fitness assistant.
+
+
+
+
+
+Implement and run the ABT to generate and validate a personalized fitness training plan.
+
+
+
+
+
+Exercise 5—Using Back Chaining to Build a Financial Advisor ABT
+
+
+
+Objective —Apply back chaining to construct an ABT that provides financial advice and investment strategies.
+
+
+
+Tasks:
+
+
+
+Set up the GPT Assistants Playground on your local machine.
+
+Define the following goal: “Create an assistant that can provide financial advice and investment strategies.”
+
+Using back chaining, determine the actions and conditions needed to achieve this goal.
+
+Implement and run the ABT to generate a comprehensive financial advisory service by back chaining the construction of the base actions and conditions for the tree.
+
+
+
+
+
+Summary
+
+
+
+
+Behavior trees are a robust and scalable AI control pattern, first introduced in robotics by Rodney A. Brooks. They are widely used in gaming and robotics for their modularity and reusability.
+
+The primary nodes in behavior trees are the selector, sequence, condition, action, decorator, and parallel nodes. Selectors are like “or” blocks: sequence executes nodes in sequence, condition tests the state, action does the work, decorator is a wrapper, and parallel nodes allow for dual execution.
+
+Understanding the execution flow of behavior trees can be critical to designing, building, and operating them to provide control for making clear decision-making paths.
+
+The advantages of behavior trees include modularity, scalability, flexibility, debugging ease, and decoupling of decision logic, making behavior trees suitable for complex AI systems.
+
+Setting up and running a simple behavior tree in Python requires correctly naming and documenting custom nodes.
+
+The GPT Assistants Playground project is a Gradio-based interface that mimics the OpenAI Assistants Playground with additional features for teaching and demonstrating ABTs.
+
+The GPT Assistants Playground allows for creating and managing custom actions, which is essential for building versatile assistants.
+
+ABTs control agents and assistants by using prompts to direct actions and conditions for assistants. ABTs use the power of LLMs to create dynamic and autonomous systems.
+
+Back chaining is a method for constructing behavior trees by working backward from the goal behavior. This process involves identifying required actions, conditions, and communication patterns, and then constructing the tree step by step.
+
+Agentic systems benefit from siloed and conversation patterns for communicating between entities. ABTs can benefit from combining siloed and conversational assistants to use structured processes and emergent behaviors.
+
+
+
+
+

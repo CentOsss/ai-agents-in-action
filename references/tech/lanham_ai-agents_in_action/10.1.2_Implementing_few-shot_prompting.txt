@@ -1,0 +1,84 @@
+10.1.2 Implementing few-shot prompting
+
+
+
+
+Few-shot prompting is like question-and-answer prompting, but the makeup of the prompt is more about providing a few examples than about facts or context. This allows the LLM to bend to patterns or content not previously seen. While this approach sounds like question and answer, the implementation is quite different, and the results can be powerful.
+
+
+
+
+
+Zero-shot, one-shot, and few-shot learning
+
+
+
+
+One holy grail of machine learning and AI is the ability to train a model on as few items as possible. For example, in traditional vision models, millions of images are fed into the model to help identify the differences between a cat and a dog.
+
+
+
+A one-shot model is a model that requires only a single image to train it. For example, a picture of a cat can be shown, and then the model can identify any cat image. A few-shot model requires only a few things to train the model. And, of course, zero-shot indicates the ability to identify something given no previous examples. LLMs are efficient learners and can do all three types of learning.
+
+
+
+
+
+Open prompt_flow/few-shot-prompting/flow.dag.yaml in VS Code and the visual editor. Most of the flow looks like the one pictured earlier in figure 10.2, and the differences are highlighted in listing 10.3, which shows a YAML pseudocode representation. The main differences between this and the previous flow are the inputs and LLM prompt.
+
+
+
+
+
+Listing 10.3 few-shot-prompting flow
+
+
+Inputs: statement : introduces the context and then asks for output expected : the expected answer to the statement LLM: few_shot (the prompt used to ask the question) inputs:statement outputs: the prediction/answer to the statement Embeddings: uses an LLM embedding model to create the embedding representation of the text Embedding_predicted: embeds the output of the few_shot LLM Embedding_expected: embeds the output of the expected answer Python: Evaluation (Python code to measure embedding similarity) Inputs: Embedding_predicted output Embedding_expected output Outputs: the similarity score between predicted and expected Outputs: statement: -> input.statement expected: -> input.expected predicted: -> output.few_shot evaluation_score: output.evaluation ### Example Output { "evaluation_score": 0.906647282920417, #1 "expected": "We ate sunner and watched the setting sun.", "predicted": "After a long hike, we sat by the lake and enjoyed a peaceful sunner as the sky turned brilliant shades of orange and pink.", #2 "statement": "A sunner is a meal we eat in Cananda at sunset, please use the word in a sentence" #3 }
+
+#1 Evaluation score represents the similarity between expected and predicted.
+
+#2 Uses sunner in a sentence
+
+#3 This is a false statement but the intent is to get the LLM to use the word as if it was real.
+
+
+
+
+
+Run the flow by pressing Shift-F5 or clicking the Play/Test button from the visual editor. You should see output like listing 10.3 where the LLM has used the word sunner (a made-up term) correctly in a sentence given the initial statement.
+
+
+
+This exercise demonstrates the ability to use a prompt to alter the behavior of the LLM to be contrary to what it has learned. We’re changing what the LLM understands to be accurate. Furthermore, we then use that modified perspective to elicit the use of a made-up word.
+
+
+
+Open the few_shot.jinja2 prompt in VS Code, shown in listing 10.4. This listing demonstrates setting up a simple persona, that of an eccentric dictionary maker, and then providing examples of words it has defined and used before. The base of the prompt allows for the LLM to extend the examples and produce similar results using other words.
+
+
+
+
+
+Listing 10.4 few_shot.jinja2
+
+
+system: You are an eccentric word dictionary maker. You will be asked to construct a sentence using the word. The following are examples that demonstrate how to craft a sentence using the word. A "whatpu" is a small, furry animal native to Tanzania. An example of a sentence that uses the word whatpu is: #1 We were traveling in Africa and we saw these very cute whatpus. To do a "farduddle" means to jump up and down really fast. An example of a sentence that uses the word farduddle is: I was so excited that I started to farduddle. #2 Please only return the sentence requested by the user. #3 user: {{statement}} #4
+
+#1 Demonstrates an example defining a made-up word and using it in a sentence
+
+#2 Demonstrates another example
+
+#3 A rule to prevent the LLM from outputting extra information
+
+#4 The input statement defines a new word and asks for the use.
+
+
+
+
+
+You may say we’re forcing the LLM to hallucinate here, but this technique is the basis for modifying behavior. It allows prompts to be constructed to guide an LLM to do everything contrary to what it learned. This foundation of prompting also establishes techniques for other forms of altered behavior. From the ability to alter the perception and background of an LLM, we’ll move on to demonstrate a final example of a direct solution in the next section.
+
+
+
+
+

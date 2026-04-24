@@ -1,0 +1,74 @@
+4.3 Group chat with agents and AutoGen
+
+
+
+
+One problem with chat delegation and nested chats or conversations is the conveyance of information. If you’ve ever played the telephone game, you’ve witnessed this firsthand and experienced how quickly information can change over iterations. With agents, this is certainly no different, and chatting through nested or sequential conversations can alter the task or even the desired result.
+
+
+
+
+
+The telephone game
+
+
+
+
+The telephone game is a fun but educational game that demonstrates information and coherence loss. Children form a line, and the first child receives a message only they can hear. Then, in turn, the children verbally pass the message on to the next child, and so on. At the end, the last child announces the message to the whole group, which often isn’t even close to the same message.
+
+
+
+To counter this, AutoGen provides a group chat, a mechanism by which agents participate in a shared conversation. This allows agents to review all past conversations and better collaborate on long-running and complex tasks.
+
+
+
+
+
+Figure 4.9 shows the difference between nested and collaborative group chats. We used the nested chat feature in the previous section to build a nested agent chat. In this section, we use the group chat to provide a more collaborative experience.
+
+
+
+
+
+Figure 4.9 The difference between nested and group chat for conversable agents
+
+
+
+
+Open autogen_coding_group.py with relevant parts, as shown in listing 4.10. The code is similar to the previous exercise but now introduces GroupChat and GroupChatManager. The agents and messages are held with the group chat, similar to a messaging channel in applications such as Slack or Discord. The chat manager coordinates the message responses to reduce conversation overlap.
+
+
+
+
+
+Listing 4.10 autoget_coding_group.py (relevant sections)
+
+
+user_proxy = UserProxyAgent( "user", code_execution_config={ "work_dir": "working", "use_docker": False, "last_n_messages": 3, }, human_input_mode="NEVER", #1 ) llm_config = {"config_list": config_list} engineer = AssistantAgent(… #2 critic = AssistantAgent(… #2 groupchat = GroupChat(agents=[user_proxy, engineer, critic], messages=[], max_round=20) #3 manager = GroupChatManager(groupchat=groupchat, llm_config=llm_config) #4 task = """Write a snake game using Pygame.""" with Cache.disk(cache_seed=43) as cache: res = user_proxy.initiate_chat( recipient=manager, message=task, cache=cache, )
+
+#1 Human input is now set to never, so no human feedback.
+
+#2 Code omitted, but consult changes to the persona in the file
+
+#3 This object holds the connection to all the agents and stores the messages.
+
+#4 The manager coordinates the conversation as a moderator would.
+
+
+
+
+
+Run this exercise, and you’ll see how the agents collaborate. The engineer will now take feedback from the critic and undertake operations to address the critic’s suggestions. This also allows the proxy to engage in all of the conversation.
+
+
+
+Group conversations are an excellent way to strengthen your agents’ abilities as they collaborate on tasks. However, they are also substantially more verbose and token expensive. Of course, as LLMs mature, so do the size of their context token windows and the price of token processing. As token windows increase, concerns over token consumption may eventually go away.
+
+
+
+AutoGen is a powerful multi-agent platform that can be experienced using a web interface or code. Whatever your preference, this agent collaboration tool is an excellent platform for building code or other complex tasks. Of course, it isn’t the only platform, as you’ll see in the next section, where we explore a newcomer called CrewAI.
+
+
+
+
+

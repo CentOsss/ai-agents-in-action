@@ -1,0 +1,40 @@
+4.2.2 Enhancing code output with agent critics
+
+
+
+
+One powerful benefit of multi-agent systems is the multiple roles/personas you can automatically assign when completing tasks. Generating or helping to write code can be an excellent advantage to any developer, but what if that code was also reviewed and tested? In the next exercise, we’ll add another agent critic to our agent system to help with coding tasks. Open autogen_coding_critic.py, as shown in the following listing.
+
+
+
+
+
+Listing 4.8 autogen_coding_critic.py
+
+
+from autogen import AssistantAgent, UserProxyAgent, config_list_from_json config_list = config_list_from_json(env_or_file="OAI_CONFIG_LIST") user_proxy = UserProxyAgent( "user", code_execution_config={ "work_dir": "working", "use_docker": False, "last_n_messages": 1, }, human_input_mode="ALWAYS", is_termination_msg=lambda x: x.get("content", "").rstrip().endswith("TERMINATE"), ) engineer = AssistantAgent( name="Engineer", llm_config={"config_list": config_list}, system_message=""" You are a profession Python engineer, known for your expertise in software development. You use your skills to create software applications, tools, and games that are both functional and efficient. Your preference is to write clean, well-structured code that is easy to read and maintain. """, #1 ) critic = AssistantAgent( name="Reviewer", llm_config={"config_list": config_list}, system_message=""" You are a code reviewer, known for your thoroughness and commitment to standards. Your task is to scrutinize code content for any harmful or substandard elements. You ensure that the code is secure, efficient, and adheres to best practices. You will identify any issues or areas for improvement in the code and output them as a list. """, #2 ) def review_code(recipient, messages, sender, config): #3 return f""" Review and critque the following code. {recipient.chat_messages_for_summary(sender)[-1]['content']} """ #3 user_proxy.register_nested_chats( #4 [ { "recipient": critic, "message": review_code, "summary_method": "last_msg", "max_turns": 1, } ], trigger=engineer, #4 ) task = """Write a snake game using Pygame.""" res = user_proxy.initiate_chat( recipient=engineer, message=task, max_turns=2, summary_method="last_msg" #5 )
+
+#1 This time, the assistant is given a system/persona message.
+
+#2 A second assistant critic agent is created with a background.
+
+#3 A custom function helps extract the code for review by the critic.
+
+#4 A nested chat is created between the critic and the engineer.
+
+#5 The proxy agent initiates a chat with a max delay and explicit summary method.
+
+
+
+
+
+Run the autogen_coding_critic.py file in VS Code in debug mode, and watch the dialog between the agents. This time, after the code returns, the critic will also be triggered to respond. Then, the critic will add comments and suggestions to improve the code.
+
+
+
+Nested chats work well for supporting and controlling agent interactions, but we’ll see a better approach in the following section. Before that though, we’ll review the importance of the AutoGen cache in the next section.
+
+
+
+
+

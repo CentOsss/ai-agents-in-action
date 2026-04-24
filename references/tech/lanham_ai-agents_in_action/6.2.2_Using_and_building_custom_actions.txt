@@ -1,0 +1,61 @@
+6.2.2 Using and building custom actions
+
+
+
+
+Actions and tools are the building blocks that empower agents and assistants. Without access to tools, agents are functionless chatbots. The OpenAI platform is a leader in establishing many of the patterns for tools, as we saw in chapter 3.
+
+
+
+The Playground provides several custom actions that can be attached to assistants through the interface. In this next exercise, we’ll build a simple assistant and attach a couple of custom actions to see what is possible.
+
+
+
+Figure 6.4 shows the expanded Actions accordion, which displays many available custom actions. Run the Playground from the terminal or debugger, and create a new assistant. Then, select the actions shown in the figure. After you’re done selecting the actions, scroll to the bottom, and click Add Assistant to add the assistant. Assistants need to be created before they can be used.
+
+
+
+
+
+Figure 6.4 Selecting and using custom actions in the interface
+
+
+
+
+After you create the assistant, you can ask it to list all available assistants. Listing the assistants also gives you the IDs required to call the assistant. You can also call other assistants and ask them to complete tasks in their area of specialization.
+
+
+
+Adding your custom actions is as simple as adding code to a file and dropping it in the right folder. Open the playground/assistant_actions folder from the main project folder, and you’ll see several files that define the various actions. Open the file_actions.py file in VS Code, as shown in listing 6.4.
+
+
+
+
+
+Listing 6.4 playground/assistant_actions/file_actions.py
+
+
+import os from playground.actions_manager import agent_action OUTPUT_FOLDER = "assistant_outputs" @agent_action #1 def save_file(filename, content): #2 """ Save content to a file. #3 :param filename: The name of the file including extension. :param content: The content to save in the file. """ file_path = os.path.join(OUTPUT_FOLDER, filename) with open(file_path, "w", encoding="utf-8") as file: file.write(content) print(f"File '{filename}' saved successfully.") #4
+
+#1 This decorator automatically adds the function as an action.
+
+#2 Give your functions clear names that align with the purpose.
+
+#3 The description is what the assistant uses to determine the function, so document it well.
+
+#4 Generally returns a message stating success or failure
+
+
+
+
+
+You can add any custom action you want by placing the file in the assistant_actions folder and decorating it with the agent_action decorator. Just make sure to give the function a good name and enter quality documentation for how the function should be used. When the Playground starts up, it loads all the actions in the folder that are decorated correctly and have descriptions/documentation.
+
+
+
+It’s that simple. You can add several custom actions as needed. In the next section, we’ll look at a special custom action that allows the assistant to run code locally.
+
+
+
+
+

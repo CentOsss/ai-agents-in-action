@@ -1,0 +1,116 @@
+7.6 Exercises
+
+
+
+
+Use the following exercises to improve your knowledge of the material:
+
+
+
+Exercise 1—Explore Streamlit Basics (Easy)
+
+
+
+Objective —Gain familiarity with Streamlit by creating a simple web application that displays text input by the user.
+
+
+
+Tasks:
+
+
+
+Follow the Streamlit documentation to set up a basic application.
+
+Add a text input and a button. When the button is clicked, display the text entered by the user on the screen.
+
+
+
+
+
+Exercise 2—Create a Basic Agent Profile
+
+
+
+Objective —Understand the process of creating and applying agent profiles in Nexus.
+
+
+
+Tasks:
+
+
+
+Create a new agent profile with a unique persona. This persona should have a specific theme or characteristic (e.g., a historian).
+
+Define a basic set of responses that align with this persona.
+
+Test the persona by interacting with it through the Nexus interface.
+
+
+
+
+
+Exercise 3—Develop a Custom Action
+
+
+
+Objective —Learn to extend the functionality of Nexus by developing a custom action.
+
+
+
+Tasks:
+
+
+
+Develop a new action (e.g., fetch_current_news) that integrates with a mock API to retrieve the latest news headlines.
+
+Implement this action as both a native (code) function and a semantic (prompt-based) function.
+
+Test the action in the Nexus environment to ensure it works as expected.
+
+
+
+
+
+Exercise 4 —Integrate a Third-Party API
+
+
+
+Objective —Enhance the capabilities of a Nexus agent by integrating a real third-party API.
+
+
+
+Tasks:
+
+
+
+Choose a public API (e.g., weather or news API), and create a new action that fetches data from this API.
+
+Incorporate error handling and ensure that the agent can gracefully handle API failures or unexpected responses.
+
+Test the integration thoroughly within Nexus.
+
+
+
+
+
+Summary
+
+
+
+
+Nexus is an open source agent development platform used in conjunction with this book. It’s designed to develop, test, and host AI agents and is built on Streamlit for creating interactive dashboards and chat interfaces.
+
+Streamlit, a Python web application framework, enables the rapid development of user-friendly dashboards and chat applications. This framework facilitates the exploration and interaction with various agent features in a streamlined manner.
+
+Nexus supports creating and customizing agent profiles and personas, allowing users to define their agents’ personalities and behaviors. These profiles dictate how agents interact with and respond to user inputs.
+
+The Nexus platform allows for developing and integrating semantic (prompt-based) and native (code-based) actions and tools within agents. This enables the creation of highly functional and responsive agents.
+
+As an open source platform, Nexus is designed to be extensible, encouraging contributions and the addition of new features, tools, and agent capabilities by the community.
+
+Nexus is flexible, supporting various deployment options, including a web interface, API, and a Discord bot in future iterations, accommodating a wide range of development and testing needs.
+
+
+
+
+

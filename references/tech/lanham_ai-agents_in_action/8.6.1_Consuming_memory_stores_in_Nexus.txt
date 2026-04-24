@@ -1,0 +1,56 @@
+8.6.1 Consuming memory stores in Nexus
+
+
+
+
+Memory stores operate and are constructed like knowledge stores in Nexus. They both heavily rely on the retrieval pattern. What differs is the extra steps memory systems take to build new memories.
+
+
+
+Go ahead and start Nexus, and refer to listing 8.9 if you need to install it. After logging in, select the Memory page, and create a new memory store, as shown in figure 8.15. Select an agent engine, and then add a few personal facts and preferences about yourself.
+
+
+
+
+
+Figure 8.15 Adding memories to a newly created memory store
+
+
+
+
+The reason we need an agent (LLM) was shown in figure 8.14 earlier. When information is fed into a memory store, it’s generally processed through an LLM using a memory function, whose purpose is to process the statements/conversations into semantically relevant information related to the type of memory.
+
+
+
+Listing 8.10 shows the conversational memory function used to extract information from a conversation into memories. Yes, this is just the header portion of the prompt sent to the LLM, instructing it how to extract information from a conversation.
+
+
+
+
+
+Listing 8.10 Conversational memory function
+
+
+Summarize the conversation and create a set of statements that summarize the conversation. Return a JSON object with the following keys: 'summary'. Each key should have a list of statements that are relevant to that category. Return only the JSON object and nothing else.
+
+
+
+
+
+After you generate a few relevant memories about yourself, return to the Chat area in Nexus, enable the my_memory memory store, and see how well the agent knows you. Figure 8.16 shows a sample conversation using a different agent engine.
+
+
+
+
+
+Figure 8.16 Conversing with a different agent on the same memory store
+
+
+
+
+This is an example of a basic memory pattern that extracts facts/preferences from conversations and stores them in a vector database as memories. Numerous other implementations of memory follow those displayed earlier in figure 8.13. We’ll implement those in the next section.
+
+
+
+
+

@@ -1,0 +1,26 @@
+8.4 Constructing RAG with LangChain
+
+
+
+
+LangChain began as an open source project specializing in abstracting the retrieval pattern across multiple data sources and vector stores. It has since morphed into much more, but foundationally, it still provides excellent options for implementing retrieval.
+
+
+
+Figure 8.7 shows a diagram from LangChain that identifies the process of storing documents for retrieval. These same steps may be replicated in whole or in part to implement memory retrieval. The critical difference between document and memory retrieval is the source and how content is transformed.
+
+
+
+
+
+Figure 8.7 Load, transform, embed, and store steps in storing documents for later retrieval
+
+
+
+
+We’ll examine how to implement each of these steps using LangChain and understand the nuances and details accompanying this implementation. In the next section, we’ll start by splitting and loading documents with LangChain.
+
+
+
+
+

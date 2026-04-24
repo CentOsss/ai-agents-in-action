@@ -1,0 +1,50 @@
+1.3 Examining the rise of the agent era: Why agents?
+
+
+
+
+AI agents and assistants have quickly moved from the main commodity in AI research to mainstream software development. An ever-growing list of tools and platforms assist in the construction and empowerment of agents. To an outsider, it may all seem like hype intended to inflate the value of some cool but overrated technology.
+
+
+
+During the first few months after ChatGPT’s initial release, a new discipline called prompt engineering was formed: users found that using various techniques and patterns in their prompts allowed them to generate better and more consistent output. However, users also realized that prompt engineering could only go so far.
+
+
+
+Prompt engineering is still an excellent way to interact directly with LLMs such as ChatGPT. Over time, many users discovered that effective prompting required iteration, reflection, and more iteration. The first agent systems, such as AutoGPT, emerged from these discoveries, capturing the community’s attention.
+
+
+
+Figure 1.9 shows the original design of AutoGPT, one of the first autonomous agent systems. The agent is designed to iterate a planned sequence of tasks that it defines by looking at the user’s goal. Through each task iteration of steps, the agent evaluates the goal and determines if the task is complete. If the task isn’t complete, the agent may replan the steps and update the plan based on new knowledge or human feedback.
+
+
+
+
+
+Figure 1.9 The original design of the AutoGPT agent system
+
+
+
+
+AutoGPT became the first example to demonstrate the power of using task planning and iteration with LLM models. From this and in tandem, other agent systems and frameworks exploded into the community using similar planning and task iteration systems. It’s generally accepted that planning, iteration, and repetition are the best processes for solving complex and multifaceted goals for an LLM.
+
+
+
+However, autonomous agent systems require trust in the agent decision-making process, the guardrails/evaluation system, and the goal definition. Trust is also something that is acquired over time. Our lack of trust stems from our lack of understanding of an autonomous agent’s capabilities.
+
+
+
+Note  Artificial general intelligence (AGI) is a form of intelligence that can learn to accomplish any task a human can. Many practitioners in this new world of AI believe an AGI using autonomous agent systems is an attainable goal.
+
+
+
+For this reason, many of the mainstream and production-ready agent tools aren’t autonomous. However, they still provide a significant benefit in managing and automating tasks using GPTs (LLMs). Therefore, as our goal in this book is to understand all agent forms, many more practical applications will be driven by non-autonomous agents.
+
+
+
+Agents and agent tools are only the top layer of a new software application development paradigm. We’ll look at this new paradigm in the next section.
+
+
+
+
+

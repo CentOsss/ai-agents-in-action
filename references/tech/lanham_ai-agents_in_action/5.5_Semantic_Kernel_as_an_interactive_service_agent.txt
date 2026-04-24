@@ -1,0 +1,30 @@
+5.5 Semantic Kernel as an interactive service agent
+
+
+
+
+In chapter 1, we introduced the concept of the GPT interface—a new paradigm in connecting services and other components to LLMs via plugins and semantic layers. SK provides an excellent abstraction for converting any service to a GPT interface.
+
+
+
+Figure 5.8 shows a GPT interface constructed around an API service called The Movie Database (TMDB; www.themoviedb.org). The TMDB site provides a free API that exposes information about movies and TV shows.
+
+
+
+
+
+Figure 5.8 This layer architecture diagram shows the role of a GPT interface and the Semantic Kernel being exposed to chat or agent interfaces.
+
+
+
+
+To follow along with the exercises in this section, you must register for a free account from TMDB and create an API key. Instructions for getting an API key can be found at the TMDB website (www.themoviedb.org) or by asking a GPT-4 turbo or a more recent LLM.
+
+
+
+Over the next set of subsections, we’ll create a GPT interface using an SK set of native functions. Then, we’ll use the SK kernel to test the interface and, later in this chapter, implement it as plugins into a chat function. In the next section, we look at building a GPT interface against the TMDB API.
+
+
+
+
+

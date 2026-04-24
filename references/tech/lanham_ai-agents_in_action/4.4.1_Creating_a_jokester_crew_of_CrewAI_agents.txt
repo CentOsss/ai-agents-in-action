@@ -1,0 +1,120 @@
+4.4.1 Creating a jokester crew of CrewAI agents
+
+
+
+
+CrewAI requires more setup than AutoGen, but this also allows for more control and additional guides, which provide more specific context to guide the agents in completing the given task. This isn’t without problems, but it does offer more control than AutoGen out of the box.
+
+
+
+Open crewai_introduction.py in VS Code and look at the top section, as shown in listing 4.11. Many settings are required to configure an agent, including the role, goal, verboseness, memory, backstory, delegation, and even tools (not shown). In this example, we’re using two agents: a senior joke researcher and a joke writer.
+
+
+
+
+
+Listing 4.11 crewai_introduction.py (agent section)
+
+
+from crewai import Agent, Crew, Process, Task from dotenv import load_dotenv load_dotenv() joke_researcher = Agent( #1 role="Senior Joke Researcher", goal="Research what makes things funny about the following {topic}", verbose=True, #2 memory=True, #3 backstory=( #4 "Driven by slapstick humor, you are a seasoned joke researcher" "who knows what makes people laugh. You have a knack for finding" "the funny in everyday situations and can turn a dull moment into" "a laugh riot." ), allow_delegation=True, #5 ) joke_writer = Agent( #6 role="Joke Writer", goal="Write a humourous and funny joke on the following {topic}", verbose=True, #7 memory=True, #8 backstory=( #9 "You are a joke writer with a flair for humor. You can turn a" "simple idea into a laugh riot. You have a way with words and" "can make people laugh with just a few lines." ), allow_delegation=False, #5 )
+
+#1 Creates the agents and provides them a goal
+
+#2 verbose allows the agent to emit output to the terminal.
+
+#3 Supports the use of memory for the agents
+
+#4 The backstory is the agent’s background—its persona.
+
+#5 The agents can either be delegated to or are allowed to delegate; True means they can delegate.
+
+#6 Creates the agents and provides them a goal
+
+#7 verbose allows the agent to emit output to the terminal.
+
+#8 Supports the use of memory for the agents
+
+#9 The backstory is the agent’s background—its persona.
+
+
+
+
+
+Moving down the code, we next see the tasks, as shown in listing 4.12. Tasks denote an agent’s process to complete the primary system goal. They also link an agent to work on a specific task, define the output from that task, and may include how it’s executed.
+
+
+
+
+
+Listing 4.12 crewai_introduction.py (task section)
+
+
+research_task = Task( #1 description=( "Identify what makes the following topic:{topic} so funny." "Be sure to include the key elements that make it humourous." "Also, provide an analysis of the current social trends," "and how it impacts the perception of humor." ), expected_output="A comprehensive 3 paragraphs long report ↪ on the latest jokes.", #2 agent=joke_researcher, #3 ) write_task = Task( #4 description=( "Compose an insightful, humourous and socially aware joke on {topic}." "Be sure to include the key elements that make it funny and" "relevant to the current social trends." ), expected_output="A joke on {topic}.", #5 agent=joke_writer, #3 async_execution=False, #6 output_file="the_best_joke.md", #7 )
+
+#1 The Task description defines how the agent will complete the task.
+
+#2 Explicitly defines the expected output from performing the task
+
+#3 The agent assigned to work on the task
+
+#4 The Task description defines how the agent will complete the task.
+
+#5 Explicitly defines the expected output from performing the task
+
+#6 If the agent should execute asynchronously
+
+#7 Any output the agent will generate
+
+
+
+
+
+Now, we can see how everything comes together as the Crew at the bottom of the file, as shown in listing 4.13. Again, many options can be set when building the Crew, including the agents, tasks, process type, memory, cache, maximum requests per minute (max_rpm), and whether the crew shares.
+
+
+
+
+
+Listing 4.13 crewai_introduction.py (crew section)
+
+
+crew = Crew( agents=[joke_researcher, joke_writer], #1 tasks=[research_task, write_task], #2 process=Process.sequential, #3 memory=True, #4 cache=True, #5 max_rpm=100, #6 share_crew=True, #7 ) result = crew.kickoff(inputs={"topic": "AI engineer jokes"}) print(result)
+
+#1 The agents assembled into the crew
+
+#2 The tasks the agents can work on
+
+#3 Defining how the agents will interact
+
+#4 Whether the system should use memory; needs to be set if agents/tasks have it on
+
+#5 Whether the system should use a cache, similar to AutoGen
+
+#6 Maximum requests per minute the system should limit itself to
+
+#7 Whether the crew should share information, similar to group chat
+
+
+
+
+
+When you’re done reviewing, run the file in VS Code (F5), and watch the terminal for conversations and messages from the crew. As you can probably tell by now, the goal of this agent system is to craft jokes related to AI engineering. Here are some of the funnier jokes generated over a few runs of the agent system:
+
+
+
+Why was the computer cold? It left Windows open.
+
+Why don’t AI engineers play hide and seek with their algorithms? Because no matter where they hide, the algorithms always find them in the “overfitting” room!
+
+What is an AI engineer’s favorite song? “I just called to say I love yo… . and to collect more data for my voice recognition software.”
+
+Why was the AI engineer broke? Because he spent all his money on cookies, but his browser kept eating them.
+
+
+
+Before you run more iterations of the joke crew, you should read the next section. This section shows how to add observability to the multi-agent system.
+
+
+
+
+

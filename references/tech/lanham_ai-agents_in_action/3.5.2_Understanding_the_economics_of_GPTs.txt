@@ -1,0 +1,29 @@
+3.5.2 Understanding the economics of GPTs
+
+
+
+
+Upon the release of GPT Assistants and the GPT Store, OpenAI announced the potential for a future profit-sharing program for those who published GPTs. While we’re still waiting to hear more about this program, many have speculated what this may look like.
+
+
+
+Some have suggested the store may return only 10% to 20% of profits to the builders. This is far less than the percentage on other app platforms but requires much less technical knowledge and fewer resources. The GPT Store is flooded with essentially free assistants, provided you have a Plus subscription, but that may change in the future. Regardless, there are also several reasons why you may want to build public GPTs:
+
+
+
+Personal portfolio —Perhaps you want to demonstrate your knowledge of prompt engineering or your ability to build the next wave of AI applications. Having a few GPTs in the GPT Store can help demonstrate your knowledge and ability to create useful AI applications.
+
+Knowledge and experience —If you have in-depth knowledge of a subject or topic, this can be a great way to package that as an assistant. These types of assistants will vary in popularity based on your area of expertise.
+
+Cross-marketing and commercial tie-in —This is becoming more common in the Store and provides companies the ability to lead customers using an assistant. As companies integrate more AI, this will certainly be more common.
+
+Helpful assistant to your product/service —Not all companies or organizations can sustain the cost of hosting chatbots. While consuming assistants is currently limited to ChatGPT subscribers, they will likely be more accessible in the future. This may mean having GPTs for everything, perhaps like the internet’s early days where every company rushed to build a web presence.
+
+
+
+While the current form of the GPT Store is for ChatGPT subscribers, if the current trend with OpenAI continues, we’ll likely see a fully public GPT Store. Public GPTs have the potential to disrupt the way we search, investigate products and services, and consume the internet. In the last section of this chapter, we’ll examine how to publish a GPT and some important considerations.
+
+
+
+
+

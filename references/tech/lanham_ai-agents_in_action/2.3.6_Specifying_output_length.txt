@@ -1,0 +1,34 @@
+2.3.6 Specifying output length
+
+
+
+
+The tactic of specifying output length can be helpful in not just limiting tokens but also in guiding the output to a desired format. Listing 2.14 shows an example of using two different techniques for this tactic. The first limits the output to fewer than 10 words. This can have the added benefit of making the response more concise and directed, which can be desirable for some use cases. The second example demonstrates limiting output to a concise set of bullet points. This method can help narrow down the output and keep answers short. More concise answers generally mean the output is more focused and contains less filler.
+
+
+
+
+
+Listing 2.14 specifying_output_length.jsonl
+
+
+[ { "role": "system", "content": """ Summarize all replies into 10 or fewer words. """ #1 }, { "role": "user", "content": "Please tell me an exciting fact about Paris?" } ] [ { "role": "system", "content": """ Summarize all replies into 3 bullet points. """ #2 }, { "role": "user", "content": "Please tell me an exciting fact about Paris?" } ]
+
+#1 Restricting the output makes the answer more concise.
+
+#2 Restricts the answer to a short set of bullets
+
+
+
+
+
+Keeping answers brief can have additional benefits when developing multi-agent systems. Any agent system that converses with other agents can benefit from more concise and focused replies. It tends to keep the LLM more focused and reduces noisy communication.
+
+
+
+Be sure to run through all the examples of the prompt tactics for this strategy. As mentioned, we’ll cover other prompt engineering strategies and tactics in future chapters. We’ll finish this chapter by looking at how to pick the best LLM for your use case.
+
+
+
+
+

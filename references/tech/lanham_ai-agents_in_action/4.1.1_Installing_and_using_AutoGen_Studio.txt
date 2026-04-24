@@ -1,0 +1,68 @@
+4.1.1 Installing and using AutoGen Studio
+
+
+
+
+Open the chapter_04 folder in Visual Studio Code (VS Code), create a local Python virtual environment, and install the requirements.txt file. If you need assistance with this, consult appendix B to install all of this chapter’s exercise requirements.
+
+
+
+Open a terminal in VS Code (Ctrl-`, Cmd-`) pointing to your virtual environment, and run AutoGen Studio using the command shown in listing 4.1. You’ll first need to define an environment variable for your OpenAI key. Because ports 8080 and 8081 are popular, and if you have other services running, change the port to 8082 or something you choose.
+
+
+
+
+
+Listing 4.1 Launching AutoGen Studio
+
+
+# set environment variable on Bash (Git Bash) export OPENAI_API_KEY=”<your API key>” #1 # sent environment variable with PowerShell $env:VAR_NAME =”<your API key>" #1 autogenstudio ui --port 8081 #2
+
+#1 Use the appropriate command for your terminal type.
+
+#2 Change the port if you expect or experience a conflict on your machine.
+
+
+
+
+
+Navigate your browser to the AutoGen Studio interface shown in figure 4.3 (as of this writing). While there may be differences, one thing is for sure: the primary interface will still be chat. Enter a complex task that requires coding. The example used here is Create a plot showing the popularity of the term GPT Agents in Google search.
+
+
+
+
+
+Figure 4.3 Entering a task for the agents to work on in the AutoGen interface
+
+
+
+
+The agent assistant generates code snippets to perform or complete various subtasks as the agents work together through the task in the example. The user proxy agent then attempts to execute those code snippets and assesses the output. In many cases, proving the code runs and produces the required output is sufficient for the user proxy agent to approve the task’s completion.
+
+
+
+If you encounter any problems with the assistant agent requests, ask the proxy agent to try a different method or another problem. This highlights a bigger problem with agentic systems using packages or libraries that have expired and no longer work. For this reason, it’s generally better to get agents to execute actions rather than build code to perform actions as tools.
+
+
+
+Tip  Executing AutoGen and AutoGen Studio using Docker is recommended, especially when working with code that may affect the operating system. Docker can isolate and virtualize the agents’ environment, thus isolating potentially harmful code. Using Docker can help alleviate any secondary windows or websites that may block the agent process from running.
+
+
+
+Figure 4.4 shows the agent’s completion of the task. The proxy agent will collect any generated code snippet, images, or other documents and append them to the message. You can also review the agent conversation by opening the Agent Messages expander. In many cases, if you ask the agent to generate plots or applications, secondary windows will open showing those results.
+
+
+
+
+
+Figure 4.4 The output after the agents complete the task
+
+
+
+
+Amazingly, the agents will perform most tasks nicely and complete them well. Depending on the complexity of the task, you may need to further iterate with the proxy. Sometimes, an agent may only go so far to complete a task because it lacks the required skills. In the next section, we’ll look at how to add skills to agents.
+
+
+
+
+

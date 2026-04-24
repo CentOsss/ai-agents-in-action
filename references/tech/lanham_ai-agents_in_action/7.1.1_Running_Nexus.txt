@@ -1,0 +1,47 @@
+7.1.1 Running Nexus
+
+
+
+
+Nexus is primarily intended to be a teaching platform for all levels of developers. As such, it will support various deployment and usage options. In the next exercise, we’ll introduce how to get up and running with Nexus quickly.
+
+
+
+Open a terminal to a new Python virtual environment (version 3.10). If you need assistance creating one, refer to appendix B. Then, execute the commands shown in listing 7.1 within this new environment. You can either set the environment variable at the command line or create a new .env file and add the setting.
+
+
+
+
+
+Listing 7.1 Terminal command line
+
+
+pip install git+https://github.com/cxbxmxcx/Nexus.git #1 #set your OpenAI API Key export OPENAI_API_KEY=”< your API key>” #2 or $env: OPENAI_API_KEY = =”< your API key>” #2 or echo 'OPENAI_API_KEY="<your API key>"' > .env #2 nexus run #3
+
+#1 Installs the package directly from the repository and branch; be sure to include the branch.
+
+#2 Creates the key as an environment variable or creates a new .env file with the setting
+
+#3 Runs the application
+
+
+
+
+
+After entering the last command, a website will launch with a login page, as shown in figure 7.2. Go ahead and create a new user. A future version of Nexus will allow multiple users to engage in chat threads.
+
+
+
+
+
+Figure 7.2 Logging in or creating a new Nexus user
+
+
+
+
+After you log in, you’ll see a page like figure 7.1. Create a new chat and start conversing with an agent. If you encounter a problem, be sure you have the API key set properly. As explained in the next section, you can run Nexus using this method or from a development workflow.
+
+
+
+
+

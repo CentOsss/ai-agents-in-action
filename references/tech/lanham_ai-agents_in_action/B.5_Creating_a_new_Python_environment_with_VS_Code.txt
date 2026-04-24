@@ -1,0 +1,34 @@
+B.5 Creating a new Python environment with VS Code
+
+
+
+
+When developing Python projects, you often want to create isolated virtual environments. This will help in managing multiple package dependencies across various tasks and tools. In this book, it’s recommended that a new virtual environment be created for each new chapter. VS Code can help you create and manage multiple Python environments quickly and efficiently via the following steps:
+
+
+
+Press Ctrl-Shift-P (Cmd-Shift-P) to open the command panel, and select Python: Create Environment, as shown in figure B.2.
+
+
+
+
+
+Figure B.2 The steps to set up the virtual environment for a chapter
+
+
+
+
+2. Select the environment type, either Venv or Conda. This book demonstrates Venv but Conda should also work.
+
+3. Select the Python installation. The code in this book has been run with Python 3.10 at a minimum. The agent tools and frameworks featured in this book are cutting edge, so they should support later versions of Python.
+
+4. Check that the requirements.txt file in the chapter folder is selected. This will install all the requirements for the current chapter.
+
+
+
+You should complete these steps for each new chapter of the book. The alternative is to use VS Code development containers, which will be covered in the next section.
+
+
+
+
+

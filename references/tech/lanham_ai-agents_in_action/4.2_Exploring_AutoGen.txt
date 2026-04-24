@@ -1,0 +1,11 @@
+4.2 Exploring AutoGen
+
+
+
+
+While AutoGen Studio is a fantastic tool for understanding multi-agent systems, we must look into the code. Fortunately, coding multiple agent examples with AutoGen is simple and easy to run. We’ll cover the basic AutoGen setup in the next section.
+
+
+
+
+

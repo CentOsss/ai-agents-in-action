@@ -1,0 +1,37 @@
+9.3.3 Deploying a prompt flow API
+
+
+
+
+Because prompt flow was also designed to be deployed as a service, it supports a couple of ways to deploy as an app or API quickly. Prompt flow can be deployed as a local web application and API running from the terminal or as a Docker container.
+
+
+
+Return to the flow.dag.yaml file in the visual editor from VS Code. At the top of the window beside the Play button are several options we’ll want to investigate further. Click the Build button as shown in figure 9.13, and then select to deploy as a local app. A new YAML file will be created to configure the app. Leave the defaults, and click the Start Local App link.
+
+
+
+
+
+Figure 9.13 Building and starting the flow as a local app
+
+
+
+
+This will launch the flow as a local web application, and you’ll see a browser tab open, as shown in figure 9.14. Enter some text into the user_input field, which is marked as required with a red asterisk. Click Enter and wait a few seconds for the reply.
+
+
+
+
+
+Figure 9.14 Running the flow as a local web application
+
+
+
+
+You should see a reply like the one shown earlier in figure 9.12, where the flow or agent replies with a list of time travel movies. This is great—we’ve just developed our first agent profile and the equivalent of a proxy agent. However, we need to determine how successful or valuable the recommendations are. In the next section, we explore how to evaluate prompts and profiles.
+
+
+
+
+

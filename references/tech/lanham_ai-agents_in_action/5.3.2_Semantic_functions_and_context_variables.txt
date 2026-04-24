@@ -1,0 +1,40 @@
+5.3.2 Semantic functions and context variables
+
+
+
+
+Expanding on the previous example, we can look at adding contextual variables to the semantic function. This pattern of adding placeholders to prompt templates is one we’ll review over and over. In this example, we look at a prompt template that has placeholders for subject, genre, format, and custom.
+
+
+
+Open SK_context_variables.py in VS Code, as shown in the next listing. The prompt is equivalent to setting aside a system and user section of the prompt.
+
+
+
+
+
+Listing 5.10 SK_context_variables.py
+
+
+#top section omitted… prompt = """ #1 system: You have vast knowledge of everything and can recommend anything provided you are given the following criteria, the subject, genre, format and any other custom information. user: Please recommend a {{$format}} with the subject {{$subject}} and {{$genre}}. Include the following custom information: {{$custom}} """ prompt_template_config = sk.PromptTemplateConfig( #2 template=prompt, name="tldr", template_format="semantic-kernel", input_variables=[ InputVariable( name="format", description="The format to recommend", is_required=True ), InputVariable( name="suject", description="The subject to recommend", is_required=True ), InputVariable( name="genre", description="The genre to recommend", is_required=True ), InputVariable( name="custom", description="Any custom information [CA] to enhance the recommendation", is_required=True, ), ], execution_settings=execution_settings, ) recommend_function = kernel.create_function_from_prompt( #3 prompt_template_config=prompt_template_config, function_name="Recommend_Movies", plugin_name="Recommendation", ) async def run_recommendation( #4 subject="time travel", format="movie", genre="medieval", custom="must be a comedy" ): recommendation = await kernel.invoke( recommend_function, sk.KernelArguments(subject=subject, format=format, genre=genre, custom=custom), #5 ) print(recommendation) # Use asyncio.run to execute the async function asyncio.run(run_recommendation()) #5 ###Output One movie that fits the criteria of being about time travel, set in a medieval period, and being a comedy is "The Visitors" (Les Visiteurs) from 1993. This French film, directed by Jean-Marie Poiré, follows a knight and his squire who are transported to the modern era by a wizard’s spell gone wrong.…
+
+#1 Defines a prompt with placeholders
+
+#2 Configures a prompt template and input variable definitions
+
+#3 Creates a kernel function from the prompt
+
+#4 Creates an asynchronous function to wrap the function call
+
+#5 Sets the kernel function arguments
+
+
+
+
+
+Go ahead and debug this example (F5), and wait for the output to be generated. That is the basis for setting up SK and creating and exercising semantic functions. In the next section, we move on to see how a semantic function can be registered as a skill/plugin.
+
+
+
+
+

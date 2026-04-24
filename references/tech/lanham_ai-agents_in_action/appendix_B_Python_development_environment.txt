@@ -1,0 +1,11 @@
+appendix B Python development environment
+
+
+
+
+While this book assumes readers are experienced Python developers, this could mean many different things. In this appendix, we look at configuring a Python development environment that will function with the code examples in this book. You can use other integrated development environments (IDEs), but not all tooling, especially extensions, will work in all IDEs.
+
+
+
+
+

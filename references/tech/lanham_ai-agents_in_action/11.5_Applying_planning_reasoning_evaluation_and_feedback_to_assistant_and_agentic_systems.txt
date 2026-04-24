@@ -1,0 +1,15 @@
+11.5 Applying planning, reasoning, evaluation, and feedback to assistant and agentic systems
+
+
+
+
+In recent chapters, we’ve examined how the agentic components of planning, reasoning, feedback, and evaluation can be implemented. Now we look at how, when, and where those components can be integrated into assistant and agentic systems for real-time production, research, or development.
+
+
+
+While not all of these components may fit the same into every application, it’s useful to understand where and when to apply which component. In the next section, we look at how planning can be integrated into assistant/agentic systems.
+
+
+
+
+

@@ -1,0 +1,53 @@
+9.6 Grounding evaluation with an LLM profile
+
+
+
+
+This section will employ another LLM prompt/profile for evaluation and grounding. This second LLM prompt will add another block after the recommendations are generated. It will process the generated recommendations and evaluate each one, given the previous rubric.
+
+
+
+Before GPT-4 and other sophisticated LLMs came along, we would have never considered using another LLM prompt to evaluate or ground a profile. You often want to use a different model when using LLMs to ground a profile. However, if you’re comparing profiles against each other, using the same LLM for evaluation and grounding is appropriate.
+
+
+
+Open the recommender_with_LLM_evaluation\flow.dag.yaml file in the prompt flow visual editor, scroll down to the evaluate_recommendation block, and click the evaluate_recommendation.jinja2 link to open the file, as shown in figure 9.19. Each section of the rubric is identified in the figure.
+
+
+
+
+
+Figure 9.19 The evaluation prompt, with each of the parts of the rubric outlined
+
+
+
+
+We have a rubric that is not only well defined but also in the form of a prompt that can be used to evaluate recommendations. This allows us to evaluate the effectiveness of recommendations for a given profile—automatically. Of course, you can also use the rubric to score and evaluate the recommendations manually for a better baseline.
+
+
+
+Note  Using LLMs to evaluate prompts and profiles provides a strong baseline for comparing the performance of a profile. It can also do this without human bias in a controlled and repeatable manner. This provides an excellent mechanism to establish baseline groundings for any profile or prompt.
+
+
+
+Returning to the recommender_with_LLM_evaluation flow visual editor, we can run the flow by clicking the Play button and observing the output. You can run a single recommendation or run both variations when prompted. The output of a single evaluation using the default inputs is shown in the following listing.
+
+
+
+
+
+Listing 9.1 LLM rubric evaluation output
+
+
+{ "recommendations": "Title: The Butterfly Effect Subject: 5 Format: 5 Genre: 4 Title: Primer Subject: 5 Format: 5 Genre: 4 Title: Time Bandits Subject: 5 Format: 5 Genre: 5" }
+
+
+
+
+
+We now have a rubric for grounding our recommender, and the evaluation is run automatically using a second LLM prompt. In the next section, we look at how to perform multiple evaluations simultaneously and then at a total score for everything.
+
+
+
+
+

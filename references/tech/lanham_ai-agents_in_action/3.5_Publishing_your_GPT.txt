@@ -1,0 +1,22 @@
+3.5 Publishing your GPT
+
+
+
+
+Once you’re happy with your GPT, you can use it or share it with others by providing a link. Consuming GPT assistants through ChatGPT currently requires a Plus subscription. To publish your GPT for others, click the Share button, and select your sharing option, as shown in figure 3.13.
+
+
+
+
+
+Figure 3.13 GPT sharing options
+
+
+
+
+Whether you share your GPT with friends and colleagues or publicly in the GPT Store, the assistant’s usage is taken from the account using it, not the publisher. This means if you have a particularly expensive GPT that generates a lot of images, for example, it won’t affect your account while others use it.
+
+
+
+
+

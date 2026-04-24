@@ -1,0 +1,138 @@
+11.5.3 Application of evaluation to agentic systems
+
+
+
+
+Evaluation is the component of agentic/assistant systems that can guide how well the system performs. While we demonstrated incorporating evaluation in some agentic workflows, evaluation is often an external component in agentic systems. However, it’s also a core component of most LLM applications and not something that should be overlooked in most developments. Table 11.3 describes at a high level how the evaluation component can be integrated with various LLM application types.
+
+
+
+
+
+Table 11.3 When and where evaluation is employed and used in various applications
+
+
+Application
+
+Implemented
+
+Environment
+
+Purpose
+
+Timing
+
+Configuration
+
+
+
+Personal assistant
+
+External
+
+Server
+
+Determine how well the system is working
+
+After the interaction
+
+Often developed externally
+
+
+
+Customer service bot
+
+External monitor
+
+Server
+
+Evaluate the success of each interaction
+
+After the interaction
+
+External to the agent system
+
+
+
+Autonomous agent
+
+External or internal
+
+Server or service
+
+Determine the success of the system after or during task completion
+
+After the interaction
+
+External or internal
+
+
+
+Collaborative workflows
+
+External
+
+Shared canvas or coding
+
+Evaluate the success of the collaboration
+
+After the interaction
+
+External service
+
+
+
+Game AI
+
+External or internal
+
+Server or application
+
+Evaluate the agent or evaluate the success of a strategy or action
+
+After the interaction
+
+External or as part of the agent or another agent
+
+
+
+Research
+
+Combined manual and LLM
+
+Server and human
+
+Evaluate the output of the research developed
+
+After the generated output
+
+Depends on the complexity of the problem and research undertaken
+
+
+
+
+
+Table 11.3 shows several varied application scenarios in which we may find an assistant or agent deployed to assist in some capacity. To provide further information and guidance, this list provides more details about how evaluation may be employed in each application:
+
+
+
+Personal assistant—In most cases, an evaluation component will be used to process and guide the performance of agent responses. In systems primarily employing retrieval augmented generation (RAG) for document exploration, the evaluation indicates how well the assistant responds to information requests.
+
+Customer service bot—Evaluating service bots is critical to understanding how well the bot responds to customer requests. In many cases, a strong RAG knowledge element may be an element of the system that will require extensive and ongoing evaluation. Again, with most evaluation components, this element is external to the main working system and is often run as part of monitoring general performance over several metrics.
+
+Autonomous agent—In most cases, a manual review of agent output will be a primary guide to the success of an autonomous agent. However, in some cases, internal evaluation can help guide the agent when it’s undertaking complex tasks or as a means of improving the final output. Multiple agent systems, such as CrewAI and AutoGen, are examples of autonomous agents that use internal feedback to improve the generated output.
+
+Collaborative workflows—In most direct cases, manual evaluation is ongoing within these types of workflows. A user will often immediately and in near real time correct the assistant/agent by evaluating the output. Additional agents could be added similarly to autonomous agents for more extensive collaborative workflows.
+
+Game AI—Evaluation will often be broken down into development evaluation—evaluating how the agent interacts with the game—and in-game evaluation, evaluating how well an agent succeeded at a task. Implementing the later evaluation form is similar to autonomous agents but aims to improve some strategies or execution. Such in-game evaluations would also likely benefit from memory and a means of feedback.
+
+Research—Evaluation at this level generally occurs as a manual effort after completing the research task. An agent could employ some form of evaluation similar to autonomous agents to improve the generated output, perhaps even contemplating internally how evaluation of the output could be extended or further researched. Because this is currently a new area for agentic development, how well this will be executed remains to be seen.
+
+
+
+Evaluation is an essential element to any agentic or assistant system, especially if that system provides real and fundamental information to users. Developing evaluation systems for agents and assistants is likely something that could or should have its own book. In the final section of this chapter, we’ll look at feedback implementation for various LLM applications.
+
+
+
+
+

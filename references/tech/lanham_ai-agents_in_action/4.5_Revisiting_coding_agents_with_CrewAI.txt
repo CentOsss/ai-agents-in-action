@@ -1,0 +1,139 @@
+4.5 Revisiting coding agents with CrewAI
+
+
+
+
+A great way to compare capabilities between multi-agent platforms is to implement similar tasks in a bot. In this next set of exercises, we’ll employ CrewAI as a game programming team. Of course, this could be adapted to other coding tasks as well.
+
+
+
+Open crewai_coding_crew.py in VS Code, and we’ll first review the agent section in listing 4.17. Here, we’re creating a senior engineer, a QA engineer, and a chief QA engineer with a role, goal, and backstory.
+
+
+
+
+
+Listing 4.17 crewai_coding_crew.py (agent section)
+
+
+print("## Welcome to the Game Crew") #1 print("-------------------------------") game = input("What is the game you would like to build? ↪ What will be the mechanics?\n") senior_engineer_agent = Agent( role="Senior Software Engineer", goal="Create software as needed", backstory=dedent( """ You are a Senior Software Engineer at a leading tech think tank. Your expertise in programming in python. and do your best to produce perfect code """ ), allow_delegation=False, verbose=True, ) qa_engineer_agent = Agent( role="Software Quality Control Engineer", goal="create prefect code, by analizing the code ↪ that is given for errors", backstory=dedent( """ You are a software engineer that specializes in checking code for errors. You have an eye for detail and a knack for finding hidden bugs. You check for missing imports, variable declarations, mismatched brackets and syntax errors. You also check for security vulnerabilities, and logic errors """ ), allow_delegation=False, verbose=True, ) chief_qa_engineer_agent = Agent( role="Chief Software Quality Control Engineer", goal="Ensure that the code does the job that it is supposed to do", backstory=dedent( """ You are a Chief Software Quality Control Engineer at a leading tech think tank. You are responsible for ensuring that the code that is written does the job that it is supposed to do. You are responsible for checking the code for errors and ensuring that it is of the highest quality. """ ), allow_delegation=True, #2 verbose=True, )
+
+#1 Allows the user to input the instructions for their game
+
+#2 Only the chief QA engineer can delegate tasks.
+
+
+
+
+
+Scrolling down in the file will display the agent tasks, as shown in listing 4.18. The task descriptions and expected output should be easy to follow. Again, each agent has a specific task to provide better context when working to complete the task.
+
+
+
+
+
+Listing 4.18 crewai_coding_crew.py (task section)
+
+
+code_task = Task( description=f""" You will create a game using python, these are the instructions: Instructions ------------ {game} #1 You will write the code for the game using python.""", expected_output="Your Final answer must be the ↪ full python code, only the python code and nothing else.", agent=senior_engineer_agent, ) qa_task = Task( description=f"""You are helping create a game ↪ using python, these are the instructions: Instructions ------------ {game} #1 Using the code you got, check for errors. Check for logic errors, syntax errors, missing imports, variable declarations, mismatched brackets, and security vulnerabilities.""", expected_output="Output a list of issues you found in the code.", agent=qa_engineer_agent, ) evaluate_task = Task( description=f"""You are helping create a game ↪ using python, these are the instructions: Instructions ------------ {game} #1 You will look over the code to insure that it is complete and does the job that it is supposed to do. """, expected_output="Your Final answer must be the ↪ corrected a full python code, only the python code and nothing else.", agent=chief_qa_engineer_agent, )
+
+#1 The game instructions are substituted into the prompt using Python formatting.
+
+
+
+
+
+Finally, we can see how this comes together by going to the bottom of the file, as shown in listing 4.19. This crew configuration is much like what we’ve seen before. Each agent and task are added, as well as the verbose and process attributes. For this example, we’ll continue to use sequential methods.
+
+
+
+
+
+Listing 4.19 crewai_coding_crew.py (crew section)
+
+
+crew = Crew( agents=[senior_engineer_agent, qa_engineer_agent, chief_qa_engineer_agent], tasks=[code_task, qa_task, evaluate_task], verbose=2, process=Process.sequential, #1 ) # Get your crew to work! result = crew.kickoff() #2 print("######################") print(result)
+
+#1 Process is sequential.
+
+#2 No additional context is provided in the kickoff.
+
+
+
+
+
+When you run the VS Code (F5) file, you’ll be prompted to enter the instructions for writing a game. Enter some instructions, perhaps the snake game or another game you choose. Then, let the agents work, and observe what they produce.
+
+
+
+With the addition of the chief QA engineer, the results will generally look better than what was produced with AutoGen, at least out of the box. If you review the code, you’ll see that it generally follows good patterns and, in some cases, may even include tests and unit tests.
+
+
+
+Before we finish the chapter, we’ll make one last change to the crew’s processing pattern. Previously, we employed sequential processing, as shown in figure 4.10. Figure 4.12 shows what hierarchical processing looks like in CrewAI.
+
+
+
+
+
+Figure 4.12 Hierarchical processing of agents coordinated through a crew manager
+
+
+
+
+Adding this manager is a relatively simple process. Listing 4.20 shows the additional code changes to a new file that uses the coding crew in a hierarchical method. Aside from importing a class for connecting to OpenAI from LangChain, the other addition is adding this class as the crew manger, manager_llm.
+
+
+
+
+
+Listing 4.20 crewai_hierarchy.py (crew manager sections)
+
+
+from langchain_openai import ChatOpenAI #1 crew = Crew( agents=[senior_engineer_agent, qa_engineer_agent, chief_qa_engineer_agent], tasks=[code_task, qa_task, evaluate_task], verbose=2, process=Process.hierarchical, #2 manager_llm=ChatOpenAI( #3 temperature=0, model="gpt-4" #3 ), #4 ) #4
+
+#1 Imports the LLM connector from LangChain
+
+#2 You must set a crew manager when selecting hierarchical processing.
+
+#3 Sets the crew manager to be the LLM connector
+
+#4 You must set a crew manager when selecting hierarchical processing.
+
+
+
+
+
+Run this file in VS Code (F5). When prompted, enter a game you want to create. Try using the same game you tried with AutoGen; the snake game is also a good baseline example. Observe the agents work through the code and review it repeatedly for problems.
+
+
+
+After you run the file, you can also jump on AgentOps to review the cost of this run. Chances are, it will cost over double what it would have without the agent manager. The output will also likely not be significantly better. This is the trap of building agent systems without understanding how quickly things can spiral.
+
+
+
+An example of this spiral that often happens when agents continually iterate over the same actions is frequently repeating tasks. You can view this problem in AgentOps, as shown in figure 4.13, by viewing the Repeat Thoughts plot.
+
+
+
+
+
+Figure 4.13 The repetition of thoughts as they occurred within an agent run
+
+
+
+
+The Repeat Thoughts plot from AgentOps is an excellent way to measure the repetition your agent system encounters. Overly repetitive thought patterns typically mean the agent isn’t being decisive enough and instead keeps trying to generate a different answer. If you encounter this problem, you want to change the agents’ processing patterns, tasks, and goals. You may even want to alter the system’s type and number of agents.
+
+
+
+Multi-agent systems are an excellent way to break up work in terms of work patterns of jobs and tasks. Generally, the job role is allocated to an agent role/persona, and the tasks it needs to complete may be implicit, as in AutoGen, or more explicit, as in CrewAI.
+
+
+
+In this chapter, we covered many useful tools and platforms that you can use right away to improve your work, life, and more. That completes our journey through multi-agent platforms, but it doesn’t conclude our exploration and use of multiple agents, as we’ll discover in later chapters.
+
+
+
+
+

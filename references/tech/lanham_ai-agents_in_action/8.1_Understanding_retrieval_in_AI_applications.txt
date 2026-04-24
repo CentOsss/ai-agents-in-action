@@ -1,0 +1,30 @@
+8.1 Understanding retrieval in AI applications
+
+
+
+
+Retrieval in agent and chat applications is a mechanism for obtaining knowledge to keep in storage that is typically external and long-lived. Unstructured knowledge includes conversation or task histories, facts, preferences, or other items necessary for contextualizing a prompt. Structured knowledge, typically stored in databases or files, is accessed through native functions or plugins.
+
+
+
+Memory and knowledge, as shown in figure 8.1, are elements used to add further context and relevant information to a prompt. Prompts can be augmented with everything from information about a document to previous tasks or conversations and other reference information.
+
+
+
+
+
+Figure 8.1 Memory, retrieval, and augmentation of the prompt using the following prompt engineering strategies: Use External Tools and Provide Reference Text.
+
+
+
+
+The prompt engineering strategies shown in figure 8.1 can be applied to memory and knowledge. Knowledge isn’t considered memory but rather an augmentation of the prompt from existing documents. Both knowledge and memory use retrieval as the basis for how unstructured information can be queried.
+
+
+
+The retrieval mechanism, called retrieval augmented generation (RAG), has become a standard for providing relevant context to a prompt. The exact mechanism that powers RAG also powers memory/knowledge, and it’s essential to understand how it works. In the next section, we’ll examine what RAG is.
+
+
+
+
+

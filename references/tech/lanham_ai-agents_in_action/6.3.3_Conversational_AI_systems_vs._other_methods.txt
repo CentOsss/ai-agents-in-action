@@ -1,0 +1,15 @@
+6.3.3 Conversational AI systems vs. other methods
+
+
+
+
+We already looked at conversational multi-agent systems in chapter 4 when we looked at AutoGen. The ABT can work using a combination of conversations (over threads) and other methods, such as file sharing. Having your assistants/agents pass files around helps reduce the number of noisy and repetitive thoughts/conversations. In contrast, conversational systems benefit from potential emergent behaviors. So, using both can help evolve better control and solutions.
+
+
+
+The simple solution in listing 6.7 could be extended to handle more real-world coding challenges and perhaps even to work as a coding ABT. In the next section, we build a different ABT to handle a different problem.
+
+
+
+
+

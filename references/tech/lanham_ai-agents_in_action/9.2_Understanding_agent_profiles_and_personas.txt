@@ -1,0 +1,34 @@
+9.2 Understanding agent profiles and personas
+
+
+
+
+An agent profile is an encapsulation of component prompts or messages that describe an agent. It includes the agent’s persona, special instructions, and other strategies that can guide the user or other agent consumers.
+
+
+
+Figure 9.6 shows the main elements of an agent profile. These elements map to prompt engineering strategies described in this book. Not all agents will use all the elements of a full agent profile.
+
+
+
+
+
+Figure 9.6 The component parts of an agent profile
+
+
+
+
+At a basic level, an agent profile is a set of prompts describing the agent. It may include other external elements related to actions/tools, knowledge, memory, reasoning, evaluation, planning, and feedback. The combination of these elements comprises an entire agent prompt profile.
+
+
+
+Prompts are the heart of an agent’s function. A prompt or set of prompts drives each of the agent components in the profile. For actions/tools, these prompts are well defined, but as we’ve seen, prompts for memory and knowledge can vary significantly by use case.
+
+
+
+The definition of an AI agent profile is more than just a system prompt. Prompt flow can allow us to construct the prompts and code comprising the agent profile but also include the ability to evaluate its effectiveness. In the next section, we’ll open up prompt flow and start using it.
+
+
+
+
+

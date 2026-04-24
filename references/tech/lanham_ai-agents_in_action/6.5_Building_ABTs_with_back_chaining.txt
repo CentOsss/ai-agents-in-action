@@ -1,0 +1,94 @@
+6.5 Building ABTs with back chaining
+
+
+
+
+Back chaining is a method derived from logic and reasoning used to help build behavior trees by working backward from the goal. This section will use the back chaining process to construct an ABT that works to achieve the goal. The following list provides a description of the process in more detail:
+
+
+
+Identify goal behavior. Start with the behavior you want the agent to perform.
+
+Determine the required actions. Identify the actions that lead to the goal behavior.
+
+Identify the conditions. Determine the conditions that must be met for each action to succeed.
+
+Determine the mode of communication. Determine how the assistants will pass on information. Will the assistants be siloed or converse over threads, or is a combination of patterns better?
+
+Construct the tree. Start by building the behavior tree from the goal behavior, adding nodes for actions and conditions recursively until all necessary conditions are linked to known states or facts.
+
+
+
+Behavior trees typically use a pattern called the blackboard to communicate across nodes. Blackboards, like those in py_trees, use a key/value store to save information and make it accessible across nodes. It also provides for several controls, such as limiting access to specific nodes.
+
+
+
+We deferred to using files for communication because of their simplicity and transparency. At some point, agentic systems are expected to consume much more information and in different formats than those designed for blackboards. Blackboards must either become more sophisticated or be integrated with file storage solutions.
+
+
+
+Let’s build an ABT using back chaining. We could tackle a variety of goals, but one interesting and perhaps meta goal is to build an ABT that helps build assistants. So let’s first present our goal as a statement “Create an assistant that can help me do {task}”:
+
+
+
+Required actions: (working backwards) Create an assistant.
+
+Verify the assistant.
+
+Test the assistant.
+
+Name the assistant.
+
+Give the assistant the relevant instructions.
+
+
+
+
+
+Identified condition: Verify the assistant.
+
+
+
+
+
+Determine communication patterns: To keep things interesting, we’ll run all assistants on the same message thread.
+
+Construct the tree: To construct the tree, let’s first reverse the order of actions and mark each of the element’s actions and conditions accordingly: (action) Give the assistant relevant instructions to help a user with a given task.
+
+(action) Name the assistant.
+
+(action) Test the assistant.
+
+(condition) Verify the assistant.
+
+(action) Create the assistant.
+
+
+
+
+
+Of course, the simple solution to building the tree now is to ask ChatGPT or an otherwise capable model. The result of asking ChatGPT to make the tree is shown in the next listing. You could also work the tree out independently and perhaps introduce other elements.
+
+
+
+
+
+Listing 6.11 ABT for building an assistant
+
+
+Root │ ├── Sequence │ ├── Action: Give the assistant relevant instructions to help a user with a given task │ ├── Action: Name the assistant │ ├── Action: Test the assistant │ ├── Condition: Verify the assistant │ └── Action: Create the assistant
+
+
+
+
+
+From this point, we can start building the tree by iterating over each action and condition node and determining what instructions the assistant needs. This can also include any tools and custom actions, including ones you may need to develop. On your first pass, keep the instructions generic. Ideally, we want to create as few assistants as necessary.
+
+
+
+After determining the assistant, tools, and actions for each assistant and for which task, you can try to generalize things further. Think about where it may be possible to combine actions and reduce the number of assistants. It’s better to start evaluating with insufficient assistants than with too many. However, be sure to maintain the proper divisions of work as tasks: for example, testing and verification are best done with different assistants.
+
+
+
+
+

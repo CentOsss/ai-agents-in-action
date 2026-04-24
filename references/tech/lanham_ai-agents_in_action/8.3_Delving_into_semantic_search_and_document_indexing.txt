@@ -1,0 +1,15 @@
+8.3 Delving into semantic search and document indexing
+
+
+
+
+Document indexing transforms a document’s information to be more easily recovered. How the index will be queried or searched also plays a factor, whether searching for a particular set of words or wanting to match phrase for phrase.
+
+
+
+A semantic search is a search for content that matches the searched phrase by words and meaning. The ability to search by meaning, semantically, is potent and worth investigating in some detail. In the next section, we look at how vector similarity search can lay the framework for semantic search.
+
+
+
+
+

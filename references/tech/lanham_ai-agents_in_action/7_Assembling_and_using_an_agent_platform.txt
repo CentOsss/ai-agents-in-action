@@ -1,0 +1,29 @@
+7 Assembling and using an agent platform
+
+
+
+
+
+This chapter covers
+
+
+Nexus chat and dashboard interface for AI agents
+
+Streamlit framework for building intelligent dashboards, prototypes, and AI chat apps
+
+Developing, testing, and engaging agent profiles and personas in Nexus
+
+Developing the base Nexus agent
+
+Developing, testing, and engaging agent actions and tools alone or within Nexus
+
+
+
+
+
+After we explored some basic concepts about agents and looked at using actions with tools to build prompts and personas using frameworks such as the Semantic Kernel (SK), we took the first steps toward building a foundation for this book. That foundation is called Nexus, an agent platform designed to be simple to learn, easy to explore, and powerful enough to build your agent systems.
+
+
+
+
+

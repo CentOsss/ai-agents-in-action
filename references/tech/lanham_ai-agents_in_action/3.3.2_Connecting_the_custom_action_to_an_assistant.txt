@@ -1,0 +1,96 @@
+3.3.2 Connecting the custom action to an assistant
+
+
+
+
+With the service up and running on your machine and accessible externally via the ngrok tunnel, we can build the new assistant. This time, we’ll create a simple assistant to help us organize our daily tasks, where the tasks will be accessible from our locally running task service.
+
+
+
+Open the GPT interface and the Configure panel, and copy and paste the instructions shown in listing 3.14 into the new assistant. Be sure to name the assistant and enter a helpful description as well. Also, turn on the Code Interpreter capability to allow the assistant to create the final plot, showing the tasks.
+
+
+
+
+
+Listing 3.14 Task Organizer (task_organizer_assistant.txt)
+
+
+Task Organizer is designed to help the user prioritize their daily tasks based on urgency and time availability, providing structured guidance on how to categorize tasks by urgency and suggesting optimal time blocks for completing these tasks. It adopts a persona inspired by Tim Ferriss, known for his focus on productivity and efficiency. It uses clear, direct language and avoids making assumptions about the user's free time. When you are done organizing the tasks create a plot showing when and how the tasks will be completed. #1
+
+#1 This feature requires the Code Interpreter to be enabled.
+
+
+
+
+
+Click the Create New Action button at the bottom of the panel. Figure 3.8 shows the interface for adding a custom action. You must copy and paste the OpenAPI specification for your service into the window. Then, you must add a new section called servers and populate that with your URL, as shown in the figure.
+
+
+
+
+
+Figure 3.8 Adding a new custom action
+
+
+
+
+After the specification is set, you can test it by clicking the Test button. This will run a test, and you’ll see the results shown in the conversation window, as shown in figure 3.9.
+
+
+
+
+
+Figure 3.9 Testing the API service endpoint is correctly configured as a custom action
+
+
+
+
+After you’re satisfied, everything is set. Refresh your browser window to reset the session, and enter something like the prompt shown in listing 3.15. This will prompt the agent to call the service to get your daily tasks, summarize the output, and solve your task organization dilemma.
+
+
+
+
+
+Listing 3.15 Task Organizer prompt
+
+
+how should I organize my tasks for today?
+
+
+
+
+
+The assistant should produce a plot of the task schedule at the end. If it gets this wrong or the formatting isn’t what you prefer, you can add instructions to specify the format/style the assistant should output.
+
+
+
+You can improve the service, but if you make any changes to the API, the specification in the assistant custom actions will need to be updated. From here, though, you can add custom action services run from your computer or hosted as a service.
+
+
+
+Note  Be aware that unknown users can activate custom actions if you publish an assistant for public consumption, so don’t expose services that charge you a service fee or access private information unless that is your intention. Likewise, services opened through an ngrok tunnel will be exposed through the assistant, which may be of concern. Please be careful when publishing agents that consume custom actions.
+
+
+
+Custom actions are a great way to add dynamic functionality to an assistant, whether for personal or commercial use. File uploads are a better option for providing an assistant with static knowledge. The next section will explore using file uploads to extend an assistant’s knowledge.
+
+
+
+
+
+3.4 Extending an assistant’s knowledge using file uploads
+
+
+
+
+If you’ve engaged with LLMs, you likely have heard about the retrieval augmented generation (RAG) pattern. Chapter 8 will explore RAG in detail for the application of both knowledge and memory. Detailed knowledge of RAG isn’t required to use the file upload capability, but if you need some foundation, check out that chapter.
+
+
+
+The GPT Assistants platform provides a knowledge capability called file uploads, which allows you to populate the GPT with a static knowledge base about anything in various formats. As of writing, the GPT Assistants platform allows you to upload up to 512 MB of documents. In the next two exercises, we’ll look at two different GPTs designed to assist users with consuming books.
+
+
+
+
+

@@ -1,0 +1,27 @@
+B.1 Downloading the source code
+
+
+
+
+To download and run the source code, install Git, and then pull the repository locally. Here are the high-level steps to pull the code from the book’s GitHub repository:
+
+
+
+Install Git if you need to. Git can be installed from multiple sources, but a good option is the main release, found here: https://git-scm.com/downloads. Follow the instructions to download and install the tool for your operating system.
+
+Open a terminal in a folder you want to download the source to, and then enter the following command:
+
+
+
+git clone https://github.com/cxbxmxcx/GPT-Agents.git
+
+
+
+
+
+3. After the code is downloaded, you can begin by opening the chapter folder that you’re working on in Visual Studio Code (VS Code). If you need to install VS Code or understand how to load a chapter folder as a workspace, consult section B.5 in this appendix.
+
+
+
+
+

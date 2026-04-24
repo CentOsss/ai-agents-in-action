@@ -1,0 +1,45 @@
+4.1 Introducing multi-agent systems with AutoGen Studio
+
+
+
+
+AutoGen Studio is a powerful tool that employs multiple agents behind the scenes to solve tasks and problems a user directs. This tool has been used to develop some of the more complex code in this book. For that reason and others, it’s an excellent introduction to a practical multi-agent system.
+
+
+
+Figure 4.1 shows a schematic diagram of the agent connection/communication patterns AutoGen employs. AutoGen is a conversational multi-agent platform because communication is done using natural language. Natural language conversation seems to be the most natural pattern for agents to communicate, but it’s not the only method, as you’ll see later.
+
+
+
+
+
+Figure 4.1 How AutoGen agents communicate through conversations (Source: AutoGen)
+
+
+
+
+AutoGen supports various conversational patterns, from group and hierarchical to the more common and simpler proxy communication. In proxy communication, one agent acts as a proxy and directs communication to relevant agents to complete tasks. A proxy is similar to a waiter taking orders and delivering them to the kitchen, which cooks the food. Then, the waiter serves the cooked food.
+
+
+
+The basic pattern in AutoGen uses a UserProxy and one or more assistant agents. Figure 4.2 shows the user proxy taking direction from a human and then directing an assistant agent enabled to write code to perform the tasks. Each time the assistant completes a task, the proxy agent reviews, evaluates, and provides feedback to the assistant. This iteration loop continues until the proxy is satisfied with the results.
+
+
+
+
+
+Figure 4.2 The user proxy agent and assistant agent communication (Source: AutoGen)
+
+
+
+
+The benefit of the proxy is that it works to replace the required human feedback and evaluation, and, in most cases, it does a good job. While it doesn’t eliminate the need for human feedback and evaluation, it produces much more complete results overall. And, while the iteration loop is time consuming, it’s time you could be drinking a coffee or working on other tasks.
+
+
+
+AutoGen Studio is a tool developed by the AutoGen team that provides a helpful introduction to conversable agents. In the next exercise, we’ll install Studio and run some experiments to see how well the platform performs. These tools are still in a rapid development cycle, so if you encounter any problems, consult the documentation on the AutoGen GitHub repository.
+
+
+
+
+

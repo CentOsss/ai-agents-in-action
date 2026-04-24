@@ -1,0 +1,132 @@
+11.5.2 Application of assistant/agentic reasoning
+
+
+
+
+Reasoning, while often strongly associated with planning and task completion, is a component that can also stand by itself. As LLMs mature and get smarter, reasoning is often included within the LLM itself. However, not all applications may benefit from extensive reasoning, as it often introduces a thinking cycle within the LLM response. Table 11.2 describes at a high level how the reasoning component can be integrated with various LLM application types.
+
+
+
+
+
+Table 11.2 When and where reasoning is employed and used in various applications
+
+
+Application
+
+Implemented
+
+Environment
+
+Purpose
+
+Timing
+
+Configuration
+
+
+
+Personal assistant
+
+Within the LLM
+
+Personal device
+
+Breaking down work into steps
+
+During the response
+
+As part of the prompt or LLM
+
+
+
+Customer service bot
+
+Not typical; usually just informational
+
+Limited tool use and need for composite tool use
+
+
+
+Autonomous agent
+
+As part of the agent prompt and within the LLM
+
+Server or service
+
+Facilitate complex tool use and task planning
+
+As part of LLM, external reasoning not well suited
+
+Within the agent or LLM
+
+
+
+Collaborative workflows
+
+As part of the LLM
+
+Shared canvas or coding
+
+Assists in breaking work down
+
+During the response
+
+Within the LLM
+
+
+
+Game AI
+
+As part of the LLM
+
+Server or application
+
+Essential for undertaking complex actions
+
+Before or during the response
+
+Within the LLM
+
+
+
+Research
+
+Anywhere
+
+Server
+
+Understand how to solve complex problems and engage in complex task workflows
+
+Before, during, and after response generation
+
+Anywhere
+
+
+
+
+
+Table 11.2 shows several varied application scenarios in which we may find an assistant or agent deployed to assist in some capacity. To provide further information and guidance, this list provides more details about how reasoning may be employed in each application:
+
+
+
+Personal assistant—Depending on the application, the amount of reasoning an agent employs may be limited. Reasoning is a process that requires the LLM to think through a problem, and this often requires longer response times depending on the complexity of the problem and the extent of the prompt. In many situations, responses intended to be closer to real-time reasoning may be disabled or turned down. While this may limit the complexity at which an agent can interact, limited or no reasoning can improve response times and increase user enjoyment.
+
+Customer service bot—Again, because of the controlled nature of this environment, it’s unlikely that assistants engaged directly with customers will need to perform complex or any form of reasoning.
+
+Autonomous agent—While reasoning is a strong component of autonomous agents, we still don’t know how much reasoning is too much. As models such as Strawberry become available for agentic workflows, we can gauge at what point extensive reasoning may not be needed. This will surely be the case for well-defined autonomous agent workflows.
+
+Collaborative workflows—Again, applying reasoning creates an overhead in the LLM interaction. Extensive reasoning may provide benefits for some workflows, while other well-defined workflows may suffer. This may mean that these types of workflows will benefit from multiple agents—those with reasoning and those without.
+
+Game AI—Similar to other applications, heavy-reasoning applications may not be appropriate for most game AIs. Games will especially require LLM response times to be quick, and this will surely be the application of reasoning for general tactical agents. Of course, that doesn’t preclude the use of other reasoning agents that may provide more strategic control.
+
+Research—Reasoning will likely be essential to any complex research task for several reasons. A good example is the application of the Strawberry model, which we’ve already seen in research done in mathematics and the sciences.
+
+
+
+While we often consider reasoning in tandem with planning, there may be conditions where the level at which each is implemented may differ. In the next section we consider the agent pillar of evaluation of various applications.
+
+
+
+
+

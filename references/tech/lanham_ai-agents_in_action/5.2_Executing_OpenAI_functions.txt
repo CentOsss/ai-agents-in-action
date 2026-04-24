@@ -1,0 +1,15 @@
+5.2 Executing OpenAI functions
+
+
+
+
+OpenAI, with the enablement of plugins, introduced a structure specification for defining the interface between functions/plugins an LLM could action. This specification is becoming a standard that LLM systems can follow to provide actionable systems.
+
+
+
+These same function definitions are now also being used to define plugins for ChatGPT and other systems. Next, we’ll explore how to use functions directly with an LLM call.
+
+
+
+
+

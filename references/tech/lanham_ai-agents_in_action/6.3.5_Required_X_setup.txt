@@ -1,0 +1,63 @@
+6.3.5 Required X setup
+
+
+
+
+If you plan to run the code in this exercise, you must add your X credentials to the .env file. The .env.default file shows an example of how the credentials need to be, as shown in listing 6.8. You don’t have to enter your credentials. This means the last step, posting, will fail, but you can still look at the file (youtube_twitter_post.txt) to see what was generated.
+
+
+
+
+
+Listing 6.8 Configuring credentials
+
+
+X_EMAIL = "twitter email here" X_USERNAME = "twitter username here" X_PASSWORD = "twitter password here"
+
+
+
+
+
+YouTube search and spam
+
+
+
+
+If you plan to run this exercise for real and let it post to your X account, be aware that YouTube has a bit of a spam problem. The assistants have been configured to try to avoid video spam, but some of it may get through. Building a working ABT that can wade through videos while avoiding spam has some suitable applications.
+
+
+
+
+
+Listing 6.9 shows just the code for creating the assistant actions. This ABT uses three different assistants, each with its own task instructions. Note that each assistant has a unique set of instructions defining its role. You can review the instructions for each assistant by using the Playground.
+
+
+
+
+
+Listing 6.9 agentic_btree_video_poster_v1.py
+
+
+root = py_trees.composites.Sequence("RootSequence", memory=True) search_term = "GPT Agents" search_youtube_action = create_assistant_action( action_name=f"Search YouTube({search_term})", assistant_name="YouTube Researcher v2", assistant_instructions=f""" Search Term: {search_term} Use the query "{search_term}" to search for videos on YouTube. then for each video download the transcript and summarize it for relevance to {search_term} be sure to include a link to each of the videos, and then save all summarizations to a file called youtube_transcripts.txt If you encounter any errors, please return just the word FAILURE. """, ) root.add_child(search_youtube_action) write_post_action = create_assistant_action( action_name="Write Post", assistant_name="Twitter Post Writer", assistant_instructions=""" Load the file called youtube_transcripts.txt, analyze the contents for references to search term at the top and then select the most exciting and relevant video related to: educational, entertaining, or informative, to post on Twitter. Then write a Twitter post that is relevant to the video, and include a link to the video, along with exciting highlights or mentions, and save it to a file called youtube_twitter_post.txt. If you encounter any errors, please return just the word FAILURE. """, ) root.add_child(write_post_action) post_action = create_assistant_action( action_name="Post", assistant_name="Social Media Assistant", assistant_instructions=""" Load the file called youtube_twitter_post.txt and post the content to Twitter. If the content is empty please do not post anything. If you encounter any errors, please return just the word FAILURE. """, ) root.add_child(post_action) ### Required assistants – YouTube Researcher v2, Twitter Post Writer, and Social Media Assistant – install these assistants through the Playground
+
+
+
+
+
+Run the code as you normally would, and after a few minutes, a new post will appear in the assistants_output folder. Figure 6.10 shows an example of a post generated using this ABT. Running this ABT to generate more than a few posts a day could, and likely will, get your X account blocked. If you’ve configured X credentials, you’ll see the post appear on your feed.
+
+
+
+
+
+Figure 6.10 A sample X post from the ABT
+
+
+
+
+This ABT is shown for demonstration purposes and isn’t for production or long-term use. The primary features of this demonstration are to show search and loading data, summarization and filtering, then generating new content, and finally highlighting multiple custom actions and integrations with APIs.
+
+
+
+
+

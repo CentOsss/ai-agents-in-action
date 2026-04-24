@@ -1,0 +1,134 @@
+5.7 Exercises
+
+
+
+
+Complete the following exercises to improve your knowledge of the material:
+
+
+
+Exercise 1—Creating a Basic Plugin for Temperature Conversion
+
+
+
+Objective —Familiarize yourself with creating a simple plugin for the OpenAI chat completions API.
+
+
+
+Tasks:
+
+
+
+Develop a plugin that converts temperatures between Celsius and Fahrenheit.
+
+Test the plugin by integrating it into a simple OpenAI chat session where users can ask for temperature conversions.
+
+
+
+
+
+Exercise 2—Developing a Weather Information Plugin
+
+
+
+Objective —Learn to create a plugin that performs a unique task.
+
+
+
+Tasks:
+
+
+
+Create a plugin for the OpenAI chat completions API that fetches weather information from a public API.
+
+Ensure the plugin can handle user requests for current weather conditions in different cities.
+
+
+
+
+
+Exercise 3—Crafting a Creative Semantic Function
+
+
+
+Objective —Explore the creation of semantic functions.
+
+
+
+Tasks:
+
+
+
+Develop a semantic function that writes a poem or tells a children’s story based on user input.
+
+Test the function in a chat session to ensure it generates creative and coherent outputs.
+
+
+
+
+
+Exercise 4—Enhancing Semantic Functions with Native Functions
+
+
+
+Objective —Understand how to combine semantic and native functions.
+
+
+
+Tasks:
+
+
+
+Create a semantic function that uses a native function to enhance its capabilities.
+
+For example, develop a semantic function that generates a meal plan and uses a native function to fetch nutritional information for the ingredients.
+
+
+
+
+
+Exercise 5—Wrapping an Existing Web API with Semantic Kernel
+
+
+
+Objective —Learn to wrap existing web APIs as semantic service plugins.
+
+
+
+Tasks:
+
+
+
+Use SK to wrap a news API and expose it as a semantic service plugin in a chat agent.
+
+Ensure the plugin can handle user requests for the latest news articles on various topics.
+
+
+
+
+
+Summary
+
+
+
+
+Agent actions extend the capabilities of an agent system, such as ChatGPT. This includes the ability to add plugins to ChatGPT and LLMs to function as proxies for actions.
+
+OpenAI supports function definitions and plugins within an OpenAI API session. This includes adding function definitions to LLM API calls and understanding how these functions allow the LLM to perform additional actions.
+
+The Semantic Kernel (SK) is an open source project from Microsoft that can be used to build AI applications and agent systems. This includes the role of semantic plugins in defining native and semantic functions.
+
+Semantic functions encapsulate the prompt/profile template used to engage an LLM.
+
+Native functions encapsulate code that performs or executes an action using an API or other interface.
+
+Semantic functions can be combined with other semantic or native functions and layered within one another as execution stages.
+
+SK can be used to create a GPT interface over the top of API calls in a semantic service layer and expose them as chat or agent interface plugins.
+
+Semantic services represent the interaction between LLMs and plugins, as well as the practical implementation of these concepts in creating efficient AI agents.
+
+
+
+
+

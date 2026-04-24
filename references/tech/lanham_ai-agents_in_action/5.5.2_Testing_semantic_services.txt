@@ -1,0 +1,52 @@
+5.5.2 Testing semantic services
+
+
+
+
+In a real-world application, you’ll likely want to write a complete set of unit or integration tests for each semantic service function. We won’t do that here; instead, we’ll write a quick helper script to test the various functions.
+
+
+
+Open test_tmdb_service.py in VS Code, and review the code, as shown in listing 5.20. You can comment and uncomment any functions to test them in isolation. Be sure to have only one function uncommented at a time.
+
+
+
+
+
+Listing 5.20 test_tmdb_service.py
+
+
+import semantic_kernel as sk from plugins.Movies.tmdb import TMDbService async def main(): kernel = sk.Kernel() #1 tmdb_service = kernel.import_plugin_from_object ↪ ↪ (TMDbService(), "TMDBService") #2 print( await tmdb_service["get_movie_genre_id"]( kernel, sk.KernelArguments( genre_name="action") #3 ) ) #4 print( await tmdb_service["get_tv_show_genre_id"]( kernel, sk.KernelArguments( genre_name="action") #5 ) ) #6 print( await tmdb_service["get_top_movies_by_genre"]( kernel, sk.KernelArguments( genre_name="action") #7 ) ) #8 print( await tmdb_service["get_top_tv_shows_by_genre"]( kernel, sk.KernelArguments( genre_name="action") #7 ) ) print(await tmdb_service["get_movie_genres"]( kernel, sk.KernelArguments())) #9 print(await tmdb_service["get_tv_show_genres"]( kernel, sk.KernelArguments())) #9 # Run the main function if __name__ == "__main__": import asyncio asyncio.run(main()) #10 ###Output Function name: get_top_tv_shows_by_genre #11 Arguments: self = <skills.Movies.tmdb.TMDbService object at 0x00000159F52090C0> genre = action Function name: get_tv_show_genre_id #11 Arguments: self = <skills.Movies.tmdb.TMDbService object at 0x00000159F52090C0> genre_name = action Arcane, One Piece, Rick and Morty, Avatar: The Last Airbender, Fullmetal Alchemist: Brotherhood, Demon Slayer: Kimetsu no Yaiba, Invincible, Attack on Titan, My Hero Academia, Fighting Spirit, The Owl House
+
+#1 Instantiates the kernel
+
+#2 Imports the plugin service
+
+#3 Inputs parameter to functions, when needed
+
+#4 Executes and tests the various functions
+
+#5 Inputs parameter to functions, when needed
+
+#6 Executes and tests the various functions
+
+#7 Inputs parameter to functions, when needed
+
+#8 Executes and tests the various functions
+
+#9 Executes and tests the various functions
+
+#10 Executes main asynchronously
+
+#11 Calls print function details to notify when the function is being called
+
+
+
+
+
+The real power of SK is shown in this test. Notice how the TMDbService class is imported as a plugin, but we don’t have to define any plugin configurations other than what we already did? By just writing one class that wrapped a few API functions, we’ve exposed part of the TMDB API semantically. Now, with the functions exposed, we can look at how they can be used as plugins for a chat interface in the next section.
+
+
+
+
+

@@ -1,0 +1,104 @@
+9.7.3 Creating an evaluation flow for grounding
+
+
+
+
+Open chapter_3\prompt_flow\evaluate_groundings\flow.dag.yaml in the visual editor, as shown in figure 9.24. There are no LLM blocks in the evaluation flow—just Python code blocks that will run the scoring and then aggregate the scores.
+
+
+
+
+
+Figure 9.24 Looking at the evaluate_groundings flow used to ground recommendation runs
+
+
+
+
+We can now look at the code for the scoring and aggregate blocks, starting with the scoring code in listing 9.3. This scoring code averages the score for each criterion into an average score. The output of the function is a list of processed recommendations.
+
+
+
+
+
+Listing 9.3 line_process.py
+
+
+@tool def line_process(recommendations: str): #1 inputs = recommendations output = [] for data_dict in inputs: #2 total_score = 0 score_count = 0 for key, value in data_dict.items(): #2 if key != "title": #3 try: total_score += float(value) score_count += 1 data_dict[key] = float(value) #4 except: pass avg_score = total_score / score_count if score_count > 0 else 0 data_dict["avg_score"] = round(avg_score, 2) #5 output.append(data_dict) return output
+
+#1 A set of three recommendations is input into the function.
+
+#2 Loops over each recommendation and criterion
+
+#3 Title isn’t a criterion, so ignore it.
+
+#4 Totals the score for all criteria and sets the float value to key
+
+#5 Adds the average score as a grounding score of the recommendation
+
+
+
+
+
+From the grounded recommendations, we can move on to aggregating the scores with the aggregate block—the code for the aggregate block is shown in the following listing.
+
+
+
+
+
+Listing 9.4 aggregate.py
+
+
+@tool def aggregate(processed_results: List[str]): items = [item for sublist in processed_results ↪ for item in sublist] #1 aggregated = {} for item in items: for key, value in item.items(): if key == 'title': continue if isinstance(value, (float, int)): #2 if key in aggregated: aggregated[key] += value else: aggregated[key] = value for key, value in aggregated.items(): #3 value = value / len(items) log_metric(key=key, value=value) #4 aggregated[key] = value return aggregated
+
+#1 The input is a list of lists; flatten to a list of items.
+
+#2 Checks to see if the value is numeric and accumulates scores for each criterion key
+
+#3 Loops over aggregated criterion scores
+
+#4 Logs the criterion as a metric
+
+
+
+
+
+The result of the aggregations will be a summary score for each criterion and the average score. Since the evaluation/grounding flow is separate, it can be run over any recommendation run we perform. This will allow us to use the batch run results for any variation to compare results.
+
+
+
+We can run the grounding flow by opening flow.dag.yaml in the visual editor and clicking Batch (beaker icon). Then, when prompted, we select an existing run and then select the run we want to evaluate, as shown in figure 9.25. This will open a YAML file with the Run link at the bottom, as we’ve seen before. Click the Run link to run the evaluation.
+
+
+
+
+
+Figure 9.25 Loading a previous run to be grounded and evaluated
+
+
+
+
+After the run is completed, you’ll see a summary of the results in the terminal window. You can click the output link to open the folder in VS Code and analyze the results, but there is a better way to compare them.
+
+
+
+Open the prompt flow extension, focus on the Batch Run History window, and scroll down to the Run against Run section, as shown in figure 9.26. Select the runs you want to compare—likely the ones near the top—so that the checkmark appears. Then, right-click the run, and select the Visualize Runs option. The Batch Run Visualization window opens, and you’ll see the metrics for each of the runs at the top.
+
+
+
+
+
+Figure 9.26 Visualizing the metrics for multiple runs and comparing them
+
+
+
+
+We can now see a significant difference between profile/prompt variation 0, the user prompt, and variation 1, the system prompt. Refer to figure 9.15 if you need a refresher on what the prompts/profiles look like. At this point, it should be evident that injecting the input parameters into the system prompt provides better recommendations.
+
+
+
+You can now go back and try other profiles or other variant options to see what effect this has on your recommendations. The possibilities are virtually endless, but hopefully you can see what an excellent tool prompt flow will be for building agent profiles and prompts.
+
+
+
+
+

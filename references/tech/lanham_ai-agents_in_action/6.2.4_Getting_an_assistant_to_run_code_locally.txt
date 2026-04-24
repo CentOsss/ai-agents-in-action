@@ -1,0 +1,41 @@
+6.2.4 Getting an assistant to run code locally
+
+
+
+
+Getting agents and assistants to generate and run executable code has a lot of power. Unlike the Code Interpreter, running code locally provides numerous opportunities to iterate and tune quickly. We saw this earlier with AutoGen, where the agents could keep running the code until it worked as expected.
+
+
+
+In the Playground, it’s a simple matter to select the custom action run_code, as shown in figure 6.5. You’ll also want to choose the run_shell_command action because it allows the assistant to pip install any required modules.
+
+
+
+
+
+Figure 6.5 Selecting custom actions for the assistant to run Python code
+
+
+
+
+You can now ask an assistant to generate and run the code to be sure it works on your behalf. Try this out by adding the custom actions and asking the assistant to generate and run code, as shown in figure 6.6. If the code doesn’t work as expected, tell the assistant what problems you encountered.
+
+
+
+
+
+Figure 6.6 Getting the assistant to generate and run Python code
+
+
+
+
+Again, the Python code running in the Playground creates a new virtual environment in a project subfolder. This system works well if you’re not running any operating system–level code or low-level code. If you need something more robust, a good option is AutoGen, which uses Docker containers to run isolated code.
+
+
+
+Adding actions to run code or other tasks can make assistants feel like a black box. Fortunately, the OpenAI Assistants API allows you to consume events and see what the assistant is doing behind the scenes. In the next section, we’ll see what this looks like.
+
+
+
+
+

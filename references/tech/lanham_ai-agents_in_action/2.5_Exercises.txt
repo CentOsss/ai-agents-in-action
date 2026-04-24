@@ -1,0 +1,162 @@
+2.5 Exercises
+
+
+
+
+Use the following exercises to help you engage with the material in this chapter:
+
+
+
+Exercise 1—Consuming Different LLMs
+
+
+
+Objective —Use the connecting.py code example to consume a different LLM from OpenAI or another provider.
+
+
+
+Tasks:
+
+
+
+Modify connecting.py to connect to a different LLM.
+
+Choose an LLM from OpenAI or another provider.
+
+Update the API keys and endpoints in the code.
+
+Execute the modified code and validate the response.
+
+
+
+
+
+Exercise 2—Exploring Prompt Engineering Tactics
+
+
+
+Objective —Explore various prompt engineering tactics, and create variations for each.
+
+
+
+Tasks:
+
+
+
+Review the prompt engineering tactics covered in the chapter.
+
+Write variations for each tactic, experimenting with different phrasing and structures.
+
+Test the variations with an LLM to observe different outcomes.
+
+Document the results, and analyze the effectiveness of each variation.
+
+
+
+
+
+Exercise 3—Downloading and Running an LLM with LM Studio
+
+
+
+Objective —Download an LLM using LM Studio, and connect it to prompt engineering tactics.
+
+
+
+Tasks:
+
+
+
+Install LM Studio on your machine.
+
+Download an LLM using LM Studio.
+
+Serve the model using LM Studio.
+
+Write Python code to connect to the served model.
+
+Integrate the prompt engineering tactics example with the served model.
+
+
+
+
+
+Exercise 4—Comparing Commercial and Open source LLMs
+
+
+
+Objective —Compare the performance of a commercial LLM such as GPT-4 Turbo with an open source model using prompt engineering examples.
+
+
+
+Tasks:
+
+
+
+Implement the prompt engineering examples using GPT-4 Turbo.
+
+Repeat the implementation using an open source LLM.
+
+Evaluate the models based on criteria such as response accuracy, coherence, and speed.
+
+Document the evaluation process, and summarize the findings.
+
+
+
+
+
+Exercise 5—Hosting Alternatives for LLMs
+
+
+
+Objective —Contrast and compare alternatives for hosting an LLM versus using a commercial model.
+
+
+
+Tasks:
+
+
+
+Research different hosting options for LLMs (e.g., local servers, cloud services).
+
+Evaluate the benefits and drawbacks of each hosting option.
+
+Compare these options to using a commercial model in terms of cost, performance, and ease of use.
+
+Write a report summarizing the comparison and recommending the best approach based on specific use cases.
+
+
+
+
+
+Summary
+
+
+
+
+LLMs use a type of architecture called generative pretrained transformers (GPTs).
+
+Generative models (e.g., LLMs and GPTs) differ from predictive/classification models by learning how to represent data and not simply classify it.
+
+LLMs are a collection of data, architecture, and training for specific use cases, called fine-tuning.
+
+The OpenAI API SDK can be used to connect to an LLM from models, such as GPT-4, and also used to consume open source LLMs.
+
+You can quickly set up Python environments and install the necessary packages for LLM integration.
+
+LLMs can handle various requests and generate unique responses that can be used to enhance programming skills related to LLM integration.
+
+Open source LLMs are an alternative to commercial models and can be hosted locally using tools such as LM Studio.
+
+Prompt engineering is a collection of techniques that help craft more effective prompts to improve LLM responses.
+
+LLMs can be used to power agents and assistants, from simple chatbots to fully capable autonomous workers.
+
+Selecting the most suitable LLM for specific needs depends on the performance, parameters, use case, training input, and other criteria.
+
+Running LLMs locally requires a variety of skills, from setting up GPUs to understanding various configuration options.
+
+
+
+
+

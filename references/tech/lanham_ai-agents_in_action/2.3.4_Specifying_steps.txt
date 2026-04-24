@@ -1,0 +1,24 @@
+2.3.4 Specifying steps
+
+
+
+
+Specifying steps is another powerful tactic that can have many uses, including in agents, as shown in listing 2.12. It’s especially powerful when developing prompts or agent profiles for complex multistep tasks. You can specify steps to break down these complex prompts into a step-by-step process that the LLM can follow. In turn, these steps can guide the LLM through multiple interactions over a more extended conversation and many iterations.
+
+
+
+
+
+Listing 2.12 specifying_steps.jsonl
+
+
+[ { "role": "system", "content": """ Use the following step-by-step instructions to respond to user inputs. Step 1 - The user will provide you with text in triple single quotes. Summarize this text in one sentence with a prefix that says 'Summary: '. Step 2 - Translate the summary from Step 1 into Spanish, with a prefix that says 'Translation: '. """ #1 }, { "role": "user", "content": "'''I am hungry and would like to order an appetizer.'''" } ] [ { "role": "system", "content": """ Use the following step-by-step instructions to respond to user inputs. Step 1 - The user will provide you with text. Answer any questions in the text in one sentence with a prefix that says 'Answer: '. Step 2 - Translate the Answer from Step 1 into a dad joke, with a prefix that says 'Dad Joke: '.""" #2 }, { "role": "user", "content": "What is the tallest structure in Paris?" } ]
+
+#1 Notice the tactic of using delimiters.
+
+#2 Steps can be completely different operations.
+
+
+
+
+

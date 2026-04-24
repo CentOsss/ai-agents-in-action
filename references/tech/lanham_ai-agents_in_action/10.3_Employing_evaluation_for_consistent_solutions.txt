@@ -1,0 +1,26 @@
+10.3 Employing evaluation for consistent solutions
+
+
+
+
+In the previous section, we learned that even the best-reasoned plans may not always derive the correct solution. Furthermore, we may not always have the answer to confirm if that solution is correct. The reality is that we often want to use some form of evaluation to determine the efficacy of a solution.
+
+
+
+Figure 10.6 shows a comparison of the prompt engineering strategies that have been devised as a means of getting LLMs to reason and plan. We’ve already covered the two on the left: zero-shot direct prompting and CoT prompting. The following example exercises in this section will look at self-consistency with the CoT and ToT techniques.
+
+
+
+
+
+Figure 10.6 Comparing the various prompt engineering strategies to enable reasoning and planning from LLMs
+
+
+
+
+We’ll continue to focus on the complex time travel problem to compare these more advanced methods that expand on reasoning and planning with evaluation. In the next section, we’ll evaluate self-consistency.
+
+
+
+
+

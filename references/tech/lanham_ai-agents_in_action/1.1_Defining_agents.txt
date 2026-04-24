@@ -1,0 +1,71 @@
+1.1 Defining agents
+
+
+
+
+You can consult any online dictionary to find the definition of an agent. The Merriam-Webster Dictionary defines it this way (www.merriam-webster.com/dictionary/agent):
+
+
+
+One that acts or exerts power
+
+Something that produces or can produce an effect
+
+A means or instrument by which a guiding intelligence achieves a result
+
+
+
+The word agent in our journey to build powerful agents in this book uses this dictionary definition. That also means the term assistant will be synonymous with agent. Tools like OpenAI’s GPT Assistants will also fall under the AI agent blanket. OpenAI avoids the word agent because of the history of machine learning, where an agent is self-deciding and autonomous.
+
+
+
+Figure 1.1 shows four cases where a user may interact with a large language model (LLM) directly or through an agent/assistant proxy, an agent/assistant, or an autonomous agent. These four use cases are highlighted in more detail in this list:
+
+
+
+Direct user interaction —If you used earlier versions of ChatGPT, you experienced direct interaction with the LLM. There is no proxy agent or other assistant interjecting on your behalf.
+
+Agent/assistant proxy —If you’ve used Dall-E 3 through ChatGPT, then you’ve experienced a proxy agent interaction. In this use case, an LLM interjects your requests and reformulates them in a format better designed for the task. For example, for image generation, ChatGPT better formulates the prompt. A proxy agent is an everyday use case to assist users with unfamiliar tasks or models.
+
+Agent/assistant —If you’ve ever used a ChatGPT plugin or GPT assistant, then you’ve experienced this use case. In this case, the LLM is aware of the plugin or assistant functions and prepares to make calls to this plugin/function. However, before making a call, the LLM requires user approval. If approved, the plugin or function is executed, and the results are returned to the LLM. The LLM then wraps this response in natural language and returns it to the user.
+
+Autonomous agent —In this use case, the agent interprets the user’s request, constructs a plan, and identifies decision points. From this, it executes the steps in the plan and makes the required decisions independently. The agent may request user feedback after certain milestone tasks, but it’s often given free rein to explore and learn if possible. This agent poses the most ethical and safety concerns, which we’ll explore later.
+
+
+
+
+
+Figure 1.1 The differences between the LLM interactions from direct action compared to using proxy agents, agents, and autonomous agents
+
+
+
+
+Figure 1.1 demonstrates the use cases for a single flow of actions on an LLM using a single agent. For more complex problems, we often break agents into profiles or personas. Each agent profile is given a specific task and executes that task with specialized tools and knowledge.
+
+
+
+Multi-agent systems are agent profiles that work together in various configurations to solve a problem. Figure 1.2 demonstrates an example of a multi-agent system using three agents: a controller or proxy and two profile agents as workers controlled by the proxy. The coder profile on the left writes the code the user requests; on the right is a tester profile designed to write unit tests. These agents work and communicate together until they are happy with the code and then pass it on to the user.
+
+
+
+Figure 1.2 shows one of the possibly infinite agent configurations. (In chapter 4, we’ll explore Microsoft’s open source platform, AutoGen, which supports multiple configurations for employing multi-agent systems.)
+
+
+
+
+
+Figure 1.2 In this example of a multi-agent system, the controller or agent proxy communicates directly with the user. Two agents—a coder and a tester—work in the background to create code and write unit tests to test the code.
+
+
+
+
+Multi-agent systems can work autonomously but may also function guided entirely by human feedback. The benefits of using multiple agents are like those of a single agent but often magnified. Where a single agent typically specializes in a single task, multi-agent systems can tackle multiple tasks in parallel. Multiple agents can also provide feedback and evaluation, reducing errors when completing assignments.
+
+
+
+As we can see, an AI agent or agent system can be assembled in multiple ways. However, an agent itself can also be assembled using multiple components. In the next section, we’ll cover topics ranging from an agent’s profile to the actions it may perform, as well as memory and planning.
+
+
+
+
+

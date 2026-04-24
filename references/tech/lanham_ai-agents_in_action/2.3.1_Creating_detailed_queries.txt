@@ -1,0 +1,32 @@
+2.3.1 Creating detailed queries
+
+
+
+
+The basic premise of this tactic is to provide as much detail as possible but also to be careful not to give irrelevant details. The following listing shows the JSON Lines file examples for exploring this tactic.
+
+
+
+
+
+Listing 2.9 detailed_queries.jsonl
+
+
+[ #1 { "role": "system", "content": "You are a helpful assistant." }, { "role": "user", "content": "What is an agent?" #2 } ] [ { "role": "system", "content": "You are a helpful assistant." }, { "role": "user", "content": """ What is a GPT Agent? Please give me 3 examples of a GPT agent """ #3 } ]
+
+#1 The first example doesn’t use detailed queries.
+
+#2 First ask the LLM a very general question.
+
+#3 Ask a more specific question, and ask for examples.
+
+
+
+
+
+This example demonstrates the difference between using detailed queries and not. It also goes a step further by asking for examples. Remember, the more relevance and context you can provide in your prompt, the better the overall response. Asking for examples is another way of enforcing the relationship between the question and the expected output.
+
+
+
+
+

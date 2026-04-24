@@ -1,0 +1,15 @@
+2.1 Mastering the OpenAI API
+
+
+
+
+Numerous AI agents and assistant projects use the OpenAI API SDK to connect to an LLM. While not standard, the basic concepts describing a connection now follow the OpenAI pattern. Therefore, we must understand the core concepts of an LLM connection using the OpenAI SDK.
+
+
+
+This chapter will look at connecting to an LLM model using the OpenAI Python SDK/package. We’ll discuss connecting to a GPT-4 model, the model response, counting tokens, and how to define consistent messages. Starting in the following subsection, we’ll examine how to use OpenAI.
+
+
+
+
+

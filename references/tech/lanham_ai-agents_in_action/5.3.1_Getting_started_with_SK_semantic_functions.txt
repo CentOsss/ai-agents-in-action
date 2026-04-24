@@ -1,0 +1,73 @@
+5.3.1 Getting started with SK semantic functions
+
+
+
+
+SK is easy to install and works within Python, Java, and C#. This is excellent news as it also allows plugins developed in one language to be consumed in a different language. However, you can’t yet develop a native function in one language and use it in another.
+
+
+
+We’ll continue from where we left off for the Python environment using the chapter_4 workspace in VS Code. Be sure you have a workspace configured if you want to explore and run any examples.
+
+
+
+Listing 5.8 shows how to install SK from a terminal within VS Code. You can also install the SK extension for VS Code. The extension can be a helpful tool to create plugins/skills, but it isn’t required.
+
+
+
+
+
+Listing 5.8 Installing Semantic Kernel
+
+
+pip uninstall semantic-kernel #1 git clone https://github.com/microsoft/semantic-kernel.git #2 cd semantic-kernel/python #3 pip install -e . #4
+
+#1 Uninstalls any previous installations of SK
+
+#2 Clones the repository to a local folder
+
+#3 Changes to the source folder
+
+#4 Installs the editable package from the source folder
+
+
+
+
+
+Once you finish the installation, open SK_connecting.py in VS Code. Listing 5.9 shows a demo of running an example quickly through SK. The example creates a chat completion service using either OpenAI or Azure OpenAI.
+
+
+
+
+
+Listing 5.9 SK_connecting.py
+
+
+import semantic_kernel as sk selected_service = "OpenAI" #1 kernel = sk.Kernel() #2 service_id = None if selected_service == "OpenAI": from semantic_kernel.connectors.ai.open_ai import OpenAIChatCompletion api_key, org_id = sk.openai_settings_from_dot_env() #3 service_id = "oai_chat_gpt" kernel.add_service( OpenAIChatCompletion( service_id=service_id, ai_model_id="gpt-3.5-turbo-1106", api_key=api_key, org_id=org_id, ), ) elif selected_service == "AzureOpenAI": from semantic_kernel.connectors.ai.open_ai import AzureChatCompletion deployment, api_key, endpoint = ↪ sk.azure_openai_settings_from_dot_env() #4 service_id = "aoai_chat_completion" kernel.add_service( AzureChatCompletion( service_id=service_id, deployment_name=deployment, endpoint=endpoint, api_key=api_key, ), ) #This function is currently broken async def run_prompt(): result = await kernel.invoke_prompt( ↪ prompt="recommend a movie about ↪ time travel") #5 print(result) # Use asyncio.run to execute the async function asyncio.run(run_prompt()) #6 ###Output One highly recommended time travel movie is "Back to the Future" (1985) directed by Robert Zemeckis. This classic film follows the adventures of teenager Marty McFly (Michael J. Fox)…
+
+#1 Sets the service you’re using (OpenAI or Azure OpenAI)
+
+#2 Creates the kernel
+
+#3 Loads secrets from the .env file and sets them on the chat service
+
+#4 Loads secrets from the .env file and sets them on the chat service
+
+#5 Invokes the prompt
+
+#6 Calls the function asynchronously
+
+
+
+
+
+Run the example by pressing F5 (debugging), and you should see an output similar to listing 5.9. This example demonstrates how a semantic function can be created with SK and executed. A semantic function is the equivalent of a prompt template in prompt flow, another Microsoft tool. In this example, we define a simple prompt as a function.
+
+
+
+It’s important to note that this semantic function isn’t defined as a plugin. However, the kernel can create the function as a self-contained semantic element that can be executed against an LLM. Semantic functions can be used alone or registered as plugins, as you’ll see later. Let’s jump to the next section, where we introduce contextual variables.
+
+
+
+
+

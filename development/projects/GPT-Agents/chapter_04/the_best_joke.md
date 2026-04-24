@@ -1,0 +1,1 @@
+Why did the AI engineer always stay at home? Because every time they went out, they lost their "data" connection and couldn't debug the social scene!

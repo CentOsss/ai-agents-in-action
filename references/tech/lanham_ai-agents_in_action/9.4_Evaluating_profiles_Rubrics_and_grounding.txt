@@ -1,0 +1,154 @@
+9.4 Evaluating profiles: Rubrics and grounding
+
+
+
+
+A key element of any prompt or agent profile is how well it performs its given task. As we see in our recommendation example, prompting an agent profile to give a list of recommendations is relatively easy, but knowing whether those recommendations are helpful requires us to evaluate the response.
+
+
+
+Fortunately, prompt flow has been designed to evaluate prompts/profiles at scale. The robust infrastructure allows for the evaluation of LLM interactions to be parallelized and managed as workers, allowing hundreds of profile evaluations and variations to happen quickly.
+
+
+
+In the next section, we look at how prompt flow can be configured to run prompt/ profile variations against each other. We’ll need to understand this before evaluating profiles’ performance.
+
+
+
+Prompt flow provides a mechanism to allow for multiple variations within an LLM prompt/profile. This tool is excellent for comparing subtle or significant differences between profile variations. When used in performing bulk evaluations, it can be invaluable for quickly assessing the performance of a profile.
+
+
+
+Open the recommender_with_variations/flow.dag.yaml file in VS Code and the flow visual editor, as shown in figure 9.15. This time, we’re making the profile more generalized and allowing for customization at the input level. This allows us to expand our recommendations to anything and not just time travel movies.
+
+
+
+
+
+Figure 9.15 The recommender, with variations in flow and expanded inputs
+
+
+
+
+The new inputs Subject, Genre, Format, and Custom allow us to define a profile that can easily be adjusted to any recommendation. This also means that we must prime the inputs based on the recommendation use case. There are multiple ways to prime these inputs; two examples of priming inputs are shown in figure 9.16. The figure shows two options, options A and B, for priming inputs. Option A represents the classic UI; perhaps there are objects for the user to select the subject or genre, for example. Option B places a proxy/chat agent to interact with the user better to understand the desired subject, genre, and so on.
+
+
+
+
+
+Figure 9.16 The user interaction options for interfacing with the agent profile to prime inputs to the agent profile
+
+
+
+
+Even considering the power of LLMs, you may still want or need to use option A. The benefit of option A is that you can constrain and validate the inputs much like you do with any modern UI. Alternatively, the downside of option A is that the constrained behavior may limit and restrict future use cases.
+
+
+
+Option B represents a more fluid and natural way without a traditional UI. It’s far more powerful and extensible than option A but also introduces more unknowns for evaluation. However, if the proxy agent that option B uses is written well, it can assist a lot in gathering better information from the user.
+
+
+
+The option you choose will dictate how you need to evaluate your profiles. If you’re okay with a constrained UI, then it’s likely that the inputs will also be constrained to a set of discrete values. For now, we’ll assume option B for input priming, meaning the input values will be defined by their name.
+
+
+
+To get back to VS Code and the visual view of the recommender with variants flow, click the icon shown earlier in figure 9.15 to open the variants and allow editing. Then, click the recommend.jinja2 and recommender_variant_1.jinja2 links to open the files side by side, as shown in figure 9.17.
+
+
+
+
+
+Figure 9.17 Side-by-side comparison of variant profile templates for the recommender
+
+
+
+
+Figure 9.17 demonstrates the difference between the variant profiles. One profile injects the inputs into the user prompt, and the other injects them into the system prompt. However, it’s essential to understand that variations can encompass more than profile design, as identified in table 9.1.
+
+
+
+
+
+Table 9.1 LLM variation options in prompt flow
+
+
+Option
+
+Evaluation option examples
+
+Notes
+
+
+
+Jinja2 prompt template
+
+Compare system prompt variations, user prompt variations, or mixed prompt variations.
+
+Some endless combinations and techniques can be applied here. Prompt engineering is evolving all the time.
+
+
+
+LLM
+
+Compare GPT-9.5 to GPT-4.
+
+Compare GPT-4 to GPT-4 Turbo.
+
+Compare open source models to commercial models.
+
+This is a useful way to evaluate and ground model performance against a prompt. It can also help you tune your profile to work with open source and/or cheaper models.
+
+
+
+Temperature
+
+Compare a 0 temperature (no randomness) to a 1 (maximum randomness).
+
+Changes to the temperature can significantly change the responses of some prompts, which may improve or degrade performance.
+
+
+
+Max tokens
+
+Compare limited tokens to larger token sizes.
+
+This can allow you to reduce and maximize token usage.
+
+
+
+Advanced parameters
+
+Compare differences to options such as top_p, presence_penalty, frequency_penalty, and logit_bias.
+
+We’ll cover the use of these advanced parameters in later chapters.
+
+
+
+Function calls
+
+Compare alternative function calls.
+
+Function calls will be addressed later in this chapter.
+
+
+
+
+
+For this simple example, we’re just going to use prompt variations by varying the input to reflect in either the system or user prompt. Refer to figure 9.17 for what this looks like. We can then quickly run both variations by clicking the Play (Run All) button at the top and choosing both, as shown in figure 9.18.
+
+
+
+
+
+Figure 9.18 Running both prompt variations at the same time
+
+
+
+
+In the terminal window, you’ll see the results of both runs. The results will likely look similar, so now we must move on to how we evaluate the difference between variations in the next section.
+
+
+
+
+

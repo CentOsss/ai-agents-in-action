@@ -1,0 +1,33 @@
+11 Agent planning and feedback
+
+
+
+
+
+This chapter covers
+
+
+Planning for an LLM and implementing it in agents and assistants
+
+Using the OpenAI Assistants platform via custom actions
+
+Implementing/testing a generic planner on LLMs
+
+Using the feedback mechanism in advanced models
+
+Planning, reasoning, evaluation, and feedback in building agentic systems
+
+
+
+
+
+Now that we’ve examined how large language models (LLMs) can reason and plan, this chapter takes this concept a step further by employing planning within an agent framework. Planning should be at the core of any agent/assistant platform or toolkit. We’ll start by looking at the basics of planning and how to implement a planner through prompting. Then, we’ll see how planning operates using the OpenAI Assistants platform, which automatically incorporates planning. From there, we’ll build and implement a general planner for LLMs.
+
+
+
+Planning can only go so far, and an often-unrecognized element is feedback. Therefore, in the last sections of the chapter, we explore feedback and implement it within a planner. You must be familiar with the content of chapter 10, so please review it if you need to, and when you’re ready, let’s begin planning.
+
+
+
+
+

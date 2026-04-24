@@ -1,0 +1,45 @@
+4.2.3 Understanding the AutoGen cache
+
+
+
+
+AutoGen can consume many tokens over chat iterations as a conversable multi-agent platform. If you ask AutoGen to work through complex or novel problems, you may even encounter token limits on your LLM; because of this, AutoGen supports several methods to reduce token usage.
+
+
+
+AutoGen uses caching to store progress and reduce token usage. Caching is enabled by default, and you may have already encountered it. If you check your current working folder, you’ll notice a .cache folder, as shown in figure 4.8. Caching allows your agents to continue conversations if they get interrupted.
+
+
+
+
+
+Figure 4.8 AutoGen cache and working folders
+
+
+
+
+In code, you can control the cache folder for your agent’s run, as shown in listing 4.9. By wrapping the initiate_chat call with the with statement, you can control the location and seed for the cache. This will allow you to save and return to long-running AutoGen tasks in the future by just setting the cache_seed for the previous cache.
+
+
+
+
+
+Listing 4.9 Setting the cache folder
+
+
+with Cache.disk(cache_seed=42) as cache: #1 res = user_proxy.initiate_chat( recipient=engineer, message=task, max_turns=2, summary_method="last_msg", cache=cache, #2 )
+
+#1 Setting the seed_cache denotes the individual location.
+
+#2 Sets the cache as a parameter
+
+
+
+
+
+This caching ability allows you to continue operations from the previous cache location and captures previous runs. It can also be a great way to demonstrate and inspect how an agent conversation generated the results. In the next section, we’ll look at another conversational pattern in which AutoGen supports group chat.
+
+
+
+
+

@@ -1,0 +1,61 @@
+A.1 Accessing OpenAI accounts and keys
+
+
+
+
+The following general steps can help you quickly set up using OpenAI LLMs for agent development. Though using OpenAI and other commercial LLMs comes at a price, you can expect to pay less than US$100 to complete all the exercises in this book:
+
+
+
+Go to https://openai.com and log in, or register for an account and log in. If this is your first time creating an account, you’ll likely be given free credit in some amount. If you already have an account, you must register a payment method and type. It’s generally better to purchase a number of credits at a time. This will allow you to manage the costs better and avoid overruns.
+
+After logging in to the platform, select ChatGPT or the API, as shown in figure A.1. Choose the API.
+
+
+
+
+
+Figure A.1 Selecting the API section of the OpenAI platform
+
+
+
+
+3. Open the left menu, and select the API Keys option, as shown in figure A.2.
+
+
+
+
+
+Figure A.2 Selecting the API Keys option
+
+
+
+
+4. Click the Create button to create a new key, enter a name for the key, and click the Create Secret Key button, as shown in figure A.3.
+
+
+
+
+
+Figure A.3 Creating the secret API key
+
+
+
+
+5. Copy and paste the key to a notepad or another area for safekeeping using the Copy button, as shown in figure A.4. Keep this key secret, and ensure it remains only on your development machine.
+
+
+
+
+
+Figure A.4 Copying and pasting the key to a well-known safe location
+
+
+
+
+After generating a key, you can continue to use it within an .env configuration file or through other means of registering an OpenAI key. For most of the packages used in this book, configuring OpenAI will generally only require the key. Other services, such as Azure OpenAI, will require the configuration of a model deployment and a base URL as covered in the next section.
+
+
+
+
+

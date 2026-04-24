@@ -1,0 +1,54 @@
+2.2.2 Serving an LLM locally with LM Studio
+
+
+
+
+Running an LLM locally as a server is easy with LM Studio. Just open the server page, load a model, and then click the Start Server button, as shown in figure 2.6. From there, you can copy and paste any of the examples to connect with your model.
+
+
+
+
+
+Figure 2.6 The LM Studio server page and a server running an LLM
+
+
+
+
+You can review an example of the Python code by opening chapter_2/lmstudio_ server.py in VS Code. The code is also shown here in listing 2.7. Then, run the code in the VS Code debugger (press F5).
+
+
+
+
+
+Listing 2.7 lmstudio_server.py
+
+
+from openai import OpenAI client = OpenAI(base_url="http://localhost:1234/v1", api_key="not-needed") completion = client.chat.completions.create( model="local-model", #1 messages=[ {"role": "system", "content": "Always answer in rhymes."}, {"role": "user", "content": "Introduce yourself."} #2 ], temperature=0.7, ) print(completion.choices[0].message) #3
+
+#1 Currently not used; can be anything
+
+#2 Feel free to change the message as you like.
+
+#3 Default code outputs the whole message.
+
+
+
+
+
+If you encounter problems connecting to the server or experience any other problems, be sure your configuration for the Server Model Settings matches the model type. For example, in figure 2.6, shown earlier, the loaded model differs from the server settings. The corrected settings are shown in figure 2.7.
+
+
+
+
+
+Figure 2.7 Choosing the correct Server Model Settings for the loaded model
+
+
+
+
+Now, you can use a locally hosted LLM or a commercial model to build, test, and potentially even run your agents. The following section will examine how to build prompts using prompt engineering more effectively.
+
+
+
+
+

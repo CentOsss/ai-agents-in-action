@@ -1,0 +1,45 @@
+8.6 Implementing memory in agentic systems
+
+
+
+
+Memory in agents and AI applications is often described in the same terms as cognitive memory functions. Cognitive memory describes the type of memory we use to remember what we did 30 seconds ago or how tall we were 30 years ago. Computer memory is also an essential element of agent memory, but one we won’t consider in this section.
+
+
+
+Figure 8.13 shows how memory is broken down into sensory, short-term, and long-term memory. This memory can be applied to AI agents, and this list describes how each form of memory maps to agent functions:
+
+
+
+Sensory memory in AI —Functions such as RAG but with images/audio/haptic data forms. Briefly holds input data (e.g., text and images) for immediate processing but not long-term storage.
+
+Short-term/working memory in AI —Acts as an active memory buffer of conversation history. We’re holding a limited amount of recent input and context for immediate analysis and response generation. Within Nexus, short- and long-term conversational memory is also held in the context of the thread.
+
+Long-term memory in AI —Longer-term memory storage relevant to the agent’s or user’s life. Semantic memory provides a robust capacity to store and retrieve relevant global or local facts and concepts.
+
+
+
+
+
+Figure 8.13 How memory is broken down into various forms
+
+
+
+
+While memory uses the exact same retrieval and augmentation mechanisms as knowledge, it typically differs significantly when updating or appending memories. Figure 8.14 highlights the process of capturing and using memories to augment prompts. Because memories are often different from the size of complete documents, we can avoid using any splitting or chunking mechanisms.
+
+
+
+
+
+Figure 8.14 Basic memory retrieval and augmentation workflow
+
+
+
+
+Nexus provides a mechanism like the knowledge store, allowing users to create memory stores that can be configured for various uses and applications. It also supports some of the more advanced memory forms highlighted in figure 8.13. The following section will examine how basic memory stores work in Nexus.
+
+
+
+
+

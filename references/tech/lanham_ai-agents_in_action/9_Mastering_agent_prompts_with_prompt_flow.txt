@@ -1,0 +1,33 @@
+9 Mastering agent prompts with prompt flow
+
+
+
+
+
+This chapter covers
+
+
+Understanding systematic prompt engineering and setting up your first prompt flow
+
+Crafting an effective profile/persona prompt
+
+Evaluating profiles: Rubrics and grounding
+
+Grounding evaluation of a large language model profile
+
+Comparing prompts: Getting the perfect profile
+
+
+
+
+
+In this chapter, we delve into the Test Changes Systematically prompt engineering strategy. If you recall, we covered the grand strategies of the OpenAI prompt engineering framework in chapter 2. These strategies are instrumental in helping us build better prompts and, consequently, better agent profiles and personas. Understanding this role is key to our prompt engineering journey.
+
+
+
+Test Changes Systematically is such a core facet of prompt engineering that Microsoft developed a tool around this strategy called prompt flow, described later in this chapter. Before getting to prompt flow, we need to understand why we need systemic prompt engineering.
+
+
+
+
+

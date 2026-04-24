@@ -1,0 +1,30 @@
+6.2.5 Investigating the assistant process through logs
+
+
+
+
+OpenAI added a feature into the Assistants API that allows you to listen to events and actions chained through tool/action use. This feature has been integrated into the Playground, capturing action and tool use when an assistant calls another assistant.
+
+
+
+We can try this by asking an assistant to use a tool and then open the log. A great example of how you can do this is by giving an assistant the Code Interpreter tool and then asking it to plot an equation. Figure 6.7 shows an example of this exercise.
+
+
+
+
+
+Figure 6.7 Internal assistant logs being captured
+
+
+
+
+Usually, when the Assistant Code Interpreter tool is enabled, you don’t see any code generation or execution. This feature allows you to see all tools and actions used by the assistant as they happen. Not only is it an excellent tool for diagnostics, but it also provides additional insights into the functions of LLMs.
+
+
+
+We haven’t reviewed the code to do all this because it’s extensive and will likely undergo several changes. That being said, if you plan on working with the Assistants API, this project is a good place to start. With the Playground introduced, we can continue our journey into ABTs in the next section.
+
+
+
+
+

@@ -1,0 +1,30 @@
+4.4 Building an agent crew with CrewAI
+
+
+
+
+CrewAI is relatively new to the realm of multi-agent systems. Where AutoGen was initially developed from research and then extended, CrewAI is built with enterprise systems in mind. As such, the platform is more robust, making it less extensible in some areas.
+
+
+
+With CrewAI, you build a crew of agents to focus on specific areas of a task goal. Unlike AutoGen, CrewAI doesn’t require the use of the user proxy agent but instead assumes the agents only work among themselves.
+
+
+
+Figure 4.10 shows the main elements of the CrewAI platform, how they connect together, and their primary function. It shows a sequential-processing agent system with generic researcher and writer agents. Agents are assigned tasks that may also include tools or memory to assist them.
+
+
+
+
+
+Figure 4.10 The composition of a CrewAI system
+
+
+
+
+CrewAI supports two primary forms of processing: sequential and hierarchical. Figure 4.10 shows the sequential process by iterating across the given agents and their associated tasks. In the next section, we dig into some code to set up a crew and employ it to complete a goal and create a good joke.
+
+
+
+
+

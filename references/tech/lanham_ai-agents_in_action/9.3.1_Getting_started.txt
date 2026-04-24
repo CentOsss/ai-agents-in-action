@@ -1,0 +1,124 @@
+9.3.1 Getting started
+
+
+
+
+There are a few prerequisites to undertake before working through the exercises in this book. The relevant prerequisites for this section and chapter are shown in the following list; make sure to complete them before attempting the exercises:
+
+
+
+Visual Studio Code (VS Code) —Refer to appendix A for installation instructions, including additional extensions.
+
+Prompt flow, VS Code extension —Refer to appendix A for details on installing extensions.
+
+Python virtual environment —Refer to appendix A for details on setting up a virtual environment.
+
+Install prompt flow packages —Within your virtual environment, do a quick pip install, as shown here:
+
+
+
+pip install promptflow promptflow-tools
+
+
+
+
+
+LLM (GPT-4 or above) —You’ll need access to GPT-4 or above through OpenAI or Azure OpenAI Studio. Refer to appendix B if you need assistance accessing these resources.
+
+Book’s source code —Clone the book’s source code to a local folder; refer to appendix A if you need help cloning the repository.
+
+
+
+Open up VS Code to the book’s source code folder, chapter 3. Ensure that you have a virtual environment connected and have installed the prompt flow packages and extension.
+
+
+
+First, you’ll want to create a connection to your LLM resource within the prompt flow extension. Open the prompt flow extension within VS Code, and then click to open the connections. Then, click the plus sign beside the LLM resource to create a new connection, as shown in figure 9.7.
+
+
+
+
+
+Figure 9.7 Creating a new prompt flow LLM connection
+
+
+
+
+This will open a YAML file where you’ll need to populate the connection name and other information relevant to your connection. Follow the directions, and don’t enter API keys into the document, as shown in figure 9.8.
+
+
+
+
+
+Figure 9.8 Setting the connection information for your LLM resource
+
+
+
+
+When the connection information is entered, click the Create Connection link at the bottom of the document. This will open a terminal prompt below the document, asking you to enter your key. Depending on your terminal configuration, you may be unable to paste (Ctrl-V, Cmd-V). Alternatively, you can paste the key by hovering the mouse cursor over the terminal and right-clicking on Windows.
+
+
+
+We’ll now test the connection by first opening the simple flow in the chapter_09/promptflow/simpleflow folder. Then, open the flow.dag.yaml file in VS Code. This is a YAML file, but the prompt flow extension provides a visual editor that is accessible by clicking the Visual Editor link at the top of the file, as shown in figure 9.9.
+
+
+
+
+
+Figure 9.9 Opening the prompt flow visual editor
+
+
+
+
+After the visual editor window is opened, you’ll see a graph representing the flow and the flow blocks. Double-click the recommender block, and set the connection name, API type, and model or deployment name, as shown in figure 9.10.
+
+
+
+
+
+Figure 9.10 Setting the LLM connection details
+
+
+
+
+A prompt flow is composed of a set of blocks starting with an Inputs block and terminating in an Outputs block. Within this simple flow, the recommender block represents the LLM connection and the prompt used to converse with the model. The echo block for this simple example echoes the input.
+
+
+
+When creating a connection to an LLM, either in prompt flow or through an API, here are the crucial parameters we always need to consider (prompt flow documentation: https://microsoft.github.io/promptflow):
+
+
+
+Connection —This is the connection name, but it also represents the service you’re connecting to. Prompt flow supports multiple services, including locally deployed LLMs.
+
+API —This is the API type. The options are chat for a chat completion API, such as GPT-4, or completion for the older completion models, such as the OpenAI Davinci.
+
+Model —This may be the model or deployment name, depending on your service connection. For OpenAI, this will be the model’s name, and for Azure OpenAI, it will represent the deployment name.
+
+Temperature —This represents the stochasticity or variability of the model response. A value of 1 represents a high variability of responses, while 0 indicates a desire for no variability. This is a critical parameter to understand and, as we’ll see, will vary by use case.
+
+Stop —This optional setting tells the call to the LLM to stop creating tokens. It’s more appropriate for older and open source models.
+
+Max tokens —This limits the number of tokens used in a conversation. Knowledge of how many tokens you use is crucial to evaluating how your LLM interactions will work when scaled. Counting tokens may not be a concern if you’re exploring and conducting research. However, in production systems, tokens represent the load on the LLM, and connections using numerous tokens may not scale well.
+
+Advanced parameters —You can set a few more options to tune your interaction with the LLM, but we’ll cover that topic in later sections of the book.
+
+
+
+After configuring the LLM block, scroll up to the Inputs block section, and review the primary input shown in the user_input field, as shown in figure 9.11. Leave it as the default, and then click the Play button at the top of the window.
+
+
+
+
+
+Figure 9.11 Setting the inputs and starting the flow
+
+
+
+
+All the blocks in the flow will run, and the results will be shown in the terminal window. What you should find interesting is that the output shows recommendations for time travel movies. This is because the recommender block already has a simple profile set, and we’ll see how that works in the next section.
+
+
+
+
+

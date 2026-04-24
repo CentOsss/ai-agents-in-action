@@ -1,0 +1,52 @@
+2.4 Choosing the optimal LLM for your specific needs
+
+
+
+
+While being a successful crafter of AI agents doesn’t require an in-depth understanding of LLMs, it’s helpful to be able to evaluate the specifications. Like a computer user, you don’t need to know how to build a processor to understand the differences in processor models. This analogy holds well for LLMs, and while the criteria may be different, it still depends on some primary considerations.
+
+
+
+From our previous discussion and look at LM Studio, we can extract some fundamental criteria that will be important to us when considering LLMs. Figure 2.11 explains the essential criteria to define what makes an LLM worth considering for creating a GPT agent or any LLM task.
+
+
+
+
+
+Figure 2.11 The important criteria to consider when consuming an LLM
+
+
+
+
+For our purposes of building AI agents, we need to look at each of these criteria in terms related to the task. Model context size and speed could be considered the sixth and seventh criteria, but they are usually considered variations of a model deployment architecture and infrastructure. An eighth criterion to consider for an LLM is cost, but this depends on many other factors. Here is a summary of how these criteria relate to building AI agents:
+
+
+
+Model performance —You’ll generally want to understand the LLM’s performance for a given set of tasks. For example, if you’re building an agent specific to coding, then an LLM that performs well on code will be essential.
+
+Model parameters (size) —The size of a model is often an excellent indication of inference performance and how well the model responds. However, the size of a model will also dictate your hardware requirements. If you plan to use your own locally hosted model, the model size will also primarily dictate the computer and GPU you need. Fortunately, we’re seeing small, very capable open source models being released regularly.
+
+Use case (model type) —The type of model has several variations. Chat completions models such as ChatGPT are effective for iterating and reasoning through a problem, whereas models such as completion, question/answer, and instruct are more related to specific tasks. A chat completions model is essential for agent applications, especially those that iterate.
+
+Training input —Understanding the content used to train a model will often dictate the domain of a model. While general models can be effective across tasks, more specific or fine-tuned models can be more relevant to a domain. This may be a consideration for a domain-specific agent where a smaller, more fine-tuned model may perform as well as or better than a larger model such as GPT-4.
+
+Training method —It’s perhaps less of a concern, but it can be helpful to understand what method was used to train a model. How a model is trained can affect its ability to generalize, reason, and plan. This can be essential for planning agents but perhaps less significant for agents than for a more task-specific assistant.
+
+Context token size —The context size of a model is more specific to the model architecture and type. It dictates the size of context or memory the model may hold. A smaller context window of less than 4,000 tokens is typically more than enough for simple tasks. However, a large context window can be essential when using multiple agents—all conversing over a task. The models will typically be deployed with variations on the context window size.
+
+Model speed (model deployment) —The speed of a model is dictated by its inference speed (or how fast a model replies to a request), which in turn is dictated by the infrastructure it runs on. If your agent isn’t directly interacting with users, raw real-time speed may not be necessary. On the other hand, an LLM agent interacting in real time needs to be as quick as possible. For commercial models, speed will be determined and supported by the provider. Your infrastructure will determine the speed for those wanting to run their LLMs.
+
+Model cost (project budget) —The cost is often dictated by the project. Whether learning to build an agent or implementing enterprise software, cost is always a consideration. A significant tradeoff exists between running your LLMs versus using a commercial API.
+
+
+
+There is a lot to consider when choosing which model you want to build a production agent system on. However, picking and working with a single model is usually best for research and learning purposes. If you’re new to LLMs and agents, you’ll likely want to choose a commercial option such as GPT-4 Turbo. Unless otherwise stated, the work in this book will depend on GPT-4 Turbo.
+
+
+
+Over time, models will undoubtedly be replaced by better models. So you may need to upgrade or swap out models. To do this, though, you must understand the performance metrics of your LLMs and agents. Fortunately, in chapter 9, we’ll explore evaluating LLMs, prompts, and agent profiles with prompt flow.
+
+
+
+
+

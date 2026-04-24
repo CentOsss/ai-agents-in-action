@@ -1,0 +1,25 @@
+6.2.3 Installing the assistants database
+
+
+
+
+To run several of the examples in this chapter, you’ll need to install the assistants database. Fortunately, this can be easily done through the interface and just by asking agents. The upcoming instructions detail the process for installing the assistants and are taken directly from the GPT Assistants Playground README. You can install several of the demo assistants located in the assistants.db SQLite database:
+
+
+
+Create a new assistant, or use an existing assistant.
+
+Give the assistant the create_manager_assistant action (found under the Actions section).
+
+Ask the assistant to create the manager assistant (i.e., “please create the manager assistant”), and be sure to name the assistant “Manager Assistant.”
+
+Refresh your browser to reload the assistants selector.
+
+Select the new Manager Assistant. This assistant has the instructions and actions that will allow it to install assistants from the assistants.db database.
+
+Talk to the Manager Assistant to give you a list of assistants to install, or just ask the Manager Assistant to install all available assistants.
+
+
+
+
+

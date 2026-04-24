@@ -1,0 +1,11 @@
+9.7 Comparing profiles: Getting the perfect profile
+
+
+
+
+With our understanding of rubrics and grounding, we can now move on to evaluating and iterating the perfect profile. Before we do that, though, we need to clean up the output from the LLM evaluation block. This will require us to parse the recommendations into something more Pythonic, which we’ll tackle in the next section.
+
+
+
+
+

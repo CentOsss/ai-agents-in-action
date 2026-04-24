@@ -1,0 +1,123 @@
+7.2.1 Building a Streamlit chat application
+
+
+
+
+Begin by opening Visual Studio Code (VS Code) to the chapter_07 source folder. If you’ve completed the previous exercise, you should already be ready. As always, if you need assistance setting up your environment and tools, refer to appendix B.
+
+
+
+We’ll start by opening the chatgpt_clone_response.py file in VS Code. The top section of the code is shown in listing 7.3. This code uses the Streamlit state to load the primary model and messages. Streamlit provides a mechanism to save the session state for any Python object. This state is only a session state and will expire when the user closes the browser.
+
+
+
+
+
+Listing 7.3 chatgpt_clone_response.py (top section)
+
+
+import streamlit as st from dotenv import load_dotenv from openai import OpenAI load_dotenv() #1 st.title("ChatGPT-like clone") client = OpenAI() #2 if "openai_model" not in st.session_state: st.session_state["openai_model"] = "gpt-4-1106-preview" #3 if "messages" not in st.session_state: st.session_state["messages"] = [] #4 for message in st.session_state["messages"]: #5 with st.chat_message(message["role"]): st.markdown(message["content"])
+
+#1 Loads the environment variables from the .env file
+
+#2 Configures the OpenAI client
+
+#3 Checks the internal session state for the setting, and adds it if not there
+
+#4 Checks for the presence of the message state; if none, adds an empty list
+
+#5 Loops through messages in the state and displays them
+
+
+
+
+
+The Streamlit app itself is stateless. This means the entire Python script will reexecute all interface components when the web page refreshes or a user selects an action. The Streamlit state allows for a temporary storage mechanism. Of course, a database needs to support more long-term storage.
+
+
+
+UI controls and components are added by using the st. prefix and then the element name. Streamlit supports several standard UI controls and supports images, video, sound, and, of course, chat.
+
+
+
+Scrolling down further will yield listing 7.4, which has a slightly more complex layout of the components. The main if statement controls the running of the remaining code. By using the Walrus operator (: =), the prompt is set to whatever the user enters. If the user doesn’t enter any text, the code below the if statement doesn’t execute.
+
+
+
+
+
+Listing 7.4 chatgpt_clone_response.py (bottom section)
+
+
+if prompt := st.chat_input("What do you need?"): #1 st.session_state.messages.append({"role": "user", "content": prompt}) with st.chat_message("user"): #2 st.markdown(prompt) with st.spinner(text="The assistant is thinking..."): #3 with st.chat_message("assistant"): response = client.chat.completions.create( model=st.session_state["openai_model"], messages=[ {"role": m["role"], "content": m["content"]} for m in st.session_state.messages ], #4 ) response_content = response.choices[0].message.content response = st.markdown(response_content, unsafe_allow_html=True) #5 st.session_state.messages.append( {"role": "assistant", "content": response_content}) #6
+
+#1 The chat input control is rendered, and content is set.
+
+#2 Sets the chat message control to output as the user
+
+#3 Shows a spinner to represent the long-running API call
+
+#4 Calls the OpenAI API and sets the message history
+
+#5 Writes the message response as markdown to the interface
+
+#6 Adds the assistant response to the message state
+
+
+
+
+
+When the user enters text in the prompt and presses Enter, that text is added to the message state, and a request is made to the API. As the response is being processed, the st.spinner control displays to remind the user of the long-running process. Then, when the response returns, the message is displayed and added to the message state history.
+
+
+
+Streamlit apps are run using the module, and to debug applications, you need to attach the debugger to the module by following these steps:
+
+
+
+Press Ctrl-Shift-D to open the VS Code debugger.
+
+Click the link to create a new launch configuration, or click the gear icon to show the current one.
+
+Edit or use the debugger configuration tools to edit the .vscode/launch.json file, like the one shown in the next listing. Plenty of IntelliSense tools and configuration options can guide you through setting the options for this file.
+
+
+
+
+
+Listing 7.5 .vscode/launch.json
+
+
+{ "version": "0.2.0", "configurations": [ { "name": "Python Debugger: Module", #1 "type": "debugpy", "request": "launch", "module": "streamlit", #2 "args": ["run", "${file}"] #3 } ] }
+
+#1 Make sure that the debugger is set to Module.
+
+#2 Be sure the module is streamlit.
+
+#3 The ${file} is the current file, or you can hardcode this to a file path.
+
+
+
+
+
+After you have the launch.json file configuration set, save it, and open the chatgpt_ clone_response.py file in VS Code. You can now run the application in debug mode by pressing F5. This will launch the application from the terminal, and in a few seconds, the app will display.
+
+
+
+Figure 7.5 shows the app running and waiting to return a response. The interface is clean, modern, and already organized without any additional work. You can continue chatting to the LLM using the interface and then refresh the page to see what happens.
+
+
+
+
+
+Figure 7.5 The simple interface and the waiting spinner
+
+
+
+
+What is most impressive about this demonstration is how easy it is to create a single-page application. In the next section, we’ll continue looking at this application but with a few enhancements.
+
+
+
+
+

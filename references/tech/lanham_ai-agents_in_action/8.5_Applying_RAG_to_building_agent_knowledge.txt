@@ -1,0 +1,90 @@
+8.5 Applying RAG to building agent knowledge
+
+
+
+
+Knowledge in agents encompasses employing RAG to search semantically across unstructured documents. These documents could be anything from PDFs to Microsoft Word documents and all text, including code. Agentic knowledge also includes using unstructured documents for Q&A, reference lookup, information augmentation, and other future patterns.
+
+
+
+Nexus, the agent platform developed in tandem with this book and introduced in the previous chapter, employs complete knowledge and memory systems for agents. In this section, we’ll uncover how the knowledge system works.
+
+
+
+To install Nexus for just this chapter, see listing 8.9. Open a terminal within the chapter_08 folder, and execute the commands in the listing to download, install, and run Nexus in normal or development mode. If you want to refer to the code, you should install the project in development and configure the debugger to run the Streamlit app from VS Code. Refer to chapter 7 if you need a refresher on any of these steps.
+
+
+
+
+
+Listing 8.9 Installing Nexus
+
+
+# to install and run pip install git+https://github.com/cxbxmxcx/Nexus.git nexus run # install in development mode git clone https://github.com/cxbxmxcx/Nexus.git # Install the cloned repository in editable mode pip install -e Nexus
+
+
+
+
+
+Regardless of which method you decide to run the app in after you log in, navigate to the Knowledge Store Manager page, as shown in figure 8.9. Create a new Knowledge Store, and then upload the sample_documents/back_to_the_future.txt movie script.
+
+
+
+
+
+Figure 8.9 Adding a new knowledge store and populating it with a document
+
+
+
+
+The script is a large document, and it may take a while to load, chunk, and embed the parts into the Chroma DB vector database. Wait for the indexing to complete, and then you can inspect the embeddings and run a query, as shown in figure 8.10.
+
+
+
+
+
+Figure 8.10 The embeddings and document query views
+
+
+
+
+Now, we can connect the knowledge store to a supported agent and ask questions. Use the top-left selector to choose the chat page within the Nexus interface. Then, select an agent and the time_travel knowledge store, as shown in figure 8.11. You will also need to select an agent engine that supports knowledge. Each of the multiple agent engines requires the proper configuration to be accessible.
+
+
+
+
+
+Figure 8.11 Enabling the knowledge store for agent use
+
+
+
+
+Currently, as of this chapter, Nexus supports access to only a single knowledge store at a time. In a future version, agents may be able to select multiple knowledge stores at a time. This may include more advanced options, from semantic knowledge to employing other forms of RAG.
+
+
+
+You can also configure the RAG settings within the Configuration tab of the Knowledge Store Manager page, as shown in figure 8.12. As of now, you can select from the type of splitter (Chunking Option field) to chunk the document, along with the Chunk Size field and Overlap field.
+
+
+
+
+
+Figure 8.12 Managing the knowledge store splitting and chunking options
+
+
+
+
+The loading, splitting, chunking, and embedding options provided are the only basic options supported by LangChain for now. In future versions of Nexus, more options and patterns will be offered. The code to support other options can be added directly to Nexus.
+
+
+
+We won’t cover the code that performs the RAG as it’s very similar to what we already covered. Feel free to review the Nexus code, particularly the KnowledgeManager class in the knowledge_manager.py file.
+
+
+
+While the retrieval patterns for knowledge and memory are quite similar for augmentation, the two patterns differ when it comes to populating the stores. In the next section, we’ll explore what makes memory in agents unique.
+
+
+
+
+

@@ -1,0 +1,76 @@
+2.2.1 Installing and running LM Studio
+
+
+
+
+LM Studio is a free download that supports downloading and hosting LLMs and other models locally for Windows, Mac, and Linux. The software is easy to use and offers several helpful features to get you started quickly. Here is a quick summary of steps to download and set up LM Studio:
+
+
+
+Download LM Studio from https://lmstudio.ai/.
+
+After downloading, install the software per your operating system. Be aware that some versions of LM Studio may be in beta and require installation of additional tools or libraries.
+
+Launch the software.
+
+
+
+Figure 2.3 shows the LM Studio window running. From there, you can review the current list of hot models, search for others, and even download. The home page content can be handy for understanding the details and specifications of the top models.
+
+
+
+
+
+Figure 2.3 LM Studio software showing the main home page
+
+
+
+
+An appealing feature of LM Studio is its ability to analyze your hardware and align it with the requirements of a given model. The software will let you know how well you can run a given model. This can be a great time saver in guiding what models you experiment with.
+
+
+
+Enter some text to search for a model, and click Go. You’ll be taken to the search page interface, as shown in figure 2.4. From this page, you can see all the model variations and other specifications, such as context token size. After you click the Compatibility Guess button, the software will even tell you if the model will run on your system.
+
+
+
+
+
+Figure 2.4 The LM Studio search page
+
+
+
+
+Click to download any model that will run on your system. You may want to stick with models designed for chat completions, but if your system is limited, work with what you have. In addition, if you’re unsure of which model to use, go ahead and download to try them. LM Studio is a great way to explore and experiment with many models.
+
+
+
+After the model is downloaded, you can then load and run the model on the chat page or as a server on the server page. Figure 2.5 shows loading and running a model on the chat page. It also shows the option for enabling and using a GPU if you have one.
+
+
+
+
+
+Figure 2.5 The LM Studio chat page with a loaded, locally running LLM
+
+
+
+
+To load and run a model, open the drop-down menu at the top middle of the page, and select a downloaded model. A progress bar will appear showing the model loading, and when it’s ready, you can start typing into the UI.
+
+
+
+The software even allows you to use some or all of your GPU, if detected, for the model inference. A GPU will generally speed up the model response times in some capacities. You can see how adding a GPU can affect the model’s performance by looking at the performance status at the bottom of the page, as shown in figure 2.5.
+
+
+
+Chatting with a model and using or playing with various prompts can help you determine how well a model will work for your given use case. A more systematic approach is using the prompt flow tool for evaluating prompts and LLMs. We’ll describe how to use prompt flow in chapter 9.
+
+
+
+LM Studio also allows a model to be run on a server and made accessible using the OpenAI package. We’ll see how to use the server feature and serve a model in the next section.
+
+
+
+
+

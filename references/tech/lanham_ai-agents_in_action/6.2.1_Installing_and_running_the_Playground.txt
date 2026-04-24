@@ -1,0 +1,91 @@
+6.2.1 Installing and running the Playground
+
+
+
+
+The following listing shows installing and running the Playground project from the terminal. There is currently no PyPI package to install.
+
+
+
+
+
+Listing 6.2 Installing the GPT Assistants Playground
+
+
+# change to a working folder and create a new Python virtual environment git clone ↪ https://github.com/cxbxmxcx/GPTAssistantsPlayground #1 cd GPTAssistantsPlayground #2 pip install -r requirements.txt #3
+
+#1 Pulls the source code from GitHub
+
+#2 Changes directory to the project source code folder
+
+#3 Installs the requirements
+
+
+
+
+
+You can run the application from the terminal or using Visual Studio Code (VS Code), with the latter giving you more control. Before running the application, you need to set your OpenAI API key through the command line or by creating an .env file, as we’ve done a few times already. Listing 6.3 shows an example of setting the environment variable on Linux/Mac or the Git Bash shell (Windows recommended) and running the application.
+
+
+
+
+
+Listing 6.3 Running the GPT Assistants Playground
+
+
+export OPENAI_API_KEY="your-api-key" #1 python main.py #2
+
+#1 Sets your API key as an environment variable
+
+#2 Runs the app from the terminal or via VS Code
+
+
+
+
+
+Open your browser to the URL displayed (typically http://127.0.0.1:7860) or what is mentioned in the terminal. You’ll see an interface similar to that shown in figure 6.3. If you’ve already defined the OpenAI Assistants, you’ll see them in the Select Assistant dropdown.
+
+
+
+
+
+Figure 6.3 The GPT Assistants Playground interface being used to learn math
+
+
+
+
+If you’ve never defined an assistant, you can create one and choose the various options and instructions you need. If you’ve visited the OpenAI Playground, you’ve already experienced a similar interface.
+
+
+
+
+
+GPT vs. an assistant
+
+
+
+
+OpenAI defines a GPT as the assistant you can run and use within the ChatGPT interface. An assistant can only be consumed through the API and requires custom code in most cases. When you run an assistant, you’re charged according to the model token usage and any special tools, including the Code Interpreter and files, whereas a GPT runs within ChatGPT and is covered by account costs.
+
+
+
+The reason for creating a local version of the Playground was an exercise to demonstrate the code structure but also provide additional features listed here:
+
+
+
+Actions (custom actions)—Creating your own actions allows you to add any functionality you want to an assistant. As we’ll see, the Playground makes it very easy to create your own actions quickly.
+
+Code runner—The API does come with a Code Interpreter, but it’s relatively expensive ($.03 per run), doesn’t allow you to install your modules, can’t run code interactively, and runs slowly. The Playground will enable you to run Python code locally in an isolated virtual environment. While not as secure as pushing code out to Docker images, it does execute code windowed and out of process better than other platforms.
+
+Transparency and logging—The Playground provides for comprehensive capturing of logs and will even show how the assistant uses internal and external tools/actions. This can be an excellent way to see what the assistant is doing behind the scenes.
+
+
+
+
+
+Each of these features is covered in more detail over the next few sections. We’ll start with a look at using and consuming actions in the next section.
+
+
+
+
+

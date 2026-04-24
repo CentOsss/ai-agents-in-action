@@ -1,0 +1,84 @@
+5.2.1 Adding functions to LLM API calls
+
+
+
+
+Figure 5.3 demonstrates how an LLM recognizes and uses the function definition to cast its response as the function call.
+
+
+
+
+
+Figure 5.3 How a single LLM request, including tools, gets interpreted by an LLM
+
+
+
+
+Listing 5.1 shows the details of an LLM API call using tools and a function definition. Adding a function definition allows the LLM to reply regarding the function’s input parameters. This means the LLM will identify the correct function and parse the relevant parameters for the user’s request.
+
+
+
+
+
+Listing 5.1 first_function.py (API call)
+
+
+response = client.chat.completions.create( model="gpt-4-1106-preview", messages=[{"role": "system", "content": "You are a helpful assistant."}, {"role": "user", "content": user_message}], temperature=0.7, tools=[ #1 { "type": "function", #2 "function": { "name": "recommend", "description": "Provide a … topic.", #3 "parameters": { "type": "object", #4 "properties": { "topic": { "type": "string", "description": "The topic,… for.", #5 }, "rating": { "type": "string", "description": "The rating … given.", #5 "enum": ["good", "bad", "terrible"] #6 }, }, "required": ["topic"], }, }, } ] )
+
+#1 New parameter called tools
+
+#2 Sets the type of tool to function
+
+#3 Provides an excellent description of what the function does
+
+#4 Defines the type of parameters for input; an object represents a JSON document.
+
+#5 Excellent descriptions for each input parameter
+
+#6 You can even describe in terms of enumerations.
+
+
+
+
+
+To see how this works, open Visual Studio Code (VS Code) to the book’s source code folder: chapter_4/first_function.py. It’s a good practice to open the relevant chapter folder in VS Code to create a new Python environment and install the requirements.txt file. If you need assistance with this, consult appendix B.
+
+
+
+Before starting, correctly set up an .env file in the chapter_4 folder with your API credentials. Function calling is an extra capability provided by the LLM commercial service. At the time of writing, this feature wasn’t an option for open source LLM deployments.
+
+
+
+Next, we’ll look at the bottom of the code in first_function.py, as shown in listing 5.2. Here are just two examples of calls made to an LLM using the request previously specified in listing 5.1. Here, each request shows the generated output from running the example.
+
+
+
+
+
+Listing 5.2 first_function.py (exercising the API)
+
+
+user = "Can you please recommend me a time travel movie?" response = ask_chatgpt(user) #1 print(response) ###Output Function(arguments='{"topic":"time travel movie"}', name='recommend') #2 user = "Can you please recommend me a good time travel movie?" response = ask_chatgpt(user) #3 print(response) ###Output Function(arguments='{"topic":"time travel movie", "rating":"good"}', name='recommend') #4
+
+#1 Previously defined function
+
+#2 Returned in the name of the function to call and the extracted input parameters
+
+#3 Previously defined function
+
+#4 Returned in the name of the function to call and the extracted input parameters
+
+
+
+
+
+Run the first_function.py Python script in VS Code using the debugger (F5) or the terminal to see the same results. Here, the LLM parses the input request to match any registered tools. In this case, the tool is the single function definition, that is, the recommended function. The LLM extracts the input parameters from this function and parses those from the request. Then, it replies with the named function and designated input parameters.
+
+
+
+NOTE  The actual function isn’t being called. The LLM only returns the suggested function and the relevant input parameters. The name and parameters must be extracted and passed into a function matching the signature to act on the function. We’ll look at an example of this in the next section.
+
+
+
+
+

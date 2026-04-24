@@ -1,0 +1,37 @@
+6 Building autonomous assistants
+
+
+
+
+
+This chapter covers
+
+
+Behavior trees for robotics and AI apps
+
+GPT Assistants Playground and creating assistants and actions
+
+Autonomous control of agentic behavior trees
+
+Simulating conversational multi-agent systems via agentic behavior trees
+
+Using back chaining to create behavior trees for complex systems
+
+
+
+
+
+Now that we’ve covered how actions extend the power/capabilities of agents, we can look at how behavior trees can guide agentic systems. We’ll start by understanding the basics of behavior trees and how they control robotics and AI in games.
+
+
+
+We’ll return to agentic actions and examine how actions can be implemented on the OpenAI Assistants platform using the GPT Assistants Playground project. From there, we’ll look at how to build an autonomous agentic behavior tree (ABT) using OpenAI assistants. Then, we’ll move on to understanding the need for controls and guardrails on autonomous agents and using control barrier functions.
+
+
+
+In the final section of the chapter, we’ll examine the use of the AgentOps platform to monitor our autonomous behavior-driven agentic systems. This will be an exciting chapter with several challenges. Let’s begin by jumping into the next section, which introduces behavior trees.
+
+
+
+
+

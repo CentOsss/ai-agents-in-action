@@ -1,0 +1,8 @@
+crewai>=0.30.0
+crewai-tools
+langchain-openai
+python-dotenv
+agentops
+pytest>=7.0.0
+requests>=2.31.0
+typing-extensions>=4.0.0 

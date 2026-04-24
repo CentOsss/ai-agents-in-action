@@ -1,0 +1,31 @@
+B.2 Installing Python
+
+
+
+
+Python is provided through different versions and deployments. This book relies on the standard Python installation, version 3.10. Anaconda is another deployment of Python that is very popular and could be used. However, all the material in this book has been run and tested with a Python 3.10 virtual environment:
+
+
+
+Go to www.python.org/downloads/.
+
+Locate and download the latest release of Python 3.10 for your operating system.
+
+Install the release on your machine using the instructions for your operating system.
+
+To confirm your installation, open a terminal, and execute the following command:
+
+
+
+python –-version
+
+
+
+
+
+The version should be 3.10, but if it isn’t, don't worry. You may have multiple Python versions installed. We’ll also confirm the installation when setting up VS Code.
+
+
+
+
+

@@ -1,0 +1,81 @@
+9.7.1 Parsing the LLM evaluation output
+
+
+
+
+As the raw output from the evaluation block is text, we now want to parse that into something more usable. Of course, writing parsing functions is simple, but there are better ways to cast responses automagically. We covered better methods for returning responses in chapter 5, on agent actions.
+
+
+
+Open chapter_09\prompt_flow\recommender_with_parsing\flow.dag.yaml in VS Code, and look at the flow in the visual editor. Locate the parsing_results block, and click the link to open the Python file in the editor, as shown in figure 9.20.
+
+
+
+
+
+Figure 9.20 Opening the parsing_results.py file in VS Code
+
+
+
+
+The code for the parsing_results.py file is shown in listing 9.2.
+
+
+
+
+
+Listing 9.2 parsing_results.py
+
+
+from promptflow import tool @tool #1 def parse(input: str) -> str: # Splitting the recommendations into individual movie blocks rblocks = input.strip().split("\n\n") #2 # Function to parse individual recommendation block into dictionary def parse_block(block): lines = block.split('\n') rdict = {} for line in lines: kvs = line.split(': ') key, value = kvs[0], kvs[1] rdict[key.lower()] = value #3 return rdict parsed = [parse_block(block) for block in rblocks] #4 return parsed
+
+#1 Special decorator to denote the tool block
+
+#2 Splits the input and double new lines
+
+#3 Creates a dictionary entry and sets the value
+
+#4 Loops through each block and parses into key/value dictionary
+
+
+
+
+
+We’re converting the recommendations output from listing 9.1, which is just a string, into a dictionary. So this code will convert this string into the JSON block shown next:
+
+
+
+Before parsing:
+
+
+
+"Title: The Butterfly Effect Subject: 5 Format: 5 Genre: 4 Title: Primer Subject: 5 Format: 5 Genre: 4 Title: Time Bandits Subject: 5 Format: 5 Genre: 5"
+
+
+
+
+
+After parsing:
+
+
+
+{ "title": " The Butterfly Effect "subject": "5", "format": "5", "genre": "4" }, { "title": " Primer", "subject": "5", "format": "5", "genre": "4" }, { "title": " Time Bandits", "subject": "5", "format": "5", "genre": "5" }
+
+
+
+
+
+The output of this parsing_results block now gets passed to the output and is wrapped in a list of recommendations. We can see what all this looks like by running the flow.
+
+
+
+Open flow.dag.yaml for the flow in the visual editor, and click the Play (Run All) button. Be sure to select to use both recommender variants. You’ll see both variations run and output to the terminal.
+
+
+
+At this point, we have a full working recommendation and LLM evaluation flow that outputs a score for each criterion on each output. However, to do comprehensive evaluations of a particular profile, we want to generate multiple recommendations with various criteria. We’ll see how to do batch processing of flows in the next section.
+
+
+
+
+

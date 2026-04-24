@@ -1,0 +1,41 @@
+8.2 The basics of retrieval augmented generation (RAG)
+
+
+
+
+RAG has become a popular mechanism for supporting document chat or question-and-answer chat. The system typically works by a user supplying a relevant document, such as a PDF, and then using RAG and a large language model (LLM) to query the document.
+
+
+
+Figure 8.2 shows how RAG can allow a document to be queried using an LLM. Before any document can be queried, it must first be loaded, transformed into context chunks, embedded into vectors, and stored in a vector database.
+
+
+
+
+
+Figure 8.2 The two phases of RAG: first, documents must be loaded, transformed, embedded, and stored, and, second, they can be queried using augmented generation.
+
+
+
+
+A user can query previously indexed documents by submitting a query. That query is then embedded into a vector representation to search for similar chunks in the vector database. Content similar to the query is then used as context and populated into the prompt as augmentation. The prompt is pushed to an LLM, which can use the context information to help answer the query.
+
+
+
+Unstructured memory/knowledge concepts rely on some format of text-similarity search following the retrieval pattern shown in figure 8.2. Figure 8.3 shows how memory uses the same embedding and vector database components. Rather than preload documents, conversations or parts of a conversation are embedded and saved to a vector database.
+
+
+
+
+
+Figure 8.3 Memory retrieval for augmented generation uses the same embedding patterns to index items to a vector database.
+
+
+
+
+The retrieval pattern and document indexing are nuanced and require careful consideration to be employed successfully. This requires understanding how data is stored and retrieved, which we’ll start to unfold in the next section.
+
+
+
+
+

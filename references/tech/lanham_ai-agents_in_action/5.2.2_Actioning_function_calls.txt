@@ -1,0 +1,141 @@
+5.2.2 Actioning function calls
+
+
+
+
+Now that we understand that an LLM doesn’t execute the function or plugin directly, we can look at an example that executes the tools. Keeping with the recommender theme, we’ll look at another example that adds a Python function for simple recommendations.
+
+
+
+Figure 5.4 shows how this simple example will work. We’ll submit a single request that includes a tool function definition, asking for three recommendations. The LLM, in turn, will reply with the three function calls with input parameters (time travel, recipe, and gift). The results from executing the functions are then passed back to the LLM, which converts them back to natural language and returns a reply.
+
+
+
+
+
+Figure 5.4 A sample request returns three tool function calls and then submits the results back to the LLM to return a natural language response.
+
+
+
+
+Now that we understand the example, open parallel_functions.py in VS Code. Listing 5.3 shows the Python function that you want to call to give recommendations.
+
+
+
+
+
+Listing 5.3 parallel_functions.py (recommend function)
+
+
+def recommend(topic, rating="good"): if "time travel" in topic.lower(): #1 return json.dumps({"topic": "time travel", "recommendation": "Back to the Future", "rating": rating}) elif "recipe" in topic.lower(): #1 return json.dumps({"topic": "recipe", "recommendation": "The best thing … ate.", "rating": rating}) elif "gift" in topic.lower(): #1 return json.dumps({"topic": "gift", "recommendation": "A glorious new...", "rating": rating}) else: #2 return json.dumps({"topic": topic, "recommendation": "unknown"}) #3
+
+#1 Checks to see if the string is contained within the topic input
+
+#2 If no topic is detected, returns the default
+
+#3 Returns a JSON object
+
+
+
+
+
+Next, we’ll look at the function called run_conversation, where all the work starts with the request construction.
+
+
+
+
+
+Listing 5.4 parallel_functions.py (run_conversation, request)
+
+
+user = """Can you please make recommendations for the following: 1. Time travel movies 2. Recipes 3. Gifts""" #1 messages = [{"role": "user", "content": user}] #2 tools = [ #3 { "type": "function", "function": { "name": "recommend", "description": "Provide a recommendation for any topic.", "parameters": { "type": "object", "properties": { "topic": { "type": "string", "description": "The topic, … recommendation for.", }, "rating": { "type": "string", "description": "The rating … was given.", "enum": ["good", "bad", "terrible"] }, }, "required": ["topic"], }, }, } ]
+
+#1 The user message asks for three recommendations.
+
+#2 Note that there is no system message.
+
+#3 Adds the function definition to the tools part of the request
+
+
+
+
+
+Listing 5.5 shows the request being made, which we’ve covered before, but there are a few things to note. This call uses a lower model such as GPT-3.5 because delegating functions is a more straightforward task and can be done using older, cheaper, less sophisticated language models.
+
+
+
+
+
+Listing 5.5 parallel_functions.py (run_conversation, API call)
+
+
+response = client.chat.completions.create( model="gpt-3.5-turbo-1106", #1 messages=messages, #2 tools=tools, #2 tool_choice="auto", #3 ) response_message = response.choices[0].message #4
+
+#1 LLMs that delegate to functions can be simpler models.
+
+#2 Adds the messages and tools definitions
+
+#3 auto is the default.
+
+#4 The returned message from the LLM
+
+
+
+
+
+At this point, after the API call, the response should hold the information for the required function calls. Remember, we asked the LLM to provide us with three recommendations, which means it should also provide us with three function call outputs, as shown in the following listing.
+
+
+
+
+
+Listing 5.6 parallel_functions.py (run_conversation, tool_calls)
+
+
+tool_calls = response_message.tool_calls #1 if tool_calls: #1 available_functions = { "recommend": recommend, } #2 # Step 4: send the info for each function call and function response to the model for tool_call in tool_calls: #3 function_name = tool_call.function.name function_to_call = available_functions[function_name] function_args = json.loads(tool_call.function.arguments) function_response = function_to_call( topic=function_args.get("topic"), #4 rating=function_args.get("rating"), ) messages.append( #5 { "tool_call_id": tool_call.id, "role": "tool", "name": function_name, "content": function_response, } ) # extend conversation with function response second_response = client.chat.completions.create( #6 model="gpt-3.5-turbo-1106", messages=messages, ) return second_response.choices[0].message.content #6
+
+#1 If the response contains tool calls, execute them.
+
+#2 Only one function but could contain several
+
+#3 Loops through the calls and replays the content back to the LLM
+
+#4 Executes the recommend function from extracted parameters
+
+#5 Appends the results of each function call to the set of messages
+
+#6 Sends another request to the LLM with updated information and returns the message reply
+
+
+
+
+
+The tool call outputs and the calls to the recommender function results are appended to the messages. Notice how messages now also contain the history of the first call. This is then passed back to the LLM to construct a reply in natural language.
+
+
+
+Debug this example in VS Code by pressing the F5 key with the file open. The following listing shows the output of running parallel_functions.py.
+
+
+
+
+
+Listing 5.7 parallel_functions.py (output)
+
+
+Here are some recommendations for you: 1. Time travel movies: "Back to the Future" 2. Recipes: "The best thing you ever ate." 3. Gifts: "A glorious new..." (the recommendation was cut off, so I couldn't provide the full recommendation) I hope you find these recommendations helpful! Let me know if you need more information.
+
+
+
+
+
+This completes this simple demonstration. For more advanced applications, the functions could do any number of things, from scraping websites to calling search engines to completing far more complex tasks.
+
+
+
+Functions are an excellent way to cast outputs for a particular task. However, the work of handling functions or tools and making secondary calls can be done in a cleaner and more efficient way. The following section will uncover a more robust system of adding actions to agents.
+
+
+
+
+

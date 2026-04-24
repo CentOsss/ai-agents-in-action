@@ -1,0 +1,96 @@
+8.7 Understanding memory and knowledge compression
+
+
+
+
+Much like our own memory, memory stores can become cluttered with redundant information and numerous unrelated details over time. Internally, our minds deal with memory clutter by compressing or summarizing memories. Our minds remember more significant details over less important ones, and memories accessed more frequently.
+
+
+
+We can apply similar principles of memory compression to agent memory and other retrieval systems to extract significant details. The principle of compression is similar to semantic augmentation but adds another layer to the preclusters groups of related memories that can collectively be summarized.
+
+
+
+Figure 8.20 shows the process of memory/knowledge compression. Memories or knowledge are first clustered using an algorithm such as k-means. Then, the groups of memories are passed through a compression function, which summarizes and collects the items into more succinct representations.
+
+
+
+
+
+Figure 8.20 The process of memory and knowledge compression
+
+
+
+
+Nexus provides for both knowledge and memory store compression using k-means optimal clustering. Figure 8.21 shows the compression interface for memory. Within the compression interface, you’ll see the items displayed in 3D and clustered. The size (number of items) of the clusters is shown in the left table.
+
+
+
+
+
+Figure 8.21 The interface for compressing memories
+
+
+
+
+Compressing memories and even knowledge is generally recommended if the number of items in a cluster is large or unbalanced. Each use case for compression may vary depending on the use and application of memories. Generally, though, if an inspection of the items in a store contains repetitive or duplicate information, it’s a good time for compression. The following is a summary of use cases for applications that would benefit from compression.
+
+
+
+
+
+The case for knowledge compression
+
+
+
+
+Knowledge retrieval and augmentation have also been shown to benefit significantly from compression. Results will vary by use case, but generally, the more verbose the source of knowledge, the more it will benefit from compression. Documents that feature literary prose, such as stories and novels, will benefit more than, say, a base of code. However, if the code is likewise very repetitive, compression could also be shown to be beneficial.
+
+
+
+
+
+The case for how often you apply compression
+
+
+
+
+Memory will often benefit from the periodic compression application, whereas knowledge stores typically only help on the first load. How frequently you apply compression will greatly depend on the memory use, frequency, and quantity.
+
+
+
+
+
+The case for applying compression more than once
+
+
+
+
+Multiple passes of compression at the same time has been shown to improve retrieval performance. Other patterns have also suggested using memory or knowledge at various levels of compression. For example, a knowledge store is compressed two times, resulting in three different levels of knowledge.
+
+
+
+
+
+The case for blending knowledge and memory compression
+
+
+
+
+If a system is specialized to a particular source of knowledge and that system also employs memories, there may be further optimization to consolidate stores. Another approach is to populate memory with the starting knowledge of a document directly.
+
+
+
+
+
+The case for multiple memory or knowledge stores
+
+
+
+
+In more advanced systems, we’ll look at agents employing multiple memory and knowledge stores relevant to their workflow. For example, an agent could employ individual memory stores as part of its conversations with individual users, perhaps including the ability to share different groups of memory with different groups of individuals. Memory and knowledge retrieval are cornerstones of agentic systems, and we can now summarize what we covered and review some learning exercises in the next section.
+
+
+
+
+

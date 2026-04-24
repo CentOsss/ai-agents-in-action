@@ -1,0 +1,61 @@
+A.2 Azure OpenAI Studio, keys, and deployments
+
+
+
+
+Through its ongoing relationship with OpenAI, Microsoft hosts the same models at the same price within Azure OpenAI Studio. Occasionally, Azure may be a model version behind, but Microsoft generally keeps current with the latest OpenAI models.
+
+
+
+These guidelines will be more general because there are several ways to access Azure and methods of creating accounts and accessing the studio (for specific instructions, refer to Microsoft documentation):
+
+
+
+Log in to your Azure portal account subscription.
+
+Create a new Azure OpenAI Studio resource in a region that makes sense to you. At the time of writing, not all regions provided access to all models. You may need to check which models are available for your region first. This will also be specific to your account and usage.
+
+
+
+Within Azure OpenAI, models are exposed through a resource allocation called a deployment. Deployments wrap a model, such as GPT-4, and provide access to the resource. Figure A.5 shows an example of various models being exposed through deployments.
+
+
+
+
+
+Figure A.5 Deploying a model through an Azure OpenAI Studio deployment
+
+
+
+
+3. Click the Create New Deployment button to create a new deployment, and then select the model you want to deploy.
+
+4. After the model is wrapped in a deployment, you must access the parent Azure OpenAI resource. From there, you can access the key, endpoint, or base URL needed to configure your connection, as shown in figure A.6.
+
+
+
+
+
+Figure A.6 Getting access to the keys and base URL used to access the service
+
+
+
+
+Again, if you get stuck, the Microsoft documentation can guide you in the right direction. The three critical differences to remember when connecting to a resource such as Azure OpenAI Studio or another LLM using the OpenAI tooling are listed here:
+
+
+
+The api key to access the model
+
+The base url or endpoint where the model is located
+
+The name of the model or deployment name
+
+
+
+If you can’t access a model for whatever reason, a good alternative is open source models. Setting up and consuming open source LLMs is covered in chapter 2.
+
+
+
+
+

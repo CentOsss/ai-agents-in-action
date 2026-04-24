@@ -1,0 +1,124 @@
+9.5 Understanding rubrics and grounding
+
+
+
+
+Evaluation of prompt/profile performance isn’t something we can typically do using a measure of accuracy or correct percentage. Measuring the performance of a profile depends on the use case and desired outcome. If that is as simple as determining if the response was right or wrong, all the better. However, in most cases, evaluation won’t be that simple.
+
+
+
+In education, the rubric concept defines a structured set of criteria and standards a student must establish to receive a particular grade. A rubric can also be used to define a guide for the performance of a profile or prompt. We can follow these steps to define a rubric we can use to evaluate the performance of a profile or prompt:
+
+
+
+Identify the purpose and objectives. Determine the goals you want the profile or agent to accomplish. For example, do you want to evaluate the quality of recommendations for a given audience or overall quality for a given subject, format, or other input?
+
+Define criteria. Develop a set of criteria or dimensions that you’ll use to evaluate the profile. These criteria should align with your objectives and provide clear guidelines for assessment. Each criterion should be specific and measurable. For example, you may want to measure a recommendation by how well it fits with the genre and then by subject and format.
+
+Create a scale. Establish a rating scale that describes the levels of performance for each criterion. Standard scales include numerical scales (e.g., 1–5) or descriptive scales (e.g., Excellent, Good, Fair, Poor).
+
+Provide descriptions. For each level on the scale, provide clear and concise descriptions that indicate what constitutes a strong performance and what represents a weaker performance for each criterion.
+
+Apply the rubric. When assessing a prompt or profile, use the rubric to evaluate the prompt’s performance based on the established criteria. Assign scores or ratings for each criterion, considering the descriptions for each level.
+
+Calculate the total score. Depending on your rubric, you may calculate a total score by summing up the scores for each criterion or using a weighted average if some criteria are more important than others.
+
+Ensure evaluation consistency. If multiple evaluators are assessing the profile, it’s crucial to ensure consistency in grading.
+
+Review, revise, and iterate. Periodically review and revise the rubric to ensure it aligns with your assessment goals and objectives. Adjust as needed to improve its effectiveness.
+
+
+
+Grounding is a concept that can be applied to profile and prompt evaluation—it defines how well a response is aligned with a given rubric’s specific criteria and standards. You can also think of grounding as the baseline expectation of a prompt or profile output.
+
+
+
+This list summarizes some other important considerations when using grounding with profile evaluation:
+
+
+
+Grounding refers to aligning responses with the criteria, objectives, and context defined by the rubric and prompt.
+
+Grounding involves assessing whether the response directly addresses the rubric criteria, stays on topic, and adheres to any provided instructions.
+
+Evaluators and evaluations gauge the accuracy, relevance, and adherence to standards when assessing grounding.
+
+Grounding ensures that the response output is firmly rooted in the specified context, making the assessment process more objective and meaningful.
+
+
+
+A well-grounded response aligns with all the rubric criteria within the given context and objectives. Poorly grounded responses will fail or miss the entire criteria, context, and objectives.
+
+
+
+As the concepts of rubrics and grounding may still be abstract, let’s look at applying them to our current recommender example. Following is a list that follows the process for defining a rubric as applied to our recommender example:
+
+
+
+Identify the purpose and objectives. The purpose of our profile/prompt is to recommend three top items given a subject, format, genre, and custom input.
+
+Define criteria. For simplicity, we’ll evaluate how a particular recommendation aligns with the given input criteria, subject, format, and genre. For example, if a profile recommends a book when asked for a movie format, we expect a low score in the format criteria.
+
+Create a scale. Again, keeping things simple, we’ll use a scale of 1–5 (1 is poor, and 5 is excellent).
+
+Provide descriptions. See the general descriptions for the rating scale shown in table 9.2.
+
+Apply the rubric. With the rubric assigned at this stage, it’s an excellent exercise to evaluate the rubric against recommendations manually.
+
+Calculate the total score. For our rubric, we’ll average the score for all criteria to provide a total score.
+
+Ensure evaluation consistency. The technique we’ll use for evaluation will provide very consistent results.
+
+Review, revise, and iterate. We’ll review, compare, and iterate on our profiles, rubrics, and the evaluations themselves.
+
+
+
+
+
+Table 9.2 Rubric ratings
+
+
+Rating
+
+Description
+
+
+
+1
+
+Poor alignment: this is the opposite of what is expected given the criteria.
+
+
+
+2
+
+Bad alignment: this isn’t a good fit for the given criteria.
+
+
+
+3
+
+Mediocre alignment: it may or may not fit well with the given criteria.
+
+
+
+4
+
+Good alignment: it may not align 100% with the criteria but is a good fit otherwise.
+
+
+
+5
+
+Excellent alignment: this is a good recommendation for the given criteria.
+
+
+
+
+
+This basic rubric can now be applied to evaluate the responses for our profile. You can do this manually, or as you’ll see in the next section, using a second LLM profile.
+
+
+
+
+

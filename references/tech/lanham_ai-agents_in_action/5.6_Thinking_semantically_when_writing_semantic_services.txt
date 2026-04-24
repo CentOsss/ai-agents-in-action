@@ -1,0 +1,74 @@
+5.6 Thinking semantically when writing semantic services
+
+
+
+
+Now we’ve seen an excellent demonstration of converting an API into a semantic service interface. As it is, the functions return the titles of the top movies and television shows currently playing. However, by just returning the titles, we’re limiting the ability of the LLM to parse the results on its own.
+
+
+
+Therefore, we’ll create a v2 version of TMDbService to correct this and return the results as JSON strings. Open the file tmdb_v2.py in VS Code, and scroll down to the get_top_movies_by_genre function.
+
+
+
+
+
+Listing 5.25 tmdb_v2.py (get_top_movies_by_genre)
+
+
+def get_top_movies_by_genre(self, genre: str) -> str: print_function_call() genre_id = self.get_movie_genre_id(genre) if genre_id: #same code … return json.dumps(filtered_movies) #1 else: return ""
+
+#1 Now returns a filtered list as a JSON string
+
+
+
+
+
+Now open SK_service_chat.py in VS Code, and comment and uncomment the line shown in listing 5.26. This will then use version 2 of the TMDbService that outputs results as full JSON documents in a single string.
+
+
+
+
+
+Listing 5.26 SK_service_chat.py (modifying imports)
+
+
+#from skills.Movies.tmdb import TMDbService #1 from skills.Movies.tmdb_v2 import TMDbService #2
+
+#1 Comment out this line.
+
+#2 Uncomment this line to use version 2 of the service.
+
+
+
+
+
+Rerun the SK_service_chat.py file in VS Code, and alter your query slightly, as shown by the output in the following listing.
+
+
+
+
+
+Listing 5.27 SK_service_chat.py (TMDb_v2 service output)
+
+
+User:> get a list of currently playing movies for the action genre and only return movies about space #1 Agent:> To find currently playing action movies that are specifically about space, I will need to manually filter the provided list for those that have space-related themes in their overview. Here's what fits that criteria from the list: 1. **Rebel Moon - Part One: A Child of Fire** #2 - Release Date: 2023-12-15 - Overview: When a peaceful colony on the edge of the galaxy finds itself threatened by the armies of the tyrannical Regent Balisarius, they dispatch Kora, a young woman with a mysterious past, to seek out warriors from neighboring planets to help them take a stand. This is the only movie from the provided list that clearly mentions a space-related theme in its overview. …
+
+#1 New query asks to include an additional filter for space
+
+#2 The LLM calls the service and then reviews the returned results that match the filter.
+
+
+
+
+
+Because the semantic service functions now return the complete movie listing in JSON, the LLM can apply additional filtering. This is the real power of semantic services, allowing you to process the data through the LLM. We won’t see this power by just returning a list of titles.
+
+
+
+This last exercise demonstrated the change in mentality you need to make when writing semantic service layers. Generally, you’ll typically want to return as much information as possible. Returning more information takes advantage of the LLM abilities to filter, sort, and transform data independently. In the next chapter, we’ll explore building autonomous agents using behavior trees.
+
+
+
+
+

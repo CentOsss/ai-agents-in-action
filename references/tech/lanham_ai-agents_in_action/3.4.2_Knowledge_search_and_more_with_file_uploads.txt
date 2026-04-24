@@ -1,0 +1,124 @@
+3.4.2 Knowledge search and more with file uploads
+
+
+
+
+The GPT Assistants platform’s file upload capability supports up to 512 MB of uploads for a single assistant. This feature alone provides powerful capabilities for document search and other applications in personal and small-to-medium business/ project sizes.
+
+
+
+Imagine uploading a whole collection of files. You can now search, compare, contrast, organize, and collate all with one assistant. This feature alone within GPT Assistants will disrupt how we search for and analyze documents. In chapter 6, we’ll examine how direct access to the OpenAI Assistants API can increase the number of documents.
+
+
+
+For this next exercise, we’ll employ an assistant with knowledge of multiple books or documents. This technique could be applied to any supported document, but this assistant will consume classic texts about robots. We’ll name this assistant the Classic Robot Reads GPT.
+
+
+
+Start by creating a new GPT assistant in the ChatGPT interface. Then, upload the instructions in listing 3.17, and name and describe the assistant. These instructions were generated in part through the GPT Builder and then edited.
+
+
+
+
+
+Listing 3.17 Classic Robot Reads instructions
+
+
+This GPT, Classic Robot Reads and uses the persona of Isaac Asimov and will reply as the famous robot author. #1 This GPT will only references and discusses the books in its knowledge base of uploaded files. #2 It does not mention or discuss other books or text that are not within its knowledge base. #2 RULES Refer to only text within your knowledge base #2 Always provide 3 examples of any query the use asks for #3 Always ask the user if they require anything further #4
+
+#1 Remember always to give your GPT a persona/personality.
+
+#2 Make sure the assistant only references knowledge within file uploads.
+
+#3 Add some extra rules for style choices.
+
+#4 Make the assistant more helpful by also giving them nuance and style.
+
+
+
+
+
+After completing those steps, you can upload the files from the chapter’s source called gutenberg_robot_books. Figure 3.12 demonstrates uploading multiple files at a time. The maximum number of files you can upload at a time will vary according to the sizes of the files.
+
+
+
+
+
+Figure 3.12 Uploading documents to the assistant’s knowledge
+
+
+
+
+You can start using it after uploading the documents, setting the instructions, and giving the assistant a name and an image. Search is the most basic application of a knowledge assistant, and other use cases in the form of prompts are shown in table 3.1.
+
+
+
+
+
+Table 3.1 Use cases for a knowledge assistant
+
+
+Use case
+
+Example prompt
+
+Results
+
+
+
+Search
+
+Search for this phrase in your knowledge: “the robot servant.”
+
+Returns the document and an excerpt
+
+
+
+Compare
+
+Identify the three most similar books that share the same writing style.
+
+Returns the three most similar documents
+
+
+
+Contrast
+
+Identify the three most different books.
+
+Returns books in the collection that are the most different
+
+
+
+Ordering
+
+What order should I read the books?
+
+Returns an ordered progression of books
+
+
+
+Classification
+
+Which of these books is the most modern?
+
+Classifies documents
+
+
+
+Generation
+
+Generate a fictional paragraph that mimics your knowledge of the robot servant.
+
+Generates new content based on its knowledge base
+
+
+
+
+
+These use cases are just a sample of the many things possible with an AI knowledge assistant. While this feature may not be poised to disrupt enterprise search, it gives smaller organizations and individuals more access to their documents. It allows the creation of assistants as a form of knowledge that can be exposed publicly. In the next section, we’ll look at how to make assistants consumable by all.
+
+
+
+
+

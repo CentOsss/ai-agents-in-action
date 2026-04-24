@@ -1,0 +1,48 @@
+8.3.4 Querying document embeddings from Chroma
+
+
+
+
+We can combine all the pieces and look at a complete example using a local vector database called Chroma DB. Many vector database options exist, but Chroma DB is an excellent local vector store for development or small-scale projects. There are also plenty of more robust options that you can consider later.
+
+
+
+Listing 8.5 shows the new and relevant code sections from the document_query_ chromadb.py file. Note that the results are scored by distance and not by similarity. Cosine distance is determined by this equation:
+
+
+
+Cosine Distance(A,B) = 1 – Cosine Similarity(A,B)
+
+
+
+This means that cosine distance will range from 0 for most similar to 2 for semantically opposite in meaning.
+
+
+
+
+
+Listing 8.5 document_query_chromadb.py (relevant code sections)
+
+
+embeddings = [get_embedding(doc) for doc in documents] #1 ids = [f"id{i}" for i in range(len(documents))] #1 chroma_client = chromadb.Client() #2 collection = chroma_client.create_collection( name="documents") #2 collection.add( #3 embeddings=embeddings, documents=documents, ids=ids ) def query_chromadb(query, top_n=2): #4 query_embedding = get_embedding(query) results = collection.query( query_embeddings=[query_embedding], n_results=top_n ) return [(id, score, text) for id, score, text in zip(results['ids'][0], results['distances'][0], results['documents'][0])] while True: #5 query = input("Enter a search query (or 'exit' to stop): ") if query.lower() == 'exit': break top_n = int(input("How many top matches do you want to see? ")) search_results = query_chromadb(query, top_n) print("Top Matched Documents:") for id, score, text in search_results: print(f""" ID:{id} TEXT: {text} SCORE: {round(score, 2)} """) #5 print("\n") ###Output Enter a search query (or 'exit' to stop): dogs are lazy How many top matches do you want to see? 3 Top Matched Documents: ID:id7 TEXT: The dog is lazy but the brown fox is quick! SCORE: 0.24 ID:id5 TEXT: The brown fox is quick and the blue dog is lazy! SCORE: 0.28 ID:id2 TEXT: The quick brown fox jumps over the lazy dog. SCORE: 0.29
+
+#1 Generates embeddings for each document and assigns an ID
+
+#2 Creates a Chroma DB client and a collection
+
+#3 Adds document embeddings to the collection
+
+#4 Queries the datastore and returns the top n relevant documents
+
+#5 The input loop for user input and output of relevant documents/scores
+
+
+
+
+
+As the earlier scenario demonstrated, you can now query the documents using semantic meaning rather than just key terms or phrases. These scenarios should now provide the background to see how the retrieval pattern works at a low level. In the next section, we’ll see how the retrieval pattern can be employed using LangChain.
+
+
+
+
+

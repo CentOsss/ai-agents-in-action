@@ -1,0 +1,150 @@
+11.5.4 Application of feedback to agentic/assistant applications
+
+
+
+
+Feedback as a component of agentic systems is often, if not always, implemented as an external component—at least for now. Perhaps confidence in evaluation systems may improve to the point where feedback is regularly incorporated into such systems. Table 11.4 showcases how feedback can be implemented into various LLM applications.
+
+
+
+
+
+Table 11.4 When and where feedback is employed and used in various applications
+
+
+Application
+
+Implemented
+
+Environment
+
+Purpose
+
+Timing
+
+Configuration
+
+
+
+Personal assistant
+
+External or by the user
+
+Aggregated to the server or as part of the system
+
+Provides means of system improvement
+
+After or during the interaction
+
+Internal and external
+
+
+
+Customer service bot
+
+External monitor
+
+Aggregated to the server
+
+Qualifies and provides a means for system improvement
+
+After the interaction
+
+External to the agent system
+
+
+
+Autonomous agent
+
+External
+
+Aggregated at the server
+
+Provides a means for system improvement
+
+After the interaction
+
+External
+
+
+
+Collaborative workflows
+
+While interacting
+
+Shared canvas or coding
+
+Provides a mechanism for immediate feedback
+
+During the interaction
+
+External service
+
+
+
+Game AI
+
+External or internal
+
+Server or application
+
+As part of internal evaluation feedback provided for dynamic improvement
+
+After or during the interaction
+
+External or as part of the agent or another agent
+
+
+
+Research
+
+Combined manual and LLM
+
+Server and human
+
+Evaluate the output of the research developed
+
+After the generated output
+
+Depends on the complexity of the problem and the research undertaken
+
+
+
+
+
+Table 11.4 shows several application scenarios in which we may find an assistant or agent deployed to assist in some capacity. To provide further information and guidance, this list provides more details about how feedback may be employed in each application:
+
+
+
+Personal assistant—If the assistant or agent interacts with the user in a chat-style interface, direct and immediate feedback can be applied by the user. Whether this feedback is sustained over future conversations or interactions, it usually develops within agentic memory. Assistants such as ChatGPT now incorporate memory and can benefit from explicit user feedback.
+
+Customer service bot—User or system feedback is typically provided through a survey after the interaction has completed. This usually means that feedback is regulated to an external system that aggregates the feedback for later improvements.
+
+Autonomous agent—Much like bots, feedback within autonomous agents is typically regulated to after the agent has completed a task that a user then reviews. The feedback mechanism may be harder to capture because many things can be subjective. Methods explored in this chapter for producing feedback can be used within prompt engineering improvements.
+
+Collaborative workflows—Similar to the personal assistant, these types of applications can benefit from immediate and direct feedback from the user. Again, how this information is persisted across sessions is often an implementation of agentic memory.
+
+Game AI—Feedback can be implemented alongside evaluation through additional and multiple agents. This feedback form may again be single-use and exist within the current interaction or may persist as memory. Imagine a game AI that can evaluate its actions, improve those with feedback, and remember those improvements. While this pattern isn’t ideal for games, it will certainly improve the gameplay experience.
+
+Research—Similar to evaluation in the context of research, feedback is typically performed offline after the output is evaluated. While some development has been done using multiple agent systems incorporating agents for evaluation and feedback, these systems don’t always perform well, at least not with the current state-of-the-art models. Instead, it’s often better to isolate feedback and evaluation at the end to avoid the common feedback looping problem.
+
+
+
+Feedback is another powerful component of agentic and assistant systems, but it’s not always required on the first release. However, incorporating rigorous feedback and evaluation mechanisms can greatly benefit agentic systems in the long term concerning ongoing monitoring and providing the confidence to improve various aspects of the system.
+
+
+
+How you implement each of these components in your agentic systems may, in part, be guided by the architecture of your chosen agentic platform. Now that you understand the nuances of each component, you also have the knowledge to guide you in selecting the right agent system that fits your application and business use case. Regardless of your application, you’ll want to employ several agentic components in almost all cases.
+
+
+
+As agentic systems mature and LLMs themselves get smarter, some of the components we today consider external may be closely integrated. We’ve already seen reasoning and planning be integrated into a model such as Strawberry. Certainly, as we approach the theoretical artificial general intelligence milestone, we may see models capable of performing long-term self-evaluation and feedback.
+
+
+
+In any case, I hope you enjoyed this journey with me into this incredible frontier of a new and emerging technology that will certainly alter our perception of work and how we undertake it through agents.
+
+
+
+
+

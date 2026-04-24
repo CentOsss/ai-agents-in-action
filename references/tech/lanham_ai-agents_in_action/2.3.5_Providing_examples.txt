@@ -1,0 +1,30 @@
+2.3.5 Providing examples
+
+
+
+
+Providing examples is an excellent way to guide the desired output of an LLM. There are numerous ways to demonstrate examples to an LLM. The system message/prompt can be a helpful way to emphasize general output. In the following listing, the example is added as the last LLM assistant reply, given the prompt “Teach me about Python.”
+
+
+
+
+
+Listing 2.13 providing_examples.jsonl
+
+
+[ { "role": "system", "content": """ Answer all replies in a consistent style that follows the format, length and style of your previous responses. Example: user: Teach me about Python. assistant: #1 Python is a programming language developed in 1989 by Guido van Rossum. Future replies: The response was only a sentence so limit all future replies to a single sentence. """ #2 }, { "role": "user", "content": "Teach me about Java." } ]
+
+#1 Injects the sample output as the “previous” assistant reply
+
+#2 Adds a limit output tactic to restrict the size of the output and match the example
+
+
+
+
+
+Providing examples can also be used to request a particular output format from a complex series of tasks that derive the output. For example, asking an LLM to produce code that matches a sample output is an excellent use of examples. We’ll employ this tactic throughout the book, but other methods exist for guiding output.
+
+
+
+
+

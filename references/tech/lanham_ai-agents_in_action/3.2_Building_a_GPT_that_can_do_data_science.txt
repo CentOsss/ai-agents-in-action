@@ -1,0 +1,121 @@
+3.2 Building a GPT that can do data science
+
+
+
+
+The GPT Assistants platform has and will likely be extended to include various agent components. Currently, GPT Assistants support what is referred to as knowledge, memory, and actions. In chapter 8, we’ll discuss the details of knowledge and memory, and in chapter 5, we cover the concept of tool use through actions.
+
+
+
+In our next exercise, we’ll build an assistant to perform a first-pass data science review of any CSV document we provide. This agent will use the ability or action that allows for coding and code interpretation. When you enable code interpretation, the assistant will allow file uploads by default.
+
+
+
+Before we do that, though, we want to design our agent, and what better way to do that than to ask an LLM to build us an assistant? Listing 3.3 shows the prompt requesting ChatGPT (GPT-4) to design a data science assistant. Notice how we’re not asking for everything in a single prompt but instead iterating over the information returned by the LLM.
+
+
+
+
+
+Listing 3.3 Prompting for a data science assistant
+
+
+FIRST PROMPT: what is a good basic and interesting data science experiment you can task someone with a single csv file that contains interesting data? #1 SECOND PROMPT: okay, can you now write all those steps into instructions to be used for a GPT Agent (LLM agent) to replicate all of the above steps #2 THIRD PROMPT: What is a famous personality that can embody the agent data scientist and be able to present data to users? #3
+
+#1 First, ask the LLM to set the foundation.
+
+#2 Then, ask the LLM to convert the previous steps to a more formal process.
+
+#3 Finally, ask the LLM to provide a personality that can represent the process.
+
+
+
+
+
+The result of that conversation provided for the assistant instructions shown in listing 3.4. In this case, the assistant was named Data Scout, but feel free to name your assistant what appeals to you.
+
+
+
+
+
+Listing 3.4 Data Scout instructions
+
+
+This GPT, named Data Scout, is designed to assist users by analyzing CSV files and providing insights like Nate Silver, a famous statistician known for his accessible and engaging approach to data. Data Scout combines rigorous analysis with a clear and approachable communication style, making complex data insights understandable. It is equipped to handle statistical testing, predictive modeling, data visualization, and more, offering suggestions for further exploration based on solid data-driven evidence. Data Scout requires the user to upload a csv file of data they want to analyze. After the user uploads the file you will perform the following tasks: Data Acquisition Ask the user to upload a csv file of data. Instructions: Use the pandas library to read the data from the CSV file. Ensure the data is correctly loaded by displaying the first few rows using df.head(). 2. Exploratory Data Analysis (EDA) Data Cleaning Task: Identify and handle missing values, correct data types. Instructions: Check for missing values using df.isnull().sum(). For categorical data, consider filling missing values with the mode, and for numerical data, use the median or mean. Convert data types if necessary using df.astype(). Visualization Task: Create visualizations to explore the data. Instructions: Use matplotlib and seaborn to create histograms, scatter plots, and box plots. For example, use sns.histplot() for histograms and sns.scatterplot() for scatter plots. Descriptive Statistics Task: Calculate basic statistical measures. Instructions: Use df.describe() to get a summary of the statistics and df.mean(), df.median() for specific calculations. 3. Hypothesis Testing Task: Test a hypothesis formulated based on the dataset. Instructions: Depending on the data type, perform statistical tests like the t-test or chi-squared test using scipy.stats. For example, use stats.ttest_ind() for the t-test between two groups. 4. Predictive Modeling Feature Engineering Task: Enhance the dataset with new features. Instructions: Create new columns in the DataFrame based on existing data to capture additional information or relationships. Use operations like df['new_feature'] = df['feature1'] / df['feature2']. Model Selection Task: Choose and configure a machine learning model. Instructions: Based on the task (classification or regression), select a model from scikit-learn, like RandomForestClassifier() or LinearRegression(). Configure the model parameters. Training and Testing Task: Split the data into training and testing sets, then train the model. Instructions: Use train_test_split from scikit-learn to divide the data. Train the model using model.fit(X_train, y_train). Model Evaluation Task: Assess the model performance. Instructions: Use metrics like mean squared error (MSE) or accuracy. Calculate these using metrics.mean_squared_error(y_test, y_pred) or metrics.accuracy_score(y_test, y_pred). 5. Insights and Conclusions Task: Interpret and summarize the findings from the analysis and modeling. Instructions: Discuss the model coefficients or feature importances. Draw conclusions about the hypothesis and the predictive analysis. Suggest real-world implications or actions based on the results. 6. Presentation Task: Prepare a report or presentation. Instructions: Summarize the process and findings in a clear and accessible format, using plots and bullet points. Ensure that the presentation is understandable for non-technical stakeholders.
+
+
+
+
+
+After generating the instructions, you can copy and paste them into the Configure panel in figure 3.5. Be sure to give the assistant the Code Interpretation tool (skill) by selecting the corresponding checkbox. You don’t need to upload files here; the assistant will allow file uploads when the Code Interpretation checkbox is enabled.
+
+
+
+
+
+Figure 3.5 Turning on the Code Interpreter tool/skill
+
+
+
+
+Now, we can test the assistant by uploading a CSV file and asking questions about it. The source code folder for this chapter contains a file called netflix_titles.csv; the top few rows are summarized in listing 3.5. Of course, you can use any CSV file you want, but this exercise will use the Netflix example. Note that this dataset was downloaded from Kaggle, but you can use any other CSV if you prefer.
+
+
+
+
+
+Listing 3.5 netflix_titles.csv (top row of data)
+
+
+show_id,type,title,director,cast,country,date_added, release_year,rating,duration,listed_in,description #1 s1,Movie,Dick Johnson Is Dead,Kirsten Johnson,, United States,"September 25, 2021",2020,PG-13,90 min, Documentaries,"As her father nears the end of his life, filmmaker Kirsten Johnson stages his death in inventive and comical ways to help them both face the inevitable." #2
+
+#1 Comma-separated list of columns
+
+#2 An example row of data from the dataset
+
+
+
+
+
+We could upload the file and ask the assistant to do its thing, but for this exercise, we’ll be more specific. Listing 3.6 shows the prompt and uploading the file to engage the assistant (including Netflix_titles.csv in the request). This example filters the results to Canada, but you can, of course, use any country you want to view.
+
+
+
+
+
+Listing 3.6 Prompting the Data Scout
+
+
+Analyze the attached CSV and filter the results to the country Canada and output any significant discoveries in trends etc. #1
+
+#1 You can select a different country to filter the data on.
+
+
+
+
+
+If you encounter problems with the assistant parsing the file, refresh your browser window and try again. Depending on your data and filter, the assistant will now use the Code Interpreter as a data scientist would to analyze and extract trends in the data.
+
+
+
+Figure 3.6 shows the output generated for the prompt in listing 3.5 using the netflix_titles.csv file for data. Your output may look quite different if you select a different country or request another analysis.
+
+
+
+
+
+Figure 3.6 The output generated by the assistant as it analyzed the CSV data
+
+
+
+
+The data science plots the assistant is building are created by writing and executing code with the Code Interpreter. You can try this with other CSV files or, if you want, different forms of data to analyze. You could even continue iterating with the assistant to update the plots visually or analyze other trends.
+
+
+
+Code interpretation is a compelling skill that you’ll likely add to many of your agents for everything from calculations to custom formatting. In the next section, we look at how to extend the capabilities of a GPT through custom actions.
+
+
+
+
+

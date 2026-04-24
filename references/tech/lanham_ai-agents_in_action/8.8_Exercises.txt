@@ -1,0 +1,154 @@
+8.8 Exercises
+
+
+
+
+Use the following exercises to improve your knowledge of the material:
+
+
+
+Exercise 1 —Load and Split a Different Document (Intermediate)
+
+
+
+Objective —Understand the effect of document splitting on retrieval efficiency by using LangChain.
+
+
+
+Tasks:
+
+
+
+Select a different document (e.g., a news article, a scientific paper, or a short story).
+
+Use LangChain to load and split the document into chunks.
+
+Analyze how the document is split into chunks and how it affects the retrieval process.
+
+
+
+
+
+Exercise 2 —Experiment with Semantic Search (Intermediate)
+
+
+
+Objective —Compare the effectiveness of various vectorization techniques by performing semantic searches.
+
+
+
+Tasks:
+
+
+
+Choose a set of documents for semantic search.
+
+Use a vectorization method such as Word2Vec or BERT embeddings instead of TF–IDF.
+
+Perform the semantic search, and compare the results with those obtained using TF–IDF to understand the differences and effectiveness.
+
+
+
+
+
+Exercise 3 —Implement a Custom RAG Workflow (Advanced)
+
+
+
+Objective —Apply theoretical knowledge of RAG in a practical context using LangChain.
+
+
+
+Tasks:
+
+
+
+Choose a specific application (e.g., customer service inquiries or academic research queries).
+
+Design and implement a custom RAG workflow using LangChain.
+
+Tailor the workflow to suit the chosen application, and test its effectiveness.
+
+
+
+
+
+Exercise 4 —Build a Knowledge Store and Experiment with Splitting Patterns (Intermediate)
+
+
+
+Objective —Understand how different splitting patterns and compression affect knowledge retrieval.
+
+
+
+Tasks:
+
+
+
+Build a knowledge store, and populate it with a couple of documents.
+
+Experiment with different forms of splitting/chunking patterns, and analyze their effect on retrieval.
+
+Compress the knowledge store, and observe the effects on query performance.
+
+
+
+
+
+Exercise 5 —Build and Test Various Memory Stores (Advanced)
+
+
+
+Objective —Understand the uniqueness and use cases of different memory store types.
+
+
+
+Tasks:
+
+
+
+Build various forms of memory stores (conversational, semantic, episodic, and procedural).
+
+Interact with an agent using each type of memory store, and observe the differences.
+
+Compress the memory store, and analyze the effect on memory retrieval.
+
+
+
+
+
+Summary
+
+
+
+
+Memory in AI applications differentiates between unstructured and structured memory, highlighting their use in contextualizing prompts for more relevant interactions.
+
+Retrieval augmented generation (RAG) is a mechanism for enhancing prompts with context from external documents, using vector embeddings and similarity search to retrieve relevant content.
+
+Semantic search with document indexing converts documents into semantic vectors using TF–IDF and cosine similarity, enhancing the capability to perform semantic searches across indexed documents.
+
+Vector databases and similarity search stores document vectors in a vector database, facilitating efficient similarity searches and improving retrieval accuracy.
+
+Document embeddings capture semantic meanings, using models such as OpenAI’s models to generate embeddings that preserve a document’s context and facilitate semantic similarity searches.
+
+LangChain provides several tools for performing RAG, and it abstracts the retrieval process, allowing for easy implementation of RAG and memory systems across various data sources and vector stores.
+
+Short-term and long-term memory in LangChain implements conversational memory within LangChain, distinguishing between short-term buffering patterns and long-term storage solutions.
+
+Storing document vectors in databases for efficient similarity searches is crucial for implementing scalable retrieval systems in AI applications.
+
+Agent knowledge directly relates to the general RAG pattern of performing question and answer on documents or other textual information.
+
+Agent memory is a pattern related to RAG that captures the agentic interactions with users, itself, and other systems.
+
+Nexus is a platform that implements agentic knowledge and memory systems, including setting up knowledge stores for document retrieval and memory stores for various forms of memory.
+
+Semantic memory augmentation (semantic memory) differentiates between various types of memories (semantic, episodic, procedural). It implements them through semantic augmentation, enhancing agents’ ability to recall and use information relevantly specific to the nature of the memories.
+
+Memory and knowledge compression are techniques for condensing information stored in memory and knowledge systems, improving retrieval efficiency and relevancy through clustering and summarization.
+
+
+
+
+

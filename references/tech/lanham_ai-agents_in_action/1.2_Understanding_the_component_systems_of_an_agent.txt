@@ -1,0 +1,103 @@
+1.2 Understanding the component systems of an agent
+
+
+
+
+Agents can be complex units composed of multiple component systems. These components are the tools the agent employs to help it complete its goal or assigned tasks and even create new ones. Components may be simple or complex systems, typically split into five categories.
+
+
+
+Figure 1.3 describes the major categories of components a single-agent system may incorporate. Each element will have subtypes that can define the component’s type, structure, and use. At the core of all agents is the profile and persona; extending from that are the systems and functions that enhance the agent.
+
+
+
+
+
+Figure 1.3 The five main components of a single-agent system (image generated through DALL-E 3)
+
+
+
+
+The agent profile and persona shown in figure 1.4 represent the base description of the agent. The persona—often called the system prompt —guides an agent to complete tasks, learn how to respond, and other nuances. It includes elements such as the background (e.g., coder, writer) and demographics, and it can be generated through methods such as handcrafting, LLM assistance, or data-driven techniques, including evolutionary algorithms.
+
+
+
+
+
+Figure 1.4 An in-depth look at how we’ll explore creating agent profiles
+
+
+
+
+We’ll explore how to create effective and specific agent profiles/personas through techniques such as rubrics and grounding. In addition, we’ll explain the aspects of human-formulated versus AI-formulated (LLM) profiles, including innovative techniques using data and evolutionary algorithms to build profiles.
+
+
+
+Note  The agent or assistant profile is composed of elements, including the persona. It may be helpful to think of profiles describing the work the agent/ assistant will perform and the tools it needs.
+
+
+
+Figure 1.5 demonstrates the component actions and tool use in the context of agents involving activities directed toward task completion or acquiring information. These actions can be categorized into task completion, exploration, and communication, with varying levels of effect on the agent’s environment and internal states. Actions can be generated manually, through memory recollection, or by following predefined plans, influencing the agent’s behavior and enhancing learning.
+
+
+
+
+
+Figure 1.5 The aspects of agent actions we’ll explore in this book
+
+
+
+
+Understanding the action target helps us define clear objectives for task completion, exploration, or communication. Recognizing the action effect reveals how actions influence task outcomes, the agent’s environment, and its internal states, contributing to efficient decision making. Lastly, grasping action generation methods equips us with the knowledge to create actions manually, recall them from memory, or follow predefined plans, enhancing our ability to effectively shape agent behavior and learning processes.
+
+
+
+Figure 1.6 shows the component knowledge and memory in more detail. Agents use knowledge and memory to annotate context with the most pertinent information while limiting the number of tokens used. Knowledge and memory structures can be unified, where both subsets follow a single structure or hybrid structure involving a mix of different retrieval forms. Knowledge and memory formats can vary widely from language (e.g., PDF documents) to databases (relational, object, or document) and embeddings, simplifying semantic similarity search through vector representations or even simple lists serving as agent memories.
+
+
+
+
+
+Figure 1.6 Exploring the role and use of agent memory and knowledge
+
+
+
+
+Figure 1.7 shows the reasoning and evaluation component of an agent system. Research and practical applications have shown that LLMs/agents can effectively reason. Reasoning and evaluation systems annotate an agent’s workflow by providing an ability to think through problems and evaluate solutions.
+
+
+
+
+
+Figure 1.7 The reasoning and evaluation component and details
+
+
+
+
+Figure 1.8 shows the component agent planning/feedback and its role in organizing tasks to achieve higher-level goals. It can be categorized into these two approaches:
+
+
+
+Planning without feedback —Autonomous agents make decisions independently.
+
+Planning with feedback —Monitoring and modifying plans is based on various sources of input, including environmental changes and direct human feedback.
+
+
+
+
+
+Figure 1.8 Exploring the role of agent planning and reasoning
+
+
+
+
+Within planning, agents may employ single-path reasoning, sequential reasoning through each step of a task, or multipath reasoning to explore multiple strategies and save the efficient ones for future use. External planners, which can be code or other agent systems, may also play a role in orchestrating plans.
+
+
+
+Any of our previous agent types—the proxy agent/assistant, agent/assistant, or autonomous agent—may use some or all of these components. Even the planning component has a role outside of the autonomous agent and can effectively empower even the regular agent.
+
+
+
+
+

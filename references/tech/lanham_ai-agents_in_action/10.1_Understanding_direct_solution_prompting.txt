@@ -1,0 +1,11 @@
+10.1 Understanding direct solution prompting
+
+
+
+
+Direct solution prompting is generally the first form of prompt engineering that users employ when asking LLMs questions or solving a particular problem. Given any LLM use, these techniques may seem apparent, but they are worth reviewing to establish the foundation of thought and planning. In the next section, we’ll start from the beginning, asking questions and expecting answers.
+
+
+
+
+

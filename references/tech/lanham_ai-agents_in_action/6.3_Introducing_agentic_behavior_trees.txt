@@ -1,0 +1,15 @@
+6.3 Introducing agentic behavior trees
+
+
+
+
+Agentic behavior trees (ABTs) implement behavior trees on assistant and agent systems. The key difference between regular behavior trees and ABTs is that they use prompts to direct actions and conditions. Because prompts may return a high occurrence of random results, we could also name these trees stochastic behavior trees, which do exist. For simplicity, we’ll differentiate behavior trees used to control agents, referring to them as agentic.
+
+
+
+Next, we’ll undertake an exercise to create an ABT. The finished tree will be written in Python but will require the setup and configuration of various assistants. We’ll cover how to manage assistants using the assistants themselves.
+
+
+
+
+

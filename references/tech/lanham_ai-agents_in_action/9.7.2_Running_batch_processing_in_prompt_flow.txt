@@ -1,0 +1,108 @@
+9.7.2 Running batch processing in prompt flow
+
+
+
+
+In our generic recommendation profile, we want to evaluate how various input criteria can affect the generated recommendations. Fortunately, prompt flow can batch-process any variations we want to test. The limit is only the time and money we want to spend.
+
+
+
+To perform batch processing, we must first create a JSON Lines (JSONL) or JSON list document of our input criteria. If you recall, our input criteria looked like the following in JSON format:
+
+
+
+{ "subject": "time travel", "format": "books", "genre": "fantasy", "custom": "don't include any R rated content" }
+
+
+
+
+
+We want to create a list of JSON objects like that just shown, preferably in a random manner. Of course, the simple way to do this is to prompt ChatGPT to create a JSONL document using the following prompt:
+
+
+
+I am developing a recommendation agent. The agent will recommend anything given the following criteria:
+
+
+
+1. subject - examples: time travel, cooking, vacation
+
+
+
+2. format - examples: books, movies, games
+
+
+
+3. genre: documentary, action, romance
+
+
+
+4. custom: don't include any R rated content
+
+
+
+Can you please generate a random list of these criteria and output it in the format of a JSON Lines file, JSONL. Please include 10 items in the list.
+
+
+
+Try this out by going to ChatGPT and entering the preceding prompt. A previously generated file can be found in the flow folder, called \bulk_recommend.jsonl. The contents of this file have been shown here for reference:
+
+
+
+{ "subject": "time travel", "format": "books", "genre": "fantasy", "custom": "don't include any R rated content" } { "subject": "space exploration", "format": "podcasts", "genre": "sci-fi", "custom": "include family-friendly content only" } { "subject": "mystery", "format": "podcasts", "genre": "fantasy", "custom": "don't include any R rated content" } { "subject": "space exploration", "format": "podcasts", "genre": "action", "custom": "include family-friendly content only" } { "subject": "vacation", "format": "books", "genre": "thriller", "custom": "don't include any R rated content" } { "subject": "mystery", "format": "books", "genre": "sci-fi", "custom": "don't include any R rated content" } { "subject": "mystery", "format": "books", "genre": "romance", "custom": "don't include any R rated content" } { "subject": "vacation", "format": "movies", "genre": "fantasy", "custom": "don't include any R rated content" } { "subject": "cooking", "format": "TV shows", "genre": "thriller", "custom": "include family-friendly content only" } { "subject": "mystery", "format": "movies", "genre": "romance", "custom": "include family-friendly content only" }
+
+
+
+
+
+With this bulk file, we can run both variants using the various input criteria in the bulk JSONL file. Open the flow.dag.yaml file in the visual editor, click Batch (the beaker icon) to start the bulk-data loading process, and select the file as shown in figure 9.21. For some operating systems, this may appear as Local Data File.
+
+
+
+
+
+Figure 9.21 Loading the bulk JSONL file to run the flow on multiple input variations
+
+
+
+
+After the bulk file is selected, a new YAML document will open with a Run link added at the bottom of the file, as shown in figure 9.22. Click the link to do the batch run of inputs.
+
+
+
+
+
+Figure 9.22 Running the batch run of inputs
+
+
+
+
+At this point, a few things will happen. The flow visual editor will appear, and beside that a log file will open, showing the progress of the run. In the terminal window, you’ll see the various worker processes spawning and running.
+
+
+
+Be patient. The batch run, even for 10 items, may take a few minutes or seconds, depending on various factors such as hardware, previous calls, and so on. Wait for the run to complete, and you’ll see a summary of results in the terminal.
+
+
+
+You can also view the run results by opening the prompt flow extension and selecting the last run, as shown in figure 9.23. Then, you dig into each run by clicking the table cells. A lot of information is exposed in this dialog, which can help you troubleshoot flows and profiles.
+
+
+
+
+
+Figure 9.23 An opening run visualization and an examination of a batch run
+
+
+
+
+A lot of information is captured during a batch run, and you can explore much of it through the visualizer. More information can be found by clicking the output folder link from the terminal window. This will open another session of VS Code with the output folder allowing you to review the run logs and other details.
+
+
+
+Now that we’ve completed the batch run for each variant, we can apply grounding and evaluate the results of both prompts. The next section will use a new flow to perform the profile/prompt evaluation.
+
+
+
+
+

@@ -1,0 +1,44 @@
+7.1 Introducing Nexus, not just another agent platform
+
+
+
+
+There are more than 100 AI platforms and toolkits for consuming and developing large language model (LLM) applications, ranging from toolkits such as SK or LangChain to complete platforms such as AutoGen and CrewAI. This makes it difficult to decide which platform is well suited to building your own AI agents.
+
+
+
+Nexus is an open source platform developed with this book to teach the core concepts of building full-featured AI agents. In this chapter, we’ll examine how Nexus is built and introduce two primary agent components: profiles/personas and actions/tools.
+
+
+
+Figure 7.1 shows the primary interface to Nexus, a Streamlit chat application that allows you to choose and explore various agentic features. The interface is similar to ChatGPT, Gemini, and other commercial LLM applications.
+
+
+
+
+
+Figure 7.1 The Nexus interface and features
+
+
+
+
+In addition to the standard features of an LLM chat application, Nexus allows the user to configure an agent to use a specific API/model, the persona, and possible actions. In the remainder of the book, the available agent options will include the following:
+
+
+
+Personas/profiles—The primary persona and profile the agent will use. A persona is the personality and primary motivator, and an agent engages the persona to answer requests. We’ll look in this chapter at how personas/profiles can be developed and consumed.
+
+Actions/tools—Represents the actions an agent can take using tools, whether they’re semantic/prompt or native/code functions. In this chapter, we’ll look at how to build both semantic and native functions within Nexus.
+
+Knowledge/memory —Represents additional information an agent may have access to. At the same time, agent memory can represent various aspects, from short-term to semantic memory.
+
+Planning/feedback —Represents how the agent plans and receives feedback on the plans or the execution of plans. Nexus will allow the user to select options for the type of planning and feedback an agent uses.
+
+
+
+As we progress through this book, Nexus will be added to support new agent features. However, simultaneously, the intent will be to keep things relatively simple to teach many of these essential core concepts. In the next section, we’ll look at how to quickly use Nexus before going under the hood to explore features in detail.
+
+
+
+
+

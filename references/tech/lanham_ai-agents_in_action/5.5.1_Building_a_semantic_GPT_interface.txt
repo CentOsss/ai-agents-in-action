@@ -1,0 +1,88 @@
+5.5.1 Building a semantic GPT interface
+
+
+
+
+TMDB is an excellent service, but it provides no semantic services or services that can be plugged into ChatGPT or an agent. To do that, we must wrap the API calls that TMDB exposes in a semantic service layer.
+
+
+
+A semantic service layer is a GPT interface that exposes functions through natural language. As discussed, to expose functions to ChatGPT or other interfaces such as agents, they must be defined as plugins. Fortunately, SK can create the plugins for us automatically, given that we write our semantic service layer correctly.
+
+
+
+A native plugin or set of skills can act as a semantic layer. To create a native plugin, create a new plugin folder, and put a Python file holding a class containing the set of native functions inside that folder. The SK extension currently doesn’t do this well, so manually creating the module works best.
+
+
+
+Figure 5.9 shows the structure of the new plugin called Movies and the semantic service layer called tmdb.py. For native functions, the parent folder’s name (Movies) is used in the import.
+
+
+
+
+
+Figure 5.9 The folder and file structure of the TMDB plugin
+
+
+
+
+Open the tmdb.py file in VS Code, and look at the top of the file, as shown in listing 5.18. This file contains a class called TMDbService, which exposes several functions that map to API endpoint calls. The idea is to map the various relevant API function calls in this semantic service layer. This will expose the functions as plugins for a chat or agent interface.
+
+
+
+
+
+Listing 5.18 tmdb.py (top of file)
+
+
+from semantic_kernel.functions import kernel_funct import requests import inspect def print_function_call(): #1 #omitted … class TMDbService: #2 def __init__(self): # enter your TMDb API key here self.api_key = "your-TMDb-api-key" @kernel_function( #2 description="Gets the movie genre ID for a given genre name", name="get_movie_genre_id", input_description="The movie genre name of the genre_id to get", ) def get_movie_genre_id(self, genre_name: str) -> str: #3 print_function_call() base_url = "https://api.themoviedb.org/3" endpoint = f"{base_url}/genre/movie/list↪ ↪ ?api_key={self.api_key}&language=en-US" response = requests.get(endpoint) #4 if response.status_code == 200: #4 genres = response.json()['genres'] for genre in genres: if genre_name.lower() in genre['name'].lower(): return str(genre['id']) #5 return None
+
+#1 Prints the calls to the functions for debugging
+
+#2 Top-level service and decorator used to describe the function (good descriptions are important)
+
+#3 Function wrapped in semantic wrapper; should return str
+
+#4 Calls the API endpoint, and, if good (code 200), checks for matching genre
+
+#5 Found the genre, returns the id
+
+
+
+
+
+The bulk of the code for the TMDbService and the functions to call the TMDB endpoints was written with the help of GPT-4 Turbo. Then, each function was wrapped with the sk_function decorator to expose it semantically.
+
+
+
+A few of the TMDB API calls have been mapped semantically. Listing 5.19 shows another example of a function exposed to the semantic service layer. This function pulls a current top 10 list of movies playing for a particular genre.
+
+
+
+
+
+Listing 5.19 tmdb.py (get_top_movies_by_genre)
+
+
+@kernel_function( #1 description="”” Gets a list of currently playing movies for a given genre””", name="get_top_movies_by_genre", input_description="The genre of the movies to get", ) def get_top_movies_by_genre(self, genre: str) -> str: print_function_call() genre_id = self.get_movie_genre_id(genre) #2 if genre_id: base_url = "https://api.themoviedb.org/3 playing_movies_endpoint = f"{base_url}/movie/now_playing?↪ ↪ api_key={self.api_key}&language=en-US" response = requests.get( playing_movies_endpoint) #3 if response.status_code != 200: return "" playing_movies = response.json()['results' for movie in playing_movies: #4 movie['genre_ids'] = [str(genre_id) ↪ for genre_id in movie['genre_ids']] filtered_movies = [movie for movie ↪ ↪ in playing_movies if genre_id ↪ ↪ in movie['genre_ids']][:10] #5 results = ", ".join([movie['title'] for movie in filtered_movies]) return results else: return ""
+
+#1 Decorates the function with descriptions
+
+#2 Finds the genre id for the given genre name
+
+#3 Gets a list of currently playing movies
+
+#4 Converts genre_ids to strings
+
+#5 Checks to see if the genre id matches movie genres
+
+
+
+
+
+Look through the various other API calls mapped semantically. As you can see, there is a well-defined pattern for converting API calls to a semantic service. Before we run the full service, we’ll test each of the functions in the next section.
+
+
+
+
+

@@ -1,0 +1,160 @@
+3.6 Exercises
+
+
+
+
+Complete the following exercises to improve your knowledge of the material:
+
+
+
+Exercise 1 —Build Your First GPT Assistant
+
+
+
+Objective —Create a simple GPT assistant using the ChatGPT interface.
+
+
+
+Tasks:
+
+
+
+Sign up for a ChatGPT Plus subscription if you don’t already have one.
+
+Navigate to the GPT Assistants platform, and click the Create button.
+
+Follow the Builder chat interface to create a Culinary Companion assistant that provides meal suggestions based on available ingredients.
+
+Manually configure the assistant to add custom rules for recipe generation, such as including nutritional information and cost estimates.
+
+
+
+
+
+Exercise 2 —Data Analysis Assistant
+
+
+
+Objective —Develop a GPT assistant that can analyze CSV files and provide insights.
+
+
+
+Tasks:
+
+
+
+Design a data science assistant that can load and analyze CSV files, similar to the Data Scout example in the chapter.
+
+Enable the Code Interpretation tool, and upload a sample CSV file (e.g., a dataset from Kaggle).
+
+Use the assistant to perform tasks such as data cleaning, visualization, and hypothesis testing.
+
+Document your process and findings, noting any challenges or improvements needed.
+
+
+
+
+
+Exercise 3 —Create a Custom Action
+
+
+
+Objective —Extend a GPT assistant with a custom action using a FastAPI service.
+
+
+
+Tasks:
+
+
+
+Follow the steps to create a FastAPI service that provides a specific function, such as fetching a list of daily tasks.
+
+Generate the OpenAPI specification for the service, and deploy it locally using ngrok.
+
+Configure a new assistant to use this custom action, ensuring it connects correctly to the FastAPI endpoint.
+
+Test the assistant by asking it to perform the action and verify the output.
+
+
+
+
+
+Exercise 4 —File Upload Knowledge Assistant
+
+
+
+Objective —Build an assistant with specialized knowledge from uploaded documents.
+
+
+
+Tasks:
+
+
+
+Select a freely available e-book or a collection of documents related to a specific topic (e.g., classic literature, technical manuals).
+
+Upload these files to a new GPT assistant, and configure the assistant to act as an expert on the uploaded content.
+
+Create a series of prompts to test the assistant’s ability to reference and summarize the information from the documents.
+
+Evaluate the assistant’s performance, and make any necessary adjustments to improve its accuracy and helpfulness.
+
+
+
+
+
+Exercise 5 —Publish and Share Your Assistant
+
+
+
+Objective —Publish your GPT assistant to the GPT Store and share it with others.
+
+
+
+Tasks:
+
+
+
+Finalize the configuration and testing of your assistant to ensure it works as intended.
+
+Write a compelling description, and create an appropriate logo for your assistant.
+
+Choose the correct category, and set up any necessary links to your social media or GitHub repository.
+
+Publish the assistant to the GPT Store, and share the link with friends or colleagues.
+
+Gather feedback from users, and refine the assistant based on their input to improve its usability and functionality.
+
+
+
+
+
+Summary
+
+
+
+
+The OpenAI GPT Assistants platform enables building and deploying AI agents through the ChatGPT UI, focusing on creating engaging and functional assistants.
+
+You can use GPT’s code interpretation capabilities to perform data analysis on user-uploaded CSV files, enabling assistants to function as data scientists.
+
+Assistants can be extended with custom actions, allowing integration with external services via API endpoints. This includes generating FastAPI services and their corresponding OpenAPI specifications.
+
+Assistants can be enriched with specialized knowledge through file uploads, allowing them to act as authoritative sources on specific texts or documents.
+
+Commercializing your GPT involves publishing it to the GPT Store, where you can share and market your assistant to a broader audience.
+
+Building a functional assistant involves iterating through design prompts, defining a clear persona, setting rules, and ensuring the assistant’s output aligns with user expectations.
+
+Creating custom actions requires understanding and implementing OpenAPI specifications, deploying services locally using tools such as ngrok, and connecting these services to your assistant.
+
+Knowledge assistants can handle various tasks, from searching and comparing documents to generating new content based on their knowledge base.
+
+Publishing assistants require careful consideration of resource usage, user experience, and economic factors to ensure their effectiveness and sustainability for public use.
+
+The GPT Store, available to ChatGPT Plus subscribers, is a valuable platform for learning and gaining proficiency in building AI assistants, with the potential for future profit-sharing opportunities.
+
+
+
+
+

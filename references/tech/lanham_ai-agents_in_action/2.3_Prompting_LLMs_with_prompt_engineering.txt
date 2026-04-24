@@ -1,0 +1,85 @@
+2.3 Prompting LLMs with prompt engineering
+
+
+
+
+A prompt defined for LLMs is the message content used in the request for better response output. Prompt engineering is a new and emerging field that attempts to structure a methodology for building prompts. Unfortunately, prompt building isn’t a well-established science, and there is a growing and diverse set of methods defined as prompt engineering.
+
+
+
+Fortunately, organizations such as OpenAI have begun documenting a universal set of strategies, as shown in figure 2.8. These strategies cover various tactics, some requiring additional infrastructure and considerations. As such, the prompt engineering strategies relating to more advanced concepts will be covered in the indicated chapters.
+
+
+
+
+
+Figure 2.8 OpenAI prompt engineering strategies reviewed in this book, by chapter location
+
+
+
+
+Each strategy in figure 2.8 unfolds into tactics that can further refine the specific method of prompt engineering. This chapter will examine the fundamental Write Clear Instructions strategy. Figure 2.9 shows the tactics for this strategy in more detail, along with examples for each tactic. We’ll look at running these examples using a code demo in the following sections.
+
+
+
+
+
+Figure 2.9 The tactics for the Write Clear Instructions strategy
+
+
+
+
+The Write Clear Instructions strategy is about being careful and specific about what you ask for. Asking an LLM to perform a task is no different from asking a person to complete the same task. Generally, the more information and context relevant to a task you can specify in a request, the better the response.
+
+
+
+This strategy has been broken down into specific tactics you can apply to prompts. To understand how to use those, a code demo (prompt_engineering.py) with various prompt examples is in the chapter 2 source code folder.
+
+
+
+Open the prompt_engineering.py file in VS Code, as shown in listing 2.8. This code starts by loading all the JSON Lines files in the prompts folder. Then, it displays the list of files as choices and allows the user to select a prompt option. After selecting the option, the prompts are submitted to an LLM, and the response is printed.
+
+
+
+
+
+Listing 2.8 prompt_engineering.py (main())
+
+
+def main(): directory = "prompts" text_files = list_text_files_in_directory(directory) #1 if not text_files: print("No text files found in the directory.") return def print_available(): #2 print("Available prompt tactics:") for i, filename in enumerate(text_files, start=1): print(f"{i}. {filename}") while True: try: print_available() #2 choice = int(input("Enter … 0 to exit): ")) #3 if choice == 0: break elif 1 <= choice <= len(text_files): selected_file = text_files[choice - 1] file_path = os.path.join(directory, selected_file) prompts = ↪ load_and_parse_json_file(file_path) #4 print(f"Running prompts for {selected_file}") for i, prompt in enumerate(prompts): print(f"PROMPT {i+1} --------------------") print(prompt) print(f"REPLY ---------------------------") print(prompt_llm(prompt)) #5 else: print("Invalid choice. Please enter a valid number.") except ValueError: print("Invalid input. Please enter a number.")
+
+#1 Collects all the files for the given folder
+
+#2 Prints the list of files as choices
+
+#3 Inputs the user’s choice
+
+#4 Loads the prompt and parses it into messages
+
+#5 Submits the prompt to an OpenAI LLM
+
+
+
+
+
+A commented-out section from the listing demonstrates how to connect to a local LLM. This will allow you to explore the same prompt engineering tactics applied to open source LLMs running locally. By default, this example uses the OpenAI model we configured previously in section 2.1.1. If you didn’t complete that earlier, please go back and do it before running this one.
+
+
+
+Figure 2.10 shows the output of running the prompt engineering tactics tester, the prompt_engineering.py file in VS Code. When you run the tester, you can enter a value for the tactic you want to test and watch it run.
+
+
+
+
+
+Figure 2.10 The output of the prompt engineering tactics tester
+
+
+
+
+In the following sections, we’ll explore each prompt tactic in more detail. We’ll also examine the various examples.
+
+
+
+
+

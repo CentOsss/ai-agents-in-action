@@ -1,0 +1,48 @@
+3.5.1 Expensive GPT assistants
+
+
+
+
+At the time of writing, OpenAI tracks the resource usage of your ChatGPT account, including that used for GPTs. If you hit a resource usage limit and get blocked, your ChatGPT account will also be blocked. Blockages typically only last a couple of hours, but this can undoubtedly be more than a little annoying.
+
+
+
+Therefore, we want to ensure that users using your GPT don’t exceed their resource usage limits for regular use. Following is a list of features that increase resource usage while using the GPT:
+
+
+
+Creating images —Image generation is still a premium service, and successive image generation can quickly get your user blocked. It’s generally recommended that you inform your users of the potential risks and/or try to reduce how frequently images are generated.
+
+Code interpretation —This feature allows for file uploads and running of code for data analysis. If you think your users will require constant use of the coding tool, then inform them of the risk.
+
+Vision, describing images —If you’re building an assistant that uses vision to describe and extract information from the image, plan to use it sparingly.
+
+File uploads —If your GPT uses a lot of files or allows you to upload several files, this may cause blocks. As always, guide the user away from anything preventing them from enjoying your GPT.
+
+
+
+Note  Moore’s Law states that computers will double in power every two years while costing half as much. LLMs are now doubling in power about every six months from optimization and increasing GPU power. This, combined with the cost being reduced by at least half in the same period, likely means current resource limits on vision and image-generation models won’t be considered. However, services such as code interpretation and file uploads will likely remain the same.
+
+
+
+Making your assistant aware of resource usage can be as simple as adding the rule shown in listing 3.18 to the assistant’s instructions. The instructions can be just a statement relaying the warning to the user and making the assistant aware. You could even ask the assistant to limit its usage of certain features.
+
+
+
+
+
+Listing 3.18 Resource usage rule example
+
+
+RULE: When generating images, ensure the user is aware that creating multiple images quickly could temporarily block their account.
+
+
+
+
+
+Guiding your assistant to be more resource conscious in the end makes your assistant more usable. It also helps prevent angry users who unknowingly get blocked using your assistant. This may be important if you plan on releasing your GPT, but before that, let’s investigate the economics in the next section.
+
+
+
+
+

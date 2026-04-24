@@ -1,0 +1,37 @@
+4 Exploring multi-agent systems
+
+
+
+
+
+This chapter covers
+
+
+Building multi-agent systems using AutoGen Studio
+
+Building a simple multi-agent system
+
+Creating agents that can work collaboratively over a group chat
+
+Building an agent crew and multi-agent systems using CrewAI
+
+Extending the number of agents and exploring processing patterns with CrewAI
+
+
+
+
+
+Now let’s take a journey from AutoGen to CrewAI, two well-established multi-agent platforms. We’ll start with AutoGen, a Microsoft project that supports multiple agents and provides a studio for working with them. We’ll explore a project from Microsoft called AutoGen, which supports multiple agents but also provides a studio to ease you into working with agents. From there, we’ll get more hands-on coding of AutoGen agents to solve tasks using conversations and group chat collaborations.
+
+
+
+Then, we’ll transition to CrewAI, a self-proposed enterprise agentic system that takes a different approach. CrewAI balances role-based and autonomous agents that can be sequentially or hierarchically flexible task management systems. We’ll explore how CrewAI can solve diverse and complex problems.
+
+
+
+Multi-agent systems incorporate many of the same tools single-agent systems use but benefit from the ability to provide outside feedback and evaluation to other agents. This ability to support and criticize agent solutions internally gives multi-agent systems more power. We’ll explore an introduction to multi-agent systems, beginning with AutoGen Studio in the next section.
+
+
+
+
+

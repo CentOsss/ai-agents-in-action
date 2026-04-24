@@ -1,0 +1,11 @@
+appendix A Accessing OpenAI large language models
+
+
+
+
+Although several commercial large language model (LLM) services are available, this book recommends using OpenAI services directly or through Azure OpenAI Studio. To access either service, you must create an account and register a payment method not covered in this appendix. The GPT-4 family of LLMs is considered best in class and better suited for agent development. Using open source and alternative services is always an option but generally only advisable after you’ve worked with GPT-4 for some time.
+
+
+
+
+

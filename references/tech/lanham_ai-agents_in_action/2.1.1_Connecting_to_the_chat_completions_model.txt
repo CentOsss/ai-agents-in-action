@@ -1,0 +1,88 @@
+2.1.1 Connecting to the chat completions model
+
+
+
+
+To complete the exercises in this section and subsequent ones, you must set up a Python developer environment and get access to an LLM. Appendix A walks you through setting up an OpenAI account and accessing GPT-4 or other models. Appendix B demonstrates setting up a Python development environment with Visual Studio Code (VS Code), including installing needed extensions. Review these sections if you want to follow along with the scenarios.
+
+
+
+Start by opening the source code chapter_2 folder in VS Code and creating a new Python virtual environment. Again, refer to appendix B if you need assistance.
+
+
+
+Then, install the OpenAI and Python dot environment packages using the command in the following listing. This will install the required packages into the virtual environment.
+
+
+
+
+
+Listing 2.1 pip installs
+
+
+pip install openai python-dotenv
+
+
+
+
+
+Next, open the connecting.py file in VS Code, and inspect the code shown in listing 2.2. Be sure to set the model’s name to an appropriate name—for example, gpt-4. At the time of writing, the gpt-4-1106-preview was used to represent GPT-4 Turbo.
+
+
+
+
+
+Listing 2.2 connecting.py
+
+
+import os from openai import OpenAI from dotenv import load_dotenv load_dotenv() #1 api_key = os.getenv('OPENAI_API_KEY') if not api_key: #2 raise ValueError("No API key found. Please check your .env file.") client = OpenAI(api_key=api_key) #3 def ask_chatgpt(user_message): response = client.chat.completions.create( #4 model="gpt-4-1106-preview", messages=[{"role": "system", "content": "You are a helpful assistant."}, {"role": "user", "content": user_message}], temperature=0.7, ) return response.choices[0].message.content #5 user = "What is the capital of France?" response = ask_chatgpt(user) #6 print(response)
+
+#1 Loads the secrets stored in the .env file
+
+#2 Checks to see whether the key is set
+
+#3 Creates a client with the key
+
+#4 Uses the create function to generate a response
+
+#5 Returns just the content of the response
+
+#6 Executes the request and returns the response
+
+
+
+
+
+A lot is happening here, so let’s break it down by section, starting with the beginning and loading the environment variables. In the chapter_2 folder is another file called .env, which holds environment variables. These variables are set automatically by calling the load_dotenv function.
+
+
+
+You must set your OpenAI API key in the .env file, as shown in the next listing. Again, refer to appendix A to find out how to get a key and find a model name.
+
+
+
+
+
+Listing 2.3 .env
+
+
+OPENAI_API_KEY='your-openai-api-key'
+
+
+
+
+
+After setting the key, you can debug the file by pressing the F5 key or selecting Run > Start Debugging from the VS Code menu. This will run the code, and you should see something like “The capital of France is Paris.”
+
+
+
+Remember that the response from a generative model depends on the probability. The model will probably give us a correct and consistent answer in this case.
+
+
+
+You can play with these probabilities by adjusting the temperature of the request. If you want a model to be more consistent, turn the temperature down to 0, but if you want the model to produce more variation, turn the temperature up. We’ll explore setting the temperature further in the next section.
+
+
+
+
+

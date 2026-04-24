@@ -1,0 +1,105 @@
+10.2.1 Chain of thought prompting
+
+
+
+
+Chain of thought (CoT)prompting is a prompt engineering technique that employs the one-shot or few-shot examples that describe the reasoning and the steps to accomplish a desired goal. Through the demonstration of reasoning, the LLM can generalize this principle and reason through similar problems and goals. While the LLM isn’t trained with the goal of reasoning, we can elicit the model to reason, using prompt engineering.
+
+
+
+Open prompt_flow/chain-of-thought-prompting/flow.dag.yaml in the VS Code prompt flow visual editor. The elements of this flow are simple, as shown in figure 10.4. With only two LLM blocks, the flow first uses a CoT prompt to solve a complex question; then, the second LLM prompt evaluates the answer.
+
+
+
+
+
+Figure 10.4 The flow of the CoT
+
+
+
+
+Listing 10.7 shows the YAML pseudocode that describes the blocks and the inputs/outputs of the flow in more detail. The default problem statement in this example isn’t the same as in figure 10.3.
+
+
+
+
+
+Listing 10.7 chain-of-thought-prompting flow
+
+
+Inputs: statement : the statement problem to be solved expected : the expected solution to the problem LLM: cot (the prompt used to solve the problem) inputs: statement outputs: the predicted answer given the problem statement LLM: evaluate_answer (the prompt used to evaluate the solution) inputs: statement: -> input.statement expected: -> input.expected predicted: -> output.cot outputs: a score of how well the problem was answered Outputs: statement: -> input.statement expected: -> input.expected predicted: -> output.cot evaluation_score: output.evaluate_answer ### Example Output { "evaluation_score": "0.5", #1 "expected": "After the final jump, Max finds himself in the year 1980 and he is 75 years old.", #2 "predicted": " Max starts in the year 2300 and travels backward in 40-year increments, spending 5 years in each period. The journeys will be as follows: \n\n- From 2300 to 2260: Max is 25 + 5 = 30 years old. \n- From 2260 to 2220: Max is 30 + 5 = 35 years old. \n- From 2220 to 2180: Max is 35 + 5 = 40 years old. \n- From 2180 to 2140: Max is 40 + 5 = 45 years old. \n- From 2140 to 2100: Max is 45 + 5 = 50 years old. \n- From 2100 to 2060: Max is 50 + 5 = 55 years old. \n- From 2060 to 2020: Max is 55 + 5 = 60 years old. \n- From 2020 to 1980: Max is 60 + 5 = 65 years old. \n- From 1980 to 1940: Max is 65 + 5 = 70 years old. \n- From 1940 to 1900: Max is 70 + 5" #3 }
+
+#1 The evaluated score for the given solution
+
+#2 The expected answer for the problem
+
+#3 The predicted answer shows the reasoning steps and output.
+
+
+
+
+
+Dig into the inputs and check the problem statement; try to evaluate the problem yourself. Then, run the flow by pressing Shift-F5. You should see output similar to that shown in listing 10.7.
+
+
+
+Open the cot.jinja2 prompt file as shown in listing 10.8. This prompt gives a few examples of time travel problems and then the thought-out and reasoned solution. The process of showing the LLM the steps to complete the problem provides the reasoning mechanism.
+
+
+
+
+
+Listing 10.8 cot.jinja2
+
+
+system: "In a time travel movie, Sarah travels back in time to prevent a historic event from happening. She arrives 2 days before the event. After spending a day preparing, she attempts to change the event but realizes she has actually arrived 2 years early, not 2 days. She then decides to wait and live in the past until the event's original date. How many days does Sarah spend in the past before the day of the event?" #1 Chain of Thought: #2 Initial Assumption: Sarah thinks she has arrived 2 days before the event. Time Spent on Preparation: 1 day spent preparing. Realization of Error: Sarah realizes she's actually 2 years early. Conversion of Years to Days: 2 years = 2 × 365 = 730 days (assuming non-leap years). Adjust for the Day Spent Preparing: 730 - 1 = 729 days. Conclusion: Sarah spends 729 days in the past before the day of the event. "In a sci-fi film, Alex is a time traveler who decides to go back in time to witness a famous historical battle that took place 100 years ago, which lasted for 10 days. He arrives three days before the battle starts. However, after spending six days in the past, he jumps forward in time by 50 years and stays there for 20 days. Then, he travels back to witness the end of the battle. How many days does Alex spend in the past before he sees the end of the battle?" #3 Chain of Thought: #4 Initial Travel: Alex arrives three days before the battle starts. Time Spent Before Time Jump: Alex spends six days in the past. The battle has started and has been going on for 3 days (since he arrived 3 days early and has now spent 6 days, 3 + 3 = 6). First Time Jump: Alex jumps 50 years forward and stays for 20 days. This adds 20 days to the 6 days he's already spent in the past (6 + 20 = 26). Return to the Battle: When Alex returns, he arrives back on the same day he left (as per time travel logic). The battle has been going on for 3 days now. Waiting for the Battle to End: The battle lasts 10 days. Since he's already witnessed 3 days of it, he needs to wait for 7 more days. Conclusion: Alex spends a total of 3 (initial wait) + 3 (before the first jump) + 20 (50 years ago) + 7 (after returning) = 33 days in the past before he sees the end of the battle. Think step by step but only show the final answer to the statement. user: {{statement}} #5
+
+#1 A few example problem statements
+
+#2 The solution to the problem statement, output as a sequence of reasoning steps
+
+#3 A few example problem statements
+
+#4 The solution to the problem statement, output as a sequence of reasoning steps
+
+#5 The problem statement the LLM is directed to solve
+
+
+
+
+
+You may note that the solution to figure 10.3 is also provided as an example in listing 10.8. It’s also helpful to go back and review listing 10.7 for the reply from the LLM about the problem. From this, you can see the reasoning steps the LLM applied to get its final answer.
+
+
+
+Now, we can look at the prompt that evaluates how well the solution solved the problem. Open evaluate_answer.jinja2, shown in listing 10.9, to review the prompt used. The prompt is simple, uses zero-shot prompting, and allows the LLM to generalize how it should score the expected and predicted. We could provide examples and scores, thus changing this to an example of a few-shot classification.
+
+
+
+
+
+Listing 10.9 evaluate_answer.jinja2
+
+
+system: Please confirm that expected and predicted results are the same for the given problem. #1 Return a score from 0 to 1 where 1 is a perfect match and 0 is no match. Please just return the score and not the explanation. #2 user: Problem: {{problem}} #3 Expected result: {{expected}} #4 Predicted result: {{predicted}} #5
+
+#1 The rules for evaluating the solution
+
+#2 Direction to only return the score and nothing else
+
+#3 The initial problem statement
+
+#4 The expected or grounded answer
+
+#5 The output from the CoT prompt earlier
+
+
+
+
+
+Looking at the LLM output shown earlier in listing 10.7, you can see why the evaluation step may get confusing. Perhaps a fix to this could be suggesting to the LLM to provide the final answer in a single statement. In the next section, we move on to another example of prompt reasoning.
+
+
+
+
+

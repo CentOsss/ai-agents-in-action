@@ -1,0 +1,156 @@
+11.6 Exercises
+
+
+
+
+Use the following exercises to improve your knowledge of the material:
+
+
+
+Exercise 1—Implement a Simple Planning Agent (Beginner)
+
+
+
+Objective —Learn how to implement a basic planning agent using a prompt to generate a sequence of actions.
+
+
+
+Tasks:
+
+
+
+Create an agent that receives a goal, breaks it into steps, and executes those steps sequentially.
+
+Define a simple goal, such as retrieving information from Wikipedia and saving it to a file.
+
+Implement the agent using a basic planner prompt (refer to the planner example in section 11.3).
+
+Run the agent, and evaluate how well it plans and executes each step.
+
+
+
+
+
+Exercise 2—Test Feedback Integration in a Planning Agent (Intermediate)
+
+
+
+Objective —Understand how feedback mechanisms can improve the performance of an agentic system.
+
+
+
+Tasks:
+
+
+
+Modify the agent from exercise 1 to include a feedback loop after each task.
+
+Use the feedback to adjust or correct the next task in the sequence.
+
+Test the agent by giving it a more complex task, such as gathering data from multiple sources, and observe how the feedback improves its performance.
+
+Document and compare the agent’s behavior before and after adding feedback.
+
+
+
+
+
+Exercise 3—Experiment with Parallel and Sequential Planning (Intermediate)
+
+
+
+Objective—Learn the difference between parallel and sequential actions and how they affect agent behavior.
+
+
+
+Tasks:
+
+
+
+Set up two agents using Nexus: one that executes tasks in parallel and another that performs tasks sequentially.
+
+Define a multistep goal where some actions depend on the results of previous actions (sequential), and some can be done simultaneously (parallel).
+
+Compare the performance and output of both agents, noting any errors or inefficiencies in parallel execution when sequential steps are required.
+
+
+
+
+
+Exercise 4—Build and Integrate a Custom Planner into Nexus (Advanced)
+
+
+
+Objective —Learn how to build a custom planner and integrate it into an agent platform.
+
+
+
+Tasks:
+
+
+
+Write a custom planner using prompt engineering strategies from section 11.3, ensuring it supports sequential task execution.
+
+Integrate this planner into Nexus, and create an agent that uses it.
+
+Test the planner with a complex goal that involves multiple steps and tools (e.g., data retrieval, processing, and saving).
+
+Evaluate how the custom planner performs compared to built-in planners in Nexus or other platforms.
+
+
+
+
+
+Exercise 5—Implement Error Handling and Feedback in Sequential Planning (Advanced)
+
+
+
+Objective —Learn how to implement error handling and feedback to refine sequential planning in an agentic system.
+
+
+
+Tasks:
+
+
+
+Using a sequential planner, set up an agent to perform a goal that may encounter common errors (e.g., a failed API call, missing data, or invalid input).
+
+Implement error-handling mechanisms in the planner to recognize and respond to these errors.
+
+Add feedback loops to adjust the plan or retry actions based on the error encountered.
+
+Test the system by deliberately causing errors during execution, and observe how the agent recovers or adjusts its plan.
+
+
+
+
+
+Summary
+
+
+
+
+Planning is central to agents and assistants, allowing them to take a goal, break it into steps, and execute them. Without planning, agents are reduced to simple chatbot-like interactions.
+
+Agents must differentiate between parallel and sequential actions. Many LLMs can handle parallel actions, but only advanced models support sequential planning, critical for complex task completion.
+
+Feedback is crucial in guiding agents to correct their course and improve performance over time. This chapter demonstrates how feedback mechanisms can be integrated with agents to refine their decision-making processes.
+
+Platforms such as OpenAI Assistants and Anthropic’s Claude support internal planning and can execute complex, multistep tasks. Agents using these platforms can use sequential action planning for sophisticated workflows.
+
+Properly selecting and limiting agent actions is vital to avoid confusion and unintended behavior. Too many actions may overwhelm an agent, while unnecessary tools may be misused.
+
+Nexus allows for creating and managing agents through a flexible interface, where users can implement custom planners, set goals, and assign tools. The chapter includes practical examples using Nexus to highlight the difference between a raw LLM and a planner-enhanced agent.
+
+Writing custom planners is straightforward, using prompt engineering strategies. Tools such as LangChain and Semantic Kernel offer a variety of planners that can be adapted or extended to fit specific agentic needs.
+
+Models such as OpenAI Strawberry integrate reasoning, planning, evaluation, and feedback directly into the LLM, offering more accurate problem-solving capabilities.
+
+Evaluation helps determine how well an agentic system is performing and can be implemented internally or externally, depending on the use case.
+
+As LLMs evolve, reasoning, planning, and feedback mechanisms may become deeply integrated into models, paving the way for more autonomous and intelligent agent systems.
+
+
+
+
+

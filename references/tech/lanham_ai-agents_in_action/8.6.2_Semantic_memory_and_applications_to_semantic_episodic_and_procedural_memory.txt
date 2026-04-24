@@ -1,0 +1,56 @@
+8.6.2 Semantic memory and applications to semantic, episodic, and procedural memory
+
+
+
+
+Psychologists categorize memory into multiple forms, depending on what information is remembered. Semantic, episodic, and procedural memory all represent different types of information. Episodic memories are about events, procedural memories are about the process or steps, and semantic represents the meaning and could include feelings or emotions. Other forms of memory (geospatial is another), aren’t described here but could be.
+
+
+
+Because these memories rely on an additional level of categorization, they also rely on another level of semantic categorization. Some platforms, such as Semantic Kernel (SK), refer to this as semantic memory. This can be confusing because semantic categorization is also applied to extract episodic and procedural memories.
+
+
+
+Figure 8.17 shows the semantic memory categorization process, also sometimes called semantic memory. The difference between semantic memory and regular memory is the additional step of processing the input semantically and extracting relevant questions that can be used to query the memory-relevant vector database.
+
+
+
+
+
+Figure 8.17 How semantic memory augmentation works
+
+
+
+
+The benefit of using semantic augmentation is the increased ability to extract more relevant memories. We can see this in operation by jumping back into Nexus and creating a new semantic memory store.
+
+
+
+Figure 8.18 shows how to configure a new memory store using semantic memory. As of yet, you can’t configure the specific function prompts for memory, augmentation, and summarization. However, it can be useful to read through each of the function prompts to gain a sense of how they work.
+
+
+
+
+
+Figure 8.18 Configuration for changing the memory store type to semantic
+
+
+
+
+Now, if you go back and add facts and preferences, they will convert to the semantics of the relevant memory type. Figure 8.19 shows an example of memories being populated for the same set of statements into two different forms of memory. Generally, the statements entered into memory would be more specific to the form of memory.
+
+
+
+
+
+Figure 8.19 Comparing memories for the same information given two different memory types
+
+
+
+
+Memory and knowledge can significantly assist an agent with various application types. Indeed, a single memory/knowledge store could feed one or multiple agents, allowing for further specialized interpretations of both types of stores. We’ll finish out the chapter by discussing memory/knowledge compression next.
+
+
+
+
+

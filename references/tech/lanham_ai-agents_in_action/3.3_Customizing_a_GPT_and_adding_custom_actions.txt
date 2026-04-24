@@ -1,0 +1,11 @@
+3.3 Customizing a GPT and adding custom actions
+
+
+
+
+In our next exercise, we’ll demonstrate the use of custom actions, which can significantly extend the reach of your assistant. Adding custom actions to an agent requires several components, from understanding the OpenAPI specification endpoint to connecting to a service. Therefore, before we add custom actions, we’ll build another GPT in the next section to assist us.
+
+
+
+
+

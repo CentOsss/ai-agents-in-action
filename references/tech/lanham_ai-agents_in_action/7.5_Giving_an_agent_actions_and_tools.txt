@@ -1,0 +1,136 @@
+7.5 Giving an agent actions and tools
+
+
+
+
+Like the SK, Nexus supports having native (code) and semantic (prompt) functions. Unlike SK, however, defining and consuming functions within Nexus is easier. All you need to do is write functions into a Python file and place them into the nexus_ actions folder.
+
+
+
+To see how easy it is to define functions, open the Nexus/nexus/nexus_base/ nexus_actions folder, and go to the test_actions.py file. Listing 7.11 shows two function definitions. The first function is a simple example of a code/native function, and the second is a prompt/semantic function.
+
+
+
+
+
+Listing 7.11 test_actions.py (native/semantic function definitions)
+
+
+from nexus.nexus_base.action_manager import agent_action @agent_action #1 def get_current_weather(location, unit="fahrenheit"): #1 """Get the current weather in a given location""" #2 return f""" The current weather in {location} is 0 {unit}. """ #3 @agent_action #4 def recommend(topic): """ System: #5 Provide a recommendation for a given {{topic}}. Use your best judgment to provide a recommendation. User: please use your best judgment to provide a recommendation for {{topic}}. #5 """ pass #6
+
+#1 Applies the agent_action decorator to make a function an action
+
+#2 Sets a descriptive comment for the function
+
+#3 The code can be as simple or complex as needed.
+
+#4 Applies the agent_action decorator to make a function an action
+
+#5 The function comment becomes the prompt and can include placeholders.
+
+#6 Semantic functions don’t implement any code.
+
+
+
+
+
+Place both functions in the nexus_actions folder, and they will be automatically discovered. Adding the agent_action decorator allows the functions to be inspected and automatically generates the OpenAI standard tool specification. The LLM can then use this tool specification for tool use and function calling.
+
+
+
+Listing 7.12 shows the generated OpenAI tool specification for both functions, as shown previously in listing 7.11. The semantic function, which uses a prompt, also applies to the tool description. This tool description is sent to the LLM to determine which function to call.
+
+
+
+
+
+Listing 7.12 test_actions: OpenAI-generated tool specifications
+
+
+{ "type": "function", "function": { "name": "get_current_weather", "description": "Get the current weather in a given location", #1 "parameters": { "type": "object", "properties": { #2 "location": { "type": "string", "description": "location" }, "unit": { "type": "string", "enum": [ "celsius", "fahrenheit" ] } }, "required": [ "location" ] } } } { "type": "function", "function": { "name": "recommend", "description": """ System: Provide a recommendation for a given {{topic}}. Use your best judgment to provide a recommendation. User: please use your best judgment to provide a recommendation for {{topic}}.""", #3 "parameters": { "type": "object", "properties": { #4 "topic": { "type": "string", "description": "topic" } }, "required": [ "topic" ] } } }
+
+#1 The function comment becomes the function tool description.
+
+#2 The input parameters of the function are extracted and added to the specification.
+
+#3 The function comment becomes the function tool description.
+
+#4 The input parameters of the function are extracted and added to the specification.
+
+
+
+
+
+The agent engine also needs to implement that capability to implement functions and other components. The OpenAI agent has been implemented to support parallel function calling. Other agent engine implementations will be required to support their respective versions of action use. Fortunately, the definition of the OpenAI tool is becoming the standard, and many platforms adhere to this standard.
+
+
+
+Before we dive into a demo on tool use, let’s observe how the OpenAI agent implements actions by opening the oai_agent.py file in VS Code. The following listing shows the top of the agent’s get_response_stream function and its implementation of function calling.
+
+
+
+
+
+Listing 7.13 Caling the API in get_response_stream
+
+
+def get_response_stream(self, user_input, thread_id=None): self.last_message = "" self.messages += [{"role": "user", "content": user_input}] if self.tools and len(self.tools) > 0: #1 response = self.client.chat.completions.create( model=self.model, messages=self.messages, tools=self.tools, #2 tool_choice="auto", #3 ) else: #4 response = self.client.chat.completions.create( model=self.model, messages=self.messages, ) response_message = response.choices[0].message tool_calls = response_message.tool_calls #5
+
+#1 Detects whether the agent has any available tools turned on
+
+#2 Sets the tools in the chat completions call
+
+#3 Ensures that the LLM knows it can choose any tool
+
+#4 If no tools, calls the LLM the standard way
+
+#5 Detects whether there were any tools used by the LLM
+
+
+
+
+
+Executing the functions follows, as shown in listing 7.14. This code demonstrates how the agent supports parallel function/tool calls. These calls are parallel because the agent executes each one together and in no order. In chapter 11, we’ll look at planners that allow actions to be called in ordered sequences.
+
+
+
+
+
+Listing 7.14 oai_agent.py (get_response_stream: execute tool calls)
+
+
+if tool_calls: #1 available_functions = { action["name"]: action["pointer"] for action in self.actions } #2 self.messages.append( response_message ) for tool_call in tool_calls: #3 function_name = tool_call.function.name function_to_call = available_functions[function_name] function_args = json.loads(tool_call.function.arguments) function_response = function_to_call( **function_args, _caller_agent=self ) self.messages.append( { "tool_call_id": tool_call.id, "role": "tool", "name": function_name, "content": str(function_response), } ) second_response = self.client.chat.completions.create( model=self.model, messages=self.messages, ) #4 response_message = second_response.choices[0].message
+
+#1 Proceeds if tool calls are detected in the LLM response
+
+#2 Loads pointers to the actual function implementations for code execution
+
+#3 Loops through all the calls the LLM wants to call; there can be several.
+
+#4 Performs a second LLM call with the results of the tool calls
+
+
+
+
+
+To demo this, start up Nexus in the debugger by pressing F5. Then, select the two test actions—recommend and get_current_weather—and the terse persona/profile Olly. Figure 7.9 shows the result of entering a query and the agent responding by using both tools in its response.
+
+
+
+
+
+Figure 7.9 How the agent can use tools in parallel and respond with a single response
+
+
+
+
+If you need to review how these agent actions work in more detail, refer to chapter 5. The underlying code is more complex and out of the scope of review here. However, you can review the Nexus code to gain a better understanding of how everything connects.
+
+
+
+Now, you can continue exercising the various agent options within Nexus. Try selecting different profiles/personas with other functions, for example. In the next chapter, we unveil how agents can consume external memory and knowledge using patterns such as Retrieval Augmented Generation (RAG).
+
+
+
+
+

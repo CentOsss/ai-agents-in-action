@@ -1,0 +1,69 @@
+8.4.1 Splitting and loading documents with LangChain
+
+
+
+
+Retrieval mechanisms augment the context of a given prompt with specific information relevant to the request. For example, you may request detailed information about a local document. With earlier language models, submitting the whole document as part of the prompt wasn’t an option due to token limitations.
+
+
+
+Today, we could submit a whole document for many commercial LLMs, such as GPT-4 Turbo, as part of a prompt request. However, the results may not be better and would likely cost more because of the increased number of tokens. Therefore, a better option is to split the document and use the relevant parts to request context—precisely what RAG and memory do.
+
+
+
+Splitting a document is essential in breaking down content into semantically and specifically relevant sections. Figure 8.8 shows how to break down an HTML document containing the Mother Goose nursery rhymes. Often, splitting a document into contextual semantic chunks requires careful consideration.
+
+
+
+
+
+Figure 8.8 How the document would ideally be split into chunks for better semantic and contextual meaning
+
+
+
+
+Ideally, when we split documents into chunks, they are broken down by relevance and semantic meaning. While an LLM or agent could help us with this, we’ll look at current toolkit options within LangChain for splitting documents. Later in this chapter, we’ll look at a semantic function that can assist us in semantically dividing content for embeddings.
+
+
+
+For the next exercise, open langchain_load_splitting.py in VS Code, as shown in listing 8.6. This code shows where we left off from listing 8.5, in the previous section. Instead of using the sample documents, we’re loading the Mother Goose nursery rhymes this time.
+
+
+
+
+
+Listing 8.6 langchain_load_splitting.py (sections and output)
+
+
+From langchain_community.document_loaders ↪ import UnstructuredHTMLLoader #1 from langchain.text_splitter import RecursiveCharacterTextSplitter #previous code loader = UnstructuredHTMLLoader( "sample_documents/mother_goose.html") #2 data = loader.load #3 text_splitter = RecursiveCharacterTextSplitter( chunk_size=100, chunk_overlap=25, #4 length_function=len, add_start_index=True, ) documents = text_splitter.split_documents(data) documents = [doc.page_content ↪ for doc in documents] [100:350] #5 embeddings = [get_embedding(doc) for doc in documents] #6 ids = [f"id{i}" for i in range(len(documents))] ###Output Enter a search query (or 'exit' to stop): who kissed the girls and made them cry? How many top matches do you want to see? 3 Top Matched Documents: ID:id233 TEXT: And chid her daughter, And kissed my sister instead of me. SCORE: 0.4…
+
+#1 New LangChain imports
+
+#2 Loads the document as HTML
+
+#3 Loads the document
+
+#4 Splits the document into blocks of text 100 characters long with a 25-character overlap
+
+#5 Embeds only 250 chunks, which is cheaper and faster
+
+#6 Returns the embedding for each document
+
+
+
+
+
+Note in listing 8.6 that the HTML document gets split into 100-character chunks with a 25-character overlap. The overlap allows the document’s parts not to cut off specific thoughts. We selected the splitter for this exercise because it was easy to use, set up, and understand.
+
+
+
+Go ahead and run the langchain_load_splitting.py file in VS Code (F5). Enter a query, and see what results you get. The output in listing 8.6 shows good results given a specific example. Remember that we only embedded 250 document chunks to reduce costs and keep the exercise short. Of course, you can always try to embed the entire document or use a minor input document example.
+
+
+
+Perhaps the most critical element to building proper retrieval is the process of document splitting. You can use numerous methods to split a document, including multiple concurrent methods. More than one method passes and splits the document for numerous embedding views of the same document. In the next section, we’ll examine a more general technique for splitting documents, using tokens and tokenization.
+
+
+
+
+

@@ -1,0 +1,57 @@
+6.4 Building conversational autonomous multi-agents
+
+
+
+
+The conversational aspect of multi-agent systems can drive mechanisms such as feedback, reasoning, and emergent behaviors. Driving agents with ABTs that silo assistants/agents can be effective for controlling structured processes, as we saw in the YouTube posting example. However, we also don’t want to miss out on the benefits of conversation across agents/assistants.
+
+
+
+Fortunately, the Playground provides methods to silo or join assistants to conversation threads. Figure 6.11 shows how assistants can be siloed or mixed in various combinations to threads. Combining silos with conversation provides the best of both patterns.
+
+
+
+
+
+Figure 6.11 The various layouts of siloed and conversational assistants
+
+
+
+
+We’ll examine a simple but practical exercise to demonstrate the effectiveness of the conversational pattern. For the next exercise, we’ll employ two assistants in an ABT that converse over the same thread. The next listing shows the tree’s construction in code with the respective assistants.
+
+
+
+
+
+Listing 6.10 agentic_conversation_btree.py
+
+
+root = py_trees.composites.Sequence("RootSequence", memory=True) bug_file = """ # code not shown """ thread = api.create_thread() #1 debug_code = create_assistant_action_on_thread( #2 thread=thread, action_name="Debug code", assistant_name="Python Debugger", assistant_instructions=textwrap.dedent(f""" Here is the code with bugs in it: {bug_file} Run the code to identify the bugs and fix them. Be sure to test the code to ensure it runs without errors or throws any exceptions. """), ) root.add_child(debug_code) verify = create_assistant_condition_on_thread( #3 thread=thread, condition_name="Verify", assistant_name="Python Coding Assistant", assistant_instructions=textwrap.dedent( """ Verify the solution fixes the bug and there are no more issues. Verify that no exceptions are thrown when the code is run. Reply with SUCCESS if the solution is correct, otherwise return FAILURE. If you are happy with the solution, save the code to a file called fixed_bug.py. """, ), ) root.add_child(verify) tree = py_trees.trees.BehaviourTree(root) while True: tree.tick() if root.status == py_trees.common.Status.SUCCESS: break #4 time.sleep(20)
+
+#1 Creates a message thread for the assistants to share and converse over
+
+#2 Creates the debug code action with a special assistant
+
+#3 Creates the verification condition to test if the code is fixed or not
+
+#4 The tree will continue to run until the root sequence completes with success.
+
+
+
+
+
+Three nodes comprise the tree: the root sequence, the debug code action, and the verify fix condition. Because the tree’s root is a sequence, the two assistants will continue to work one after another until they both return with success. Both assistants converse on the same thread and yet are controlled in a manner that provides constant feedback.
+
+
+
+Run the exercise by loading the file in VS Code, or execute it directly from the command line. The example code has a few minor bugs and problems that the assistants will work through to fix. After the ABT completes running successfully, you can open the assistants_output/fixed_bug.py file and verify the results are all good.
+
+
+
+We’ve now seen a couple of ABTs in action and understand the nuances of using silos or conversations. The following section will teach you some techniques for building your own ABTs.
+
+
+
+
+

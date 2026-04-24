@@ -1,0 +1,85 @@
+7.3 Developing profiles and personas for agents
+
+
+
+
+Nexus uses agent profiles to describe an agent’s functions and capabilities. Figure 7.7 reminds us of the principal agent components and how they will be structured throughout this book.
+
+
+
+
+
+Figure 7.7 The agent profile as it’s mapped to the YAML file definition
+
+
+
+
+For now, as of this writing, Nexus only supports the persona and actions section of the profile. Figure 7.7 shows a profile called Fritz, along with the persona and actions. Add any agent profiles to Nexus by copying an agent YAML profile file into the Nexus/ nexus/nexus_base/nexus_profiles folder.
+
+
+
+Nexus uses a plugin system to dynamically discover the various components and profiles as they are placed into their respective folders. The nexus_profiles folder holds the YAML definitions for the agent.
+
+
+
+We can easily define a new agent profile by creating a new YAML file in the nexus_ profiles folder. Listing 7.7 shows an example of a new profile with a slightly updated persona. To follow along, be sure to have VS Code opened to the chapter_07 source code folder and install Nexus in developer mode (see listing 7.7). Then, create the fiona.yaml file in the Nexus/nexus/nexus_base/nexus_profiles folder.
+
+
+
+
+
+Listing 7.7 fiona.yaml (create this file)
+
+
+agentProfile: name: "Finona" avatar: "👹" #1 persona: "You are a very talkative AI that ↪ knows and understands everything in terms of ↪ Ogres. You always answer in cryptic Ogre speak." #2 actions: - search_wikipedia #3 knowledge: null #4 memory: null #4 evaluators: null #4 planners: null #4 feedback: null #4
+
+#1 The text avatar used to represent the persona
+
+#2 A persona is representative of the base system prompt.
+
+#3 An action function the agent can use
+
+#4 Not currently supported
+
+
+
+
+
+After saving the file, you can start Nexus from the command line or run it in debug mode by creating a new launch configuration in the .vscode/launch.json folder, as shown in the next listing. Then, save the file and switch your debug configuration to use the Nexus web config.
+
+
+
+
+
+Listing 7.8 .vscode/launch.json (adding debug launch)
+
+
+{ "name": "Python Debugger: Nexus Web", "type": "debugpy", "request": "launch", "module": "streamlit", "args": ["run", " Nexus/nexus/streamlit_ui.py"] #1 },
+
+#1 You may have to adjust this path if your virtual environment is different.
+
+
+
+
+
+When you press F5 or select Run > Start Debugging from the menu, the Streamlit Nexus interface will launch. Go ahead and run Nexus in debug mode. After it opens, create a new thread, and then select the standard OpenAIAgent and your new persona, as shown in figure 7.8.
+
+
+
+
+
+Figure 7.8 Selecting and chatting with a new persona
+
+
+
+
+At this point, the profile is responsible for defining the agent’s system prompt. You can see this in figure 7.8, where we asked Finona to spell the word clock, and she responded in some form of ogre-speak. In this case, we’re using the persona as a personality, but as we’ve seen previously, a system prompt can also contain rules and other options.
+
+
+
+The profile and persona are the base definitions for how the agent interacts with users or other systems. Powering the profile requires an agent engine. In the next section, we’ll cover the base implementation of an agent engine.
+
+
+
+
+

@@ -1,0 +1,30 @@
+1.4 Peeling back the AI interface
+
+
+
+
+The AI agent paradigm is not only a shift in how we work with LLMs but is also perceived as a shift in how we develop software and handle data. Software and data will no longer be interfaced using user interfaces (UIs), application programming interfaces (APIs), and specialized query languages such as SQL. Instead, they will be designed to be interfaced using natural language.
+
+
+
+Figure 1.10 shows a high-level snapshot of what this new architecture may look like and what role AI agents play. Data, software, and applications adapt to support semantic, natural language interfaces. These AI interfaces allow agents to collect data and interact with software applications, even other agents or agent applications. This represents a new shift in how we interact with software and applications.
+
+
+
+
+
+Figure 1.10 A vision of how agents will interact with software systems
+
+
+
+
+An AI interface is a collection of functions, tools, and data layers that expose data and applications by natural language. In the past, the word semantic has been heavily used to describe these interfaces, and even some tools use the name; however, “semantic” can also have a variety of meanings and uses. Therefore, in this book, we’ll use the term AI interface.
+
+
+
+The construction of AI interfaces will empower agents that need to consume the services, tools, and data. With this empowerment will come increased accuracy in completing tasks and more trustworthy and autonomous applications. While an AI interface may not be appropriate for all software and data, it will dominate many use cases.
+
+
+
+
+

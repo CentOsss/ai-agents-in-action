@@ -1,0 +1,25 @@
+B.3 Installing VS Code
+
+
+
+
+Installing VS Code is relatively straightforward and can be done in just a few steps:
+
+
+
+Go to https://code.visualstudio.com.
+
+Download a stable release of VS Code for your operating system.
+
+After the release is downloaded, follow the installation instructions for your operating system.
+
+Launch VS Code for your operating system, and make sure no warnings or errors appear. If you encounter problems, try to restart your computer and/or reinstall.
+
+
+
+With VS Code running, we can install the necessary extensions. We’ll cover those extensions next.
+
+
+
+
+

@@ -1,0 +1,11 @@
+7.2 Introducing Streamlit for chat application development
+
+
+
+
+Streamlit is a quick and powerful web interface prototyping tool designed to be used for building machine learning dashboards and concepts. It allows applications to be written completely in Python and produces a modern React-powered web interface. You can even deploy the completed application quickly to the cloud or as a standalone application.
+
+
+
+
+

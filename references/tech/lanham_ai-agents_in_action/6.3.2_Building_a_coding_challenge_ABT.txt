@@ -1,0 +1,125 @@
+6.3.2 Building a coding challenge ABT
+
+
+
+
+Coding challenges provide a good baseline for testing and evaluating agent and assistant systems. Challenges and benchmarks can quantify how well an agent or agentic system operates. We already applied coding challenges to multi-platform agents in chapter 4 with AutoGen and CrewAI.
+
+
+
+For this coding challenge, we’re going a little further and looking at Python coding challenges from the Edabit site (https://edabit.com), which range in complexity from beginner to expert. We’ll stick with the expert code challenges because GPT-4o and other models are excellent coders. Look at the challenge in the next listing, and think about how you would solve it.
+
+
+
+
+
+Listing 6.5 Edabit challenge: Plant the Grass
+
+
+Plant the Grass by AniXDownLoe You will be given a matrix representing a field g and two numbers x, y coordinate. There are three types of possible characters in the matrix: x representing a rock. o representing a dirt space. + representing a grassed space. You have to simulate grass growing from the position (x, y). Grass can grow in all four directions (up, left, right, down). Grass can only grow on dirt spaces and can't go past rocks. Return the simulated matrix. Examples simulate_grass([ "xxxxxxx", "xooooox", "xxxxoox" "xoooxxx" "xxxxxxx" ], 1, 1) → [ "xxxxxxx", "x+++++x", "xxxx++x" "xoooxxx" "xxxxxxx" ] Notes There will always be rocks on the perimeter
+
+
+
+
+
+You can use any challenge or coding exercise you want, but here are a few things to consider:
+
+
+
+The challenge should be testable with quantifiable assertions (pass/fail).
+
+Avoid opening windows when asking for a game, building a website, or using another interface. At some point, testing full interfaces will be possible, but for now, it’s just text output.
+
+Avoid long-running challenges, at least initially. Start by keeping the challenges concise and short lived.
+
+
+
+Along with any challenge, you’ll also want a set of tests or assertions to confirm the solution works. On Edabit, a challenge typically provides a comprehensive set of tests. The following listing shows the additional tests provided with the challenge.
+
+
+
+
+
+Listing 6.6 Plant the Grass tests
+
+
+Test.assert_equals(simulate_grass( ["xxxxxxx","xooooox","xxxxoox","xoooxxx","xxxxxxx"], 1, 1), ["xxxxxxx","x+++++x","xxxx++x","xoooxxx","xxxxxxx"]) Test.assert_equals(simulate_grass( ["xxxxxxx","xoxooox","xxoooox","xooxxxx", "xoxooox","xoxooox","xxxxxxx"], 2, 3), ["xxxxxxx","xox+++x","xx++++x","x++xxxx", "x+xooox","x+xooox","xxxxxxx"]) Test.assert_equals(simulate_grass( ["xxxxxx","xoxoox","xxooox","xoooox","xoooox","xxxxxx"], 1, 1), ["xxxxxx","x+xoox","xxooox","xoooox","xoooox","xxxxxx"]) Test.assert_equals(simulate_grass( ["xxxxx","xooox","xooox","xooox","xxxxx"], 1, 1), ["xxxxx","x+++x","x+++x","x+++x","xxxxx"]) Test.assert_equals(simulate_grass( ["xxxxxx","xxxxox","xxooox","xoooxx","xooxxx", "xooxxx","xxooox","xxxoxx","xxxxxx"], 4, 1), ["xxxxxx","xxxx+x","xx+++x","x+++xx","x++xxx", "x++xxx","xx+++x","xxx+xx","xxxxxx"]) Test.assert_equals(simulate_grass( ["xxxxxxxxxxx", "xoxooooooox", "xoxoxxxxxox", "xoxoxoooxox", "xoxoxoxoxox", "xoxoxoxoxox", "xoxoxxxoxox", "xoxoooooxox", "xoxxxxxxxox", "xooooooooox", "xxxxxxxxxxx"], 1, 1), ["xxxxxxxxxxx", "x+x+++++++x", "x+x+xxxxx+x", "x+x+x+++x+x", "x+x+x+x+x+x", "x+x+x+x+x+x", "x+x+xxx+x+x", "x+x+++++x+x", "x+xxxxxxx+x", "x+++++++++x", "xxxxxxxxxxx"])
+
+
+
+
+
+The tests will be run as part of a two-step verification to confirm that the solution works. We’ll also use the tests and challenges as written, which will further test the AI.
+
+
+
+Figure 6.8 shows the makeup of a straightforward behavior tree that will be used to solve various programming challenges. You’ll notice that this ABT uses a different assistant for the actions and conditions. For the first step, the Python coding assistant (called the Hacker) generates a solution that is then reviewed by the coding challenge Judge (called the Judge), which produces a refined solution that is verified by a different Python coding assistant (called the Verifier).
+
+
+
+
+
+Figure 6.8 The ABT for the coding challenge
+
+
+
+
+Figure 6.8 also shows how each agent converses on which thread. Assistants use message threads, similar to a Slack or Discord channel, where all assistants conversing on a thread will see all messages. For this ABT, we keep one main conversation thread for the Hacker and Judge to share messages, while the Verifier works on a separate message thread. Keeping the Verifier on its own thread isolates it from the noise of the solution-solving efforts.
+
+
+
+Now, building the ABT in code is a matter of combining the py_trees package and the Playground API functions. Listing 6.7 shows an excerpt of code that creates each of the action/condition nodes with the assistants and gives them the instructions.
+
+
+
+
+
+Listing 6.7 agentic_btree_coding_challenge.py
+
+
+root = py_trees.composites.Sequence("RootSequence", memory=True) thread = api.create_thread() #1 challenge = textwrap.dedent(""" #2 """) judge_test_cases = textwrap.dedent(""" #3 """) hacker = create_assistant_action_on_thread( thread=thread, #4 action_name="Hacker", assistant_name="Python Coding Assistant", assistant_instructions=textwrap.dedent(f""" Challenge goal: {challenge} #5 Solve the challenge and output the final solution to a file called solution.py """), ) root.add_child(hacker) judge = create_assistant_action_on_thread( thread=thread, #6 action_name="Judge solution", assistant_name="Coding Challenge Judge", assistant_instructions=textwrap.dedent( f""" Challenge goal: {challenge} #7 Load the solution from the file solution.py. Then confirm is a solution to the challenge and test it with the following test cases: {judge_test_cases} #8 Run the code for the solution and confirm it passes all the test cases. If the solution passes all tests save the solution to a file called judged_solution.py """, ), ) root.add_child(judge) # verifier operates on a different thread, essentially in closed room verifier = create_assistant_condition( #9 condition_name="Verify solution", assistant_name="Python Coding Assistant", assistant_instructions=textwrap.dedent( f""" Challenge goal: {challenge} #10 Load the file called judged_solution.py and verify that the solution is correct by running the code and confirm it passes all the test cases: {judge_test_cases} #11 If the solution is correct, return only the single word SUCCESS, otherwise return the single word FAILURE. """, ), ) root.add_child(verifier) tree = py_trees.trees.BehaviourTree(root) while True: tree.tick() time.sleep(20) #12 if root.status == py_trees.common.Status.SUCCESS: #13 break ### Required assistants – ### Python Coding Assistant and Coding Challenge Judge ### install these assistants through the Playground
+
+#1 Creates a message thread that will be shared by the Hacker and Judge
+
+#2 The challenge as shown in the example listing 6.5
+
+#3 The tests as shown in the example listing 6.6
+
+#4 Creates a message thread that will be shared by the Hacker and Judge
+
+#5 The challenge as shown in the example listing 6.5
+
+#6 Creates a message thread that will be shared by the Hacker and Judge
+
+#7 The challenge as shown in the example listing 6.5
+
+#8 The tests as shown in the example listing 6.6
+
+#9 Call creates a new message thread
+
+#10 The challenge as shown in the example listing 6.5
+
+#11 The tests as shown in the example listing 6.6
+
+#12 The sleep time can be adjusted up or down as needed and can be used to throttle the messages sent to an LLM.
+
+#13 The process will continue until the verification succeeds.
+
+
+
+
+
+Run the ABT by loading the file in VS Code or using the command line. Follow the output in the terminal, and watch how the assistants work through each step in the tree.
+
+
+
+If the solution fails to be verified at the condition node, the process will continue per the tree. Even with this simple solution, you could quickly create numerous variations. You could extend the tree with more nodes/steps and subtrees. Perhaps you want a team of Hackers to break down and analyze the challenge, for example.
+
+
+
+This example’s work is done mainly with the Playground code, using the helper functions create_assistant_condition and create_assistant_action_on_thread. This code uses a couple of classes to integrate the py_trees behavior tree code and the OpenAI Assistants code wrapped in the Playground. Review the code within the project if you want to understand the lower-level details.
+
+
+
+
+

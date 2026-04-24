@@ -1,0 +1,46 @@
+1.5 Navigating the agent landscape
+
+
+
+
+GPT agents represent an entire shift in how consumers and developers approach everything, from finding information to building software and accessing data. Almost daily, a new agent framework, component, or interface pops up on GitHub or in a research paper. This can be overwhelming and intimidating to the new user trying to grasp what agent systems are and how to use them.
+
+
+
+
+
+Summary
+
+
+
+
+An agent is an entity that acts or exerts power, produces an effect, or serves as a means for achieving a result. An agent automates interaction with a large language model (LLM) in AI.
+
+An assistant is synonymous with an agent. Both terms encompass tools such as OpenAI’s GPT Assistants.
+
+Autonomous agents can make independent decisions, and their distinction from non-autonomous agents is crucial.
+
+The four main types of LLM interactions include direct user interaction, agent/ assistant proxy, agent/assistant, and autonomous agent.
+
+Multi-agent systems involve agent profiles working together, often controlled by a proxy, to accomplish complex tasks.
+
+The main components of an agent include the profile/persona, actions, knowledge/memory, reasoning/evaluation, and planning/feedback.
+
+Agent profiles and personas guide an agent’s tasks, responses, and other nuances, often including background and demographics.
+
+Actions and tools for agents can be manually generated, recalled from memory, or follow predefined plans.
+
+Agents use knowledge and memory structures to optimize context and minimize token usage via various formats, from documents to embeddings.
+
+Reasoning and evaluation systems enable agents to think through problems and assess solutions using prompting patterns such as zero-shot, one-shot, and few-shot.
+
+Planning/feedback components organize tasks to achieve goals using single-path or multipath reasoning and integrating environmental and human feedback.
+
+The rise of AI agents has introduced a new software development paradigm, shifting from traditional to natural language–based AI interfaces.
+
+Understanding the progression and interaction of these tools helps develop agent systems, whether single, multiple, or autonomous.
+
+
+
+
+

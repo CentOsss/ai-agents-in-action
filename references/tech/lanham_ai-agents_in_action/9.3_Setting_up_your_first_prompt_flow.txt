@@ -1,0 +1,15 @@
+9.3 Setting up your first prompt flow
+
+
+
+
+Prompt flow is a tool developed by Microsoft within its Azure Machine Learning Studio platform. The tool was later released as an open source project on GitHub, where it has attracted more attention and use. While initially intended as an application platform, it has since shown its strength in developing and evaluating prompts/ profiles.
+
+
+
+Because prompt flow was initially developed to run on Azure as a service, it features a robust core architecture. The tool supports multi-threaded batch processing, which makes it ideal for evaluating prompts at scale. The following section will examine the basics of starting with prompt flow.
+
+
+
+
+

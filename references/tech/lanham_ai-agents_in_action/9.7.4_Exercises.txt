@@ -1,0 +1,154 @@
+9.7.4 Exercises
+
+
+
+
+Use the following exercises to improve your knowledge of the material:
+
+
+
+Exercise 1 —Create a New Prompt Variant for Recommender Flow (Intermediate)
+
+
+
+Objective —Improve the recommendation results by creating and testing a new prompt variant in prompt flow.
+
+
+
+Tasks:
+
+
+
+Create a new prompt variant for the recommender flow in prompt flow.
+
+Run the flow in batch mode.
+
+Evaluate the results to determine if they are better or worse compared to the original prompt.
+
+
+
+
+
+Exercise 2 —Add a Custom Field to the Rubric and Evaluate (Intermediate)
+
+
+
+Objective —Enhance the evaluation criteria by incorporating a custom field into the rubric and updating the evaluation flow.
+
+
+
+Tasks:
+
+
+
+Add the custom field as a new criterion to the rubric.
+
+Update the evaluation flow to score the new criterion.
+
+Evaluate the results, and analyze the effect of the new criterion on the evaluation.
+
+
+
+
+
+Exercise 3 —Develop a New Use Case and Evaluation Rubric (Advanced)
+
+
+
+Objective —Expand the application of prompt engineering by developing a new use case and creating an evaluation rubric.
+
+
+
+Tasks:
+
+
+
+Develop a new use case aside from the recommendation.
+
+Build the prompt for the new use case.
+
+Create a rubric for evaluating the new prompt.
+
+Update or alter the evaluation flow to aggregate and compare the results of the new use case with existing ones.
+
+
+
+
+
+Exercise 4 —Evaluate Other LLMs Using LM Studio (Intermediate)
+
+
+
+Objective —Assess the performance of different open source LLMs by hosting a local server with LM Studio.
+
+
+
+Tasks:
+
+
+
+Use LM Studio to host a local server for evaluating LLMs.
+
+Evaluate other open source LLMs.
+
+Consult chapter 2 if assistance is needed for setting up the server and performing the evaluations.
+
+
+
+
+
+Exercise 5 —Build and Evaluate Prompts Using Prompt Flow (Intermediate)
+
+
+
+Objective —Apply prompt engineering strategies to build and evaluate new prompts or profiles using prompt flow.
+
+
+
+Tasks:
+
+
+
+Build new prompts or profiles for evaluation using prompt flow.
+
+Apply the Write Clear Instructions prompt engineering strategy from chapter 2.
+
+Evaluate the prompts and profiles using prompt flow.
+
+Refer to chapter 2 for tactics and implementation details if a refresher is needed.
+
+
+
+
+
+Summary
+
+
+
+
+An agent profile consists of several other component prompts that can drive functions such as actions/tools, knowledge, memory, evaluation, reasoning, feedback, and planning.
+
+Prompt flow can be used to evaluate an agent’s component prompts.
+
+Systemic prompt engineering is an iterative process evaluating a prompt and agent profile.
+
+The Test Changes Systematically strategy describes iterating and evaluating prompts, and system prompt engineering implements this strategy.
+
+Agent profiles and prompt engineering have many similarities. We define an agent profile as the combination of prompt engineering elements that guide and help an agent through its task.
+
+Prompt flow is an open source tool from Microsoft that provides several features for developing and evaluating profiles and prompts.
+
+An LLM connection in prompt flow supports additional parameters, including temperature, stop token, max tokens, and other advanced parameters.
+
+LLM blocks support prompt and profile variants, which allow for evaluating changes to the prompt/profile or other connection parameters.
+
+A rubric applied to an LLM prompt is the criteria and standards a prompt/profile must fulfill to be grounded. Grounding is the scoring and evaluation of a rubric.
+
+Prompt flow supports running multiple variations as single runs or batch runs.
+
+In prompt flow, an evaluation flow is run after a generative flow to score and aggregate the results. The Visualize Runs option can compare the aggregated criteria from scoring the rubric across multiple runs.
+
+
+
+
+

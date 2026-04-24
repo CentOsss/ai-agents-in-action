@@ -1,0 +1,60 @@
+7.1.2 Developing Nexus
+
+
+
+
+While working through the exercises of this book, you’ll want to set up Nexus in development mode. That means downloading the repository directly from GitHub and working with the code.
+
+
+
+Open a new terminal, and set your working directory to the chapter_7 source code folder. Then, set up a new Python virtual environment (version 3.10) and enter the commands shown in listing 7.2. Again, refer to appendix B if you need assistance with any previous setup.
+
+
+
+
+
+Listing 7.2 Installing Nexus for development
+
+
+git clone https://github.com/cxbxmxcx/Nexus.git #1 pip install -e Nexus #2 #set your OpenAI API Key (.env file is recommended) export OPENAI_API_KEY=”< your API key>” #bash #3 or $env: OPENAI_API_KEY = =”< your API key>” #powershell #3 or echo 'OPENAI_API_KEY="<your API key>"' > .env #3 nexus run #4
+
+#1 Downloads and installs the specific branch from the repository
+
+#2 Installs the downloaded repository as an editable package
+
+#3 Sets your OpenAI key as an environment variable or adds it to an .env file
+
+#4 Starts the application
+
+
+
+
+
+Figure 7.3 shows the Login or Create New User screen. Create a new user, and the application will log you in. This application uses cookies to remember the user, so you won’t have to log in the next time you start the application. If you have cookies disabled on your browser, you’ll need to log in every time.
+
+
+
+
+
+Figure 7.3 The Login or Create New User page
+
+
+
+
+Go to the Nexus repository folder and look around. Figure 7.4 shows an architecture diagram of the application’s main elements. At the top, the interface developed with Streamlit connects the rest of the system through the chat system. The chat system manages the database, agent manager, action manager, and profile managers.
+
+
+
+
+
+Figure 7.4 A high-level architecture diagram of the main elements of the application
+
+
+
+
+This agent platform is written entirely in Python, and the web interface uses Streamlit. In the next section, we look at how to build an OpenAI LLM chat application.
+
+
+
+
+

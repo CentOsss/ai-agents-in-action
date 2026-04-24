@@ -1,0 +1,71 @@
+2 Harnessing the power of large language models
+
+
+
+
+
+This chapter covers
+
+
+Understanding the basics of LLMs
+
+Connecting to and consuming the OpenAI API
+
+Exploring and using open source LLMs with LM Studio
+
+Prompting LLMs with prompt engineering
+
+Choosing the optimal LLM for your specific needs
+
+
+
+
+
+The term large language models (LLMs) has now become a ubiquitous descriptor of a form of AI. These LLMs have been developed using generative pretrained transformers (GPTs). While other architectures also power LLMs, the GPT form is currently the most successful.
+
+
+
+LLMs and GPTs are generative models, which means they are trained to generate rather than predict or classify content. To illustrate this further, consider figure 2.1, which shows the difference between generative and predictive/classification models. Generative models create something from the input, whereas predictive and classifying models classify it.
+
+
+
+
+
+Figure 2.1 The difference between generative and predictive models
+
+
+
+
+We can further define an LLM by its constituent parts, as shown in figure 2.2. In this diagram, data represents the content used to train the model, and architecture is an attribute of the model itself, such as the number of parameters or size of the model. Models are further trained specifically to the desired use case, including chat, completions, or instruction. Finally, fine-tuning is a feature added to models that refines the input data and model training to better match a particular use case or domain.
+
+
+
+
+
+Figure 2.2 The main elements that describe an LLM
+
+
+
+
+The transformer architecture of GPTs, which is a specific architecture of LLMs, allows the models to be scaled to billions of parameters in size. This requires these large models to be trained on terabytes of documents to build a foundation. From there, these models will be successively trained using various methods for the desired use case of the model.
+
+
+
+ChatGPT, for example, is trained effectively on the public internet and then fine-tuned using several training strategies. The final fine-tuning training is completed using an advanced form called reinforcement learning with human feedback (RLHF). This produces a model use case called chat completions.
+
+
+
+Chat completions LLMs are designed to improve through iteration and refinement—in other words, chatting. These models have also been benchmarked to be the best in task completion, reasoning, and planning, which makes them ideal for building agents and assistants. Completion models are trained/designed only to provide generated content on input text, so they don’t benefit from iteration.
+
+
+
+For our journey to build powerful agents in this book, we focus on the class of LLMs called chat completions models. That, of course, doesn’t preclude you from trying other model forms for your agents. However, you may have to significantly alter the code samples provided to support other model forms.
+
+
+
+We’ll uncover more details about LLMs and GPTs later in this chapter when we look at running an open source LLM locally. In the next section, we look at how to connect to an LLM using a growing standard from OpenAI.
+
+
+
+
+

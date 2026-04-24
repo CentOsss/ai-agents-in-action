@@ -1,0 +1,96 @@
+11.4 Reviewing a stepwise planner: OpenAI Strawberry
+
+
+
+
+The release of the o1-preview model, code named Strawberry, introduced a dramatic shift in the type of LLMs becoming available for agentic systems. Strawberry was not only proclaimed to be more efficient at math, science, and general calculation tasks but also able to engage in reasoning, planning, evaluation, and feedback directly in the LLM.
+
+
+
+Consider our time travel problem from chapter 10 and shown again in figure 11.9. If you recall, this problem was difficult to solve using GPT-4 and other similar LLMs. However, with the application of reasoning and feedback, we were able to produce output that was occasionally correct.
+
+
+
+
+
+Figure 11.9 The time travel problem, revisited
+
+
+
+
+As an experiment, enter this problem into ChatGPT using the o1-preview model, as shown in listing 11.6. Sit back for a few seconds and wait for the answer. Yep, the model still gets it wrong.
+
+
+
+
+
+Listing 11.6 Time travel reasoning/planning problem
+
+
+In a sci-fi film, Alex is a time traveler who decides to go back in time to witness a famous historical battle that took place 100 years ago, which lasted for 10 days. He arrives three days before the battle starts. However, after spending six days in the past, he jumps forward in time by 50 years and stays there for 20 days. Then, he travels back to witness the end of the battle. How many days does Alex spend in the past before he sees the end of the battle?
+
+
+
+
+
+While it may be somewhat disappointing to see the model get the wrong answer, it does, however, do a far better job of breaking down the problem and demonstrating its answer. Listing 11.7 shows the sample output from posing the problem in listing 11.6 to the Strawberry model. Note, you may get a different answer because of the stochastic nature of the LLM.
+
+
+
+
+
+Listing 11.7 o1-preview response to time travel problem
+
+
+To determine how many days Alex spends in the past before witnessing the end of the battle, let's reconstruct the timeline step by step: Arrival in the Past: Alex arrives 3 days before the battle begins. He spends these 3 days waiting for the battle to start. During the Battle: The battle starts, and Alex experiences the first 3 days of it. At this point, he has spent a total of 6 days in the past (3 days before the battle and 3 days during the battle). Time Jump Forward: #1 After these 6 days, Alex jumps 50 years forward in time. He spends 20 days in this future time. Return to the Past: Alex then returns to the past to witness the end of the battle. Since the battle lasts 10 days and he left after day 3 of the battle, there are 7 days remaining in the battle. However, because he was away for 20 days, which is longer than the remaining 7 days of the battle, he must return to a point in time before the battle ends to witness its conclusion. To see the end of the battle, he returns to the past on the last day of the battle. Final Days Spent Before the Battle Ends: Upon returning, he spends 1 more day in the past to witness the battle's end. Total Days Spent in the Past Before Seeing the End: 6 days before jumping forward in time. 1 day after returning to the past. Total: 6 + 1 = 7 days. Answer: 7
+
+#1 It becomes obvious where the model is making the error.
+
+
+
+
+
+Because we know the right answer is 27, we know the LLM is wrong, but if we didn’t, we could just as easily assume that the work and reasoning were all correct. Problems like this can happen when we remove feedback in LLM interactions and agentic systems. Feedback can guide the model to correct itself.
+
+
+
+However, what if we didn’t know the correct answer was 27 (26, if you assume he doesn’t spend the day to witness the battle) and assumed the LLM or agent was correct? Well, this is a problem we can rectify with a couple of simple prompts that can engage the LLM in reasoning and planning feedback. However, these techniques are more effective with LLMs or wrappers such as the OpenAI Assistants, which provide reasoning and planning within the model.
+
+
+
+What we want to do is provide feedback to the LLM, but understanding what that feedback is will likely be difficult for us. Fortunately, we can elicit feedback directly from the LLM, provided we give the correct answer. Listing 11.8 shows how to generate constructive feedback from the LLM concerning our time travel problem.
+
+
+
+
+
+Listing 11.8 Generating feedback
+
+
+the correct answer is 27, please review what you did wrong and suggest feedback you could give yourself when trying to solve similar future problems
+
+
+
+
+
+Entering this after the model answers the question wrong will generate feedback that you can use to guide the model through prompting or as part of system instructions. Listing 11.9 shows an example of the feedback provided by o1-preview. You can then extract this feedback and augment the instructions the next time you want to tackle complex time travel problems.
+
+
+
+
+
+Listing 11.9 Generated feedback
+
+
+Feedback for Future Problems Understanding Time Frames in Time Travel: Relative Time Frames: Always consider the time periods relative to the original point of reference. In this problem, even though Alex jumps forward 50 years, he is still in the past relative to his original present time. Including All Relevant Periods: Ensure that all time periods spent in the past (or future) are included in the total calculation, even if they involve moving to different points in time. Time Continuity: Remember that while the traveler moves through time, events in other time periods continue to progress unless specified otherwise. Application: Careful Reading: Pay close attention to the details provided, such as the durations and the sequences of time jumps. Visualization: It may help to draw a timeline to visualize the sequence of events and time periods involved. Double-Checking Calculations: After solving, revisit each step to ensure all time periods are accounted for correctly.
+
+
+
+
+
+This feedback technique will consistently work on models such as o1-preview, but other models may still struggle to answer correctly, even given this feedback. Over time, as models become smarter, this technique will likely generally work on most models. However, this feedback mechanism will likely be essential even as models get progressively brighter. because language is nuanced, and not every problem we challenge LLMs with may have an obvious absolute answer. Take our example problem, for instance. This problem is an excellent example of requiring the problem solver to make assumptions and draw correlations from the question. There are still plenty of areas in science, from geology to behavioral science, where answering the same problem may yield a range of answers. Let’s look next at a few techniques for how the application of reasoning, planning, evaluation, and feedback can be applied to agentic systems.
+
+
+
+
+

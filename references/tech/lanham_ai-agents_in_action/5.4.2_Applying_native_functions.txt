@@ -1,0 +1,71 @@
+5.4.2 Applying native functions
+
+
+
+
+As stated, native functions are code that can do anything. In the following example, we’ll introduce a native function to assist the semantic function we built earlier.
+
+
+
+This native function will load a list of movies the user has previously seen, from a file. While this function introduces the concept of memory, we’ll defer that discussion until chapter 8. Consider this new native function as any code that could virtually do anything.
+
+
+
+Native functions can be created and registered using the SK extension. For this example, we’ll create a native function directly in code to make the example easier to follow.
+
+
+
+Open SK_native_functions.py in VS Code. We’ll start by looking at how the native function is defined. A native function is typically defined within a class, which simplifies managing and instantiating native functions.
+
+
+
+
+
+Listing 5.14 SK_native_functions.py (MySeenMovieDatabase)
+
+
+class MySeenMoviesDatabase: """ Description: Manages the list of users seen movies. #1 """ @kernel_function( #2 description="Loads a list of movies … user has already seen", name="LoadSeenMovies", ) def load_seen_movies(self) -> str: #3 try: with open("seen_movies.txt", 'r') as file: #4 lines = [line.strip() for line in file.readlines()] comma_separated_string = ', '.join(lines) return comma_separated_string except Exception as e: print(f"Error reading file: {e}") return None
+
+#1 Provides a description for the container class
+
+#2 Uses a decorator to provide function description and name
+
+#3 The actual function returns a list of movies in a comma-separated string.
+
+#4 Loads seen movies from the text file
+
+
+
+
+
+With the native function defined, we can see how it’s used by scrolling down in the file, as shown in the following listing.
+
+
+
+
+
+Listing 5.15 SK_native_functions (remaining code)
+
+
+plugins_directory = "plugins" recommender = kernel.import_plugin_from_prompt_directory( plugins_directory, "Recommender", ) #1 recommend = recommender["Recommend_Movies"] seen_movies_plugin = kernel.import_plugin_from_object( MySeenMoviesDatabase(), "SeenMoviesPlugin" ) #2 load_seen_movies = seen_movies_plugin["LoadSeenMovies"] #3 async def show_seen_movies(): seen_movie_list = await load_seen_movies(kernel) return seen_movie_list seen_movie_list = asyncio.run(show_seen_movies()) #4 print(seen_movie_list) async def run(): #5 result = await kernel.invoke( recommend, sk.KernelArguments( settings=execution_settings, input=seen_movie_list), ) print(result) asyncio.run(run()) #5 ###Output The Matrix, The Matrix Reloaded, The Matrix Revolutions, The Matrix Resurrections – output from print statement Based on your interest in the "The Matrix" series, it seems you enjoy science fiction films with a strong philosophical undertone and action elements. Given that you've watched all
+
+#1 Loads the semantic function as shown previously
+
+#2 Imports the skill into the kernel and registers the function as a plugin
+
+#3 Loads the native function
+
+#4 Executes the function and returns the list as a string
+
+#5 Wraps the plugin call in an asynchronous function and executes
+
+
+
+
+
+One important aspect to note is how the native function was imported into the kernel. The act of importing to the kernel registers that function as a plugin/skill. This means the function can be used as a skill from the kernel through other conversations or interactions. We’ll see how to embed a native function within a semantic function in the next section.
+
+
+
+
+

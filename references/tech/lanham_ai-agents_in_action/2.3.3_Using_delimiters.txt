@@ -1,0 +1,30 @@
+2.3.3 Using delimiters
+
+
+
+
+Delimiters are a useful way of isolating and getting the LLM to focus on some part of a message. This tactic is often combined with other tactics but can work well independently. The following listing demonstrates two examples, but there are several other ways of describing delimiters, from XML tags to using markdown.
+
+
+
+
+
+Listing 2.11 using_delimiters.jsonl
+
+
+[ { "role": "system", "content": """ Summarize the text delimited by triple quotes with a haiku. """ #1 }, { "role": "user", "content": "A gold chain is cool '''but a silver chain is better'''" } ] [ { "role": "system", "content": """ You will be provided with a pair of statements (delimited with XML tags) about the same topic. First summarize the arguments of each statement. Then indicate which of them makes a better statement and explain why. """ #2 }, { "role": "user", "content": """ <statement>gold chains are cool</statement> <statement>silver chains are better</statement> """ } ]
+
+#1 The delimiter is defined by character type and repetition.
+
+#2 The delimiter is defined by XML standards.
+
+
+
+
+
+When you run this tactic, pay attention to the parts of the text the LLM focuses on when it outputs the response. This tactic can be beneficial for describing information in a hierarchy or other relationship patterns.
+
+
+
+
+

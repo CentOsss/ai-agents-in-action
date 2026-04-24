@@ -1,0 +1,33 @@
+5 Empowering agents with actions
+
+
+
+
+
+This chapter covers
+
+
+How an agent acts outside of itself using actions
+
+Defining and using OpenAI functions
+
+The Semantic Kernel and how to use semantic functions
+
+Synergizing semantic and native functions
+
+Instantiating a GPT interface with Semantic Kernel
+
+
+
+
+
+In this chapter, we explore actions through the use of functions and how agents can use them as well. We’ll start by looking at OpenAI function calling and then quickly move on to another project from Microsoft called Semantic Kernel (SK), which we’ll use to build and manage skills and functions for agents or as agents.
+
+
+
+We’ll finish the chapter using SK to host our first agent system. This will be a complete chapter with plenty of annotated code examples.
+
+
+
+
+

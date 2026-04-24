@@ -1,0 +1,45 @@
+11.2 Understanding the sequential planning process
+
+
+
+
+In the next exercise, we’ll ask an OpenAI assistant to solve the same goal. If you have Anthropic/Claude credentials and have the engine configured, you can also try this exercise with that model.
+
+
+
+Figure 11.5 shows the difference between executing tasks sequentially (planning) and using iteration. If you’ve used GPTs, assistants, or Claude Sonnet 3.5, you’ve likely already experienced this difference. These advanced tools already incorporate planning by prompt annotations, advanced training, or combining both.
+
+
+
+
+
+Figure 11.5 The difference between iterative and planned execution
+
+
+
+
+As LLM and chat services evolve, most models will likely natively support some form of planning and tool use. However, most models, including GPT-4o, only support action/tool use today.
+
+
+
+Let’s open the GPT Assistants Playground to demonstrate sequential planning in action. If you need help, refer to the setup guide in chapter 6. We’ll use the same goal but, this time, run it against an assistant (which has built-in planning).
+
+
+
+After you launch the Playground, create a new assistant, and assign it the search_ wikipedia, get_wikipedia_page, and save_file actions. Figure 11.6 shows the results of entering the goal to the assistant. As you can see, the assistant completed all the tasks behind the scenes and responded with the user’s final requested output, achieving the goal.
+
+
+
+
+
+Figure 11.6 The assistant processing the goal and outputting the results
+
+
+
+
+To demonstrate the effectiveness of the OpenAI Assistant’s planner, we added another task, summarizing each page, to the goal. The inserted task didn’t have a function/tool, but the assistant was savvy enough to use its ability to summarize the content. You can see the output of what the assistant produced by opening the [root folder]assistants_working_folder/Wikipedia_{topic}.txt file and reviewing the contents. Now that we understand how LLMs function without planners and planning, we can move on to creating our planners in the next section.
+
+
+
+
+

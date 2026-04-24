@@ -1,0 +1,142 @@
+11.3 Building a sequential planner
+
+
+
+
+LLM tools such as LangChain and Semantic Kernel (SK) have many planners using various strategies. However, writing our planner is relatively easy, and Nexus also supports a plugin-style interface allowing you to add other planners from tools such as LangChain and SK, or your derivatives.
+
+
+
+Planners may sound complicated, but they are easily implemented through prompt engineering strategies that incorporate planning and reasoning. In chapter 10, we covered the basics of reasoning and deriving plans, and now we can put those skills to good use.
+
+
+
+Listing 11.3 shows a sequential planner derived from the SK, which is extended to incorporate iteration. Prompt annotation planners like those shown in the listing can be adapted to fit specific needs or be more general like those shown. This planner uses JSON, but planners could use any format an LLM understands, including code.
+
+
+
+
+
+Listing 11.3 basic_nexus_planner.py
+
+
+You are a planner for Nexus. #1 Your job is to create a properly formatted JSON plan step by step, to satisfy the goal given. Create a list of subtasks based off the [GOAL] provided. Each subtask must be from within the [AVAILABLE FUNCTIONS] list. Do not use any functions that are not in the list. Base your decisions on which functions to use from the description and the name of the function. Sometimes, a function may take arguments. Provide them if necessary. The plan should be as short as possible. You will also be given a list of corrective, suggestive and epistemic feedback from previous plans to help you make your decision. For example: [SPECIAL FUNCTIONS] #2 for-each- prefix description: execute a function for each item in a list args: - function: the function to execute - list: the list of items to iterate over - index: the arg name for the current item in the list [AVAILABLE FUNCTIONS] GetJokeTopics description: Get a list ([str]) of joke topics EmailTo description: email the input text to a recipient args: - text: the text to email - recipient: the recipient's email address. Multiple addresses may be included if separated by ';'. Summarize description: summarize input text args: - text: the text to summarize Joke description: Generate a funny joke args: - topic: the topic to generate a joke about [GOAL] "Get a list of joke topics and generate a different joke for each topic. Email the jokes to a friend." [OUTPUT] { "subtasks": [ {"function": "GetJokeTopics"}, {"function": "for-each", "args": { "list": "output_GetJokeTopics", "index": "topic", "function": { "function": "Joke", "args": {"topic": "topic"}}}}, { "function": "EmailTo", "args": { "text": "for-each_output_GetJokeTopics" ecipient": "friend"}} ] } # 2 more examples are given but omitted from this listing [SPECIAL FUNCTIONS] #3 for-each description: execute a function for each item in a list args: - function: the function to execute - iterator: the list of items to iterate over - index: the arg name for the current item in the list [AVAILABLE FUNCTIONS] #4 {{$available_functions}} [GOAL] {{$goal}} #5 Be sure to only use functions from the list of available functions. The plan should be as short as possible. And only return the plan in JSON format. [OUTPUT] #6
+
+#1 The preamble instructions telling the agent how to process the examples
+
+#2 Beginning of the three (few-shot) examples
+
+#3 Adds the for-each special iterative function
+
+#4 Available functions are autopopulated from the agent’s list of available functions.
+
+#5 The goal is inserted here.
+
+#6 Where the agent is expected to place the output
+
+
+
+
+
+Figure 11.7 shows the process of building and running a planning prompt, from building to execution to finally returning the results to the user. Planners work by building a planning prompt, submitting it to an LLM to construct the plan, parsing and executing the plan locally, returning the results to an LLM to evaluate and summarize, and finally returning the final output back to the user.
+
+
+
+
+
+Figure 11.7 The planning process for creating and executing a plan
+
+
+
+
+It’s essential to notice a few subtle details about the planning process. Typically, the plan is built in isolation by not adding context history. This is done to focus on the goal because most planning prompts consume many tokens. Executing the functions within the executor is usually done in a local environment and may include calling APIs, executing code, or even running machine learning models.
+
+
+
+Listing 11.4 shows the code for the create_plan function from the BasicNexusPlanner class; tools such as LangChain and SK use similar patterns. The process loads the agent’s actions as a string. The goal and available functions list are then inserted into the planner prompt template using the PromptTemplateManager, which is just a wrapper for the template-handling code. Template handling is done with simple regex but can also be more sophisticated using tools such as Jinja2, Handlebars, or Mustache.
+
+
+
+
+
+Listing 11.4 basic_nexus_planner.py (create_plan)
+
+
+def create_plan(self, nexus, agent, goal: str, prompt: str = PROMPT) -> Plan: selected_actions = nexus.get_actions(agent.actions) available_functions_string = "\n\n".join( format_action(action) for action in selected_actions ) #1 context = {} #2 context["goal"] = goal context["available_functions"] = available_functions_string ptm = PromptTemplateManager() #3 prompt = ptm.render_prompt(prompt, context) plan_text = nexus.execute_prompt(agent, prompt) #4 return Plan(prompt=prompt, goal=goal, plan_text=plan_text) #5
+
+#1 Loads the agent’s available actions and formats the result string for the planner
+
+#2 The context will be injected into the planner prompt template.
+
+#3 A simple template manager, similar in concept to Jinja2, Handlebars, or Mustache
+
+#4 Sends the filled-in planner prompt to the LLM
+
+#5 The results (the plan) are wrapped in a Plan class and returned for execution.
+
+
+
+
+
+The code to execute the plan, shown in listing 11.5, parses the JSON string and executes the functions. When executing the plan, the code detects the particular for-each function, which iterates through a list and executes each element in a function. The results of each function execution are added to the context. This context is passed to each function call and returned as the final output.
+
+
+
+
+
+Listing 11.5 basic_nexus_planner.py (execute_plan)
+
+
+def execute_plan(self, nexus, agent, plan: Plan) -> str: context = {} plan = plan.generated_plan for task in plan["subtasks"]: #1 if task["function"] == "for-each": #2 list_name = task["args"]["list"] index_name = task["args"]["index"] inner_task = task["args"]["function"] list_value = context.get(list_name, []) for item in list_value: context[index_name] = item result = nexus.execute_task(agent, inner_task, context) context[f"for-each_{list_name}_{item}"] = result for_each_output = [ #2 context[f"for-each_{list_name}_{item}"] ↪ for item in list_value ] context[f"for-each_{list_name}"] = for_each_output for item in list_value: #3 del context[f"for-each_{list_name}_{item}"] else: result = nexus.execute_task(agent, task, context) #4 context[f"output_{task['function']}"] = result return context #5
+
+#1 Iterates through each subtask in the plan
+
+#2 Handles functions that should be iterated over and adds full list of results to the context
+
+#3 Removes individual for-each context entries
+
+#4 General task execution
+
+#5 Returns the full context, which includes the results of each function call
+
+
+
+
+
+The returned context from the entire execution is sent in a final call to the LLM, which summarizes the results and returns a response. If everything goes as planned, the LLM will respond with a summary of the results. If there is an error or something is missing, the LLM may try to fix the problem or inform the user of the error.
+
+
+
+Let’s now open Nexus again and test a planner in operation. Load up the same agent you used last time, but select the planner under the Advanced options this time, as shown in figure 11.8. Then, enter the goal prompt as you did before, and let the agent take it away.
+
+
+
+
+
+Figure 11.8 The results from requesting to complete the goal in Nexus using the basic planner
+
+
+
+
+After a few minutes, the agent returns with the saved file, and in some cases, it may provide extra information, such as the next steps and what to do with the output. This is because the agent was given a high-level overview of what it accomplished. Remember, though, that plan execution is done at the local level, and only context, plan, and goal were sent to the LLM.
+
+
+
+This means that plan execution can be completed by any process, not necessarily by the agent. Executing a plan outside the LLM reduces the tokens and tool use the agent needs to perform. This also means that an LLM doesn’t need to support tools usage to use a planner.
+
+
+
+Internally, when a planner is enabled within Nexus, the agent engine tool is bypassed. Instead, the planner completes the action execution, and the agent is only aware of the actions through the passing of the output context. This can be good for models that support tool use but can’t plan. However, a planner may limit functionality for models that support both tool use and planning, such as Claude.
+
+
+
+In general, you’ll want to understand the capabilities of the LLM you’re using. If you’re unsure of those details, then a little trial and error can also work. Ask the agent to complete a multistep goal with and without planning enabled, and then see the results.
+
+
+
+Planning allows agents to complete multiple sequential tasks to achieve more complex goals. The problem with external or prompt planning is that it bypasses the feedback iteration loop, which can help correct problems quickly. Because of this, OpenAI and others are now directly integrating reasoning and planning at the LLM level, as we’ll see in the next section.
+
+
+
+
+

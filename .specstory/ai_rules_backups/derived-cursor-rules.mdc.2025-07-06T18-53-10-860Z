@@ -1,0 +1,65 @@
+
+## HEADERS
+
+This document outlines the rules and guidelines for the AI coding assistant. It covers project standards, tech stack, workflow, and best practices. All contributions and interactions should adhere to these rules to maintain consistency and quality.
+
+## TECH STACK
+
+*   [List existing tech stack items here]
+    (No existing items to list)
+
+## PROJECT DOCUMENTATION & CONTEXT SYSTEM
+
+*   [Describe the project documentation structure, context system and versioning]
+    (No existing items to list)
+
+## CODING STANDARDS
+
+*   [Define coding style, naming conventions, and code structure]
+    (No existing items to list)
+
+## WORKFLOW & RELEASE RULES
+
+*   [Describe the workflow for development, testing, and deployment]
+    (No existing items to list)
+
+## DEBUGGING
+
+*   [Describe debugging strategies and common pitfalls]
+    (No existing items to list)
+
+## COURSE-SPECIFIC RULES
+
+*   Answer in Russian.
+*   Provide detailed explanations with examples.
+*   Offer interactive elements: clarifying questions.
+*   Give practical recommendations.
+*   Add instructions to the practical part of the lesson if needed.
+
+## WSL2 AND LM STUDIO ACCESS RULES
+
+*   **Problem:** LM Studio running on Windows is not accessible from WSL2 (Windows Subsystem for Linux).
+*   **Cause:** WSL2 operates in a separate virtualized environment with its own network stack. `localhost:1234` inside WSL2 is not the same as on Windows.
+*   **Solution:**
+    1.  **Find Windows IP Address from WSL2:**
+        ```bash
+        cat /etc/resolv.conf
+        ```
+        The IP address in the `nameserver` line is the Windows host's IP from WSL2's perspective.
+    2.  **Check Port Accessibility:**
+        ```bash
+        curl http://<ip-address-from-resolv.conf>:1234
+        ```
+    3.  **Configure LM Studio to Listen on All Interfaces:**
+        *   In LM Studio settings, set the server to listen on `0.0.0.0` instead of `127.0.0.1`.
+        *   Example: `--host 0.0.0.0`
+        *   Restart LM Studio after making this change.
+    4.  **Check Windows Firewall:**
+        *   Ensure the Windows Firewall is not blocking incoming connections on port 1234.
+*   **Example:**
+    ```bash
+    cat /etc/resolv.conf
+    # Suppose the result is 172.27.208.1
+    curl http://172.27.208.1:1234
+    ```
+    If it doesn't work, change the LM Studio host to `0.0.0.0`.

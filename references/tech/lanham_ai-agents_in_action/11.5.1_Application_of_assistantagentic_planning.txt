@@ -1,0 +1,132 @@
+11.5.1 Application of assistant/agentic planning
+
+
+
+
+Planning is the component where an assistant or agent can plan to undertake a set of tasks, whether they are in series, parallel, or some other combination. We typically associate planning with tool use, and, rightfully, any system using tools will likely want a capable planner. However, not all systems are created equally, so in table 11.1, we’ll review where, when, and how to implement planners.
+
+
+
+
+
+Table 11.1 When and where planning is employed and used in various applications
+
+
+Application
+
+Implemented
+
+Environment
+
+Purpose
+
+Timing
+
+Configuration
+
+
+
+Personal assistant
+
+At or within the LLM
+
+Personal device
+
+Facilitate tool use
+
+During the response
+
+As part of the prompt or LLM
+
+
+
+Customer service bot
+
+Not typical; restricted environment
+
+Restricted environment, no tool use
+
+
+
+Autonomous agent
+
+As part of the agent prompt and within the LLM
+
+Server or service
+
+Facilitate complex tool use and task planning
+
+As part of constructing the agent and/or during the response
+
+Within the agent or LLM
+
+
+
+Collaborative workflows
+
+As part of the LLM
+
+Shared canvas or coding
+
+Facilitate complex tool use
+
+During the response
+
+Within the LLM
+
+
+
+Game AI
+
+As part of the LLM
+
+Server or application
+
+Complex tool use and planning
+
+Before or during the response
+
+Within the LLM
+
+
+
+Research
+
+Anywhere
+
+Server
+
+Facilitate tool use and engage in complex task workflows
+
+Before, during, and after response generation
+
+Anywhere
+
+
+
+
+
+Table 11.1 shows several varied application scenarios in which we may find an assistant or agent deployed to assist in some capacity. To provide further information and guidance, this list provides more details about how planning may be employed in each application:
+
+
+
+Personal assistant—While this application has been slow to roll out, LLM personal assistants promise to surpass Alexa and Siri in the future. Planning will be essential to these new assistants/agents to coordinate numerous complex tasks and execute tools (actions) in series or parallel.
+
+Customer service bot—Due to the controlled nature of this environment, it’s unlikely that assistants engaged directly with customers will have controlled and very specific tools use. This means that these types of assistants will likely not require extensive planning.
+
+Autonomous agent—As we’ve seen in previous chapters, agents with the ability to plan can complete a series of complex tasks for various goals. Planning will be an essential element of any autonomous agentic system.
+
+Collaborative workflows—Think of these as agents or assistants that sit alongside coders or writers. While these workflows are still in early development, think of a workflow where agents are automatically tasked with writing and executing test code alongside developers. Planning will be an essential part of executing these complex future workflows.
+
+Game AI—While applying LLMs to games is still in early stages, it isn’t hard to imagine in-game agents or assistants that can assist or challenge the player. Giving these agents the ability to plan and execute complex workflows could disrupt how and with whom we play games.
+
+Research—Similar to collaborative workflows, these agents will be responsible for deriving new ideas from existing sources of information. Finding that information will likely be facilitated through extensive tool use, which will benefit from coordination of planning.
+
+
+
+As you can see, planning is an essential part of many LLM applications, whether through coordination of tool use or otherwise. In the next section, we look at the next component of reasoning and how it can be applied to the same application stack.
+
+
+
+
+

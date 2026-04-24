@@ -1,0 +1,149 @@
+3.3.1 Creating an assistant to build an assistant
+
+
+
+
+Given GPTs’ capabilities, it only makes sense that we use one to assist in building others. In this section, we’ll build a GPT that can help us create a service we can connect as a custom action to another GPT. And yes, we’ll even use an LLM to begin constructing our helper GPT.
+
+
+
+The following listing shows the prompt for creating the instructions for our helper GPT. This prompt is intended to generate the instructions for the assistant.
+
+
+
+
+
+Listing 3.7 Prompting the helper design (in GPT Builder or ChatGPT)
+
+
+I want to create a GPT assistant that can generate a FastAPI service that will perform some action to be specified. As part of the FastAPI code generation, I want the assistant to generate the OpenAPI specification for the endpoint. Please outline a set of instructions for this agent.
+
+
+
+
+
+Listing 3.8 shows the bulk of the instructions generated for the prompt. The output was then modified and slightly updated with specific information and other details. Copy and paste those instructions from the file (assistant_builder.txt) into your GPT. Be sure to select the Code Interpreter capability also.
+
+
+
+
+
+Listing 3.8 Custom action assistant instructions
+
+
+This GPT is designed to assist users in generating FastAPI services tailored to specific actions, complete with the corresponding OpenAPI specifications for the endpoints. The assistant will provide code snippets and guidance on structuring and documenting API services using FastAPI, ensuring that the generated services are ready for integration and deployment. 1. Define the Action and Endpoint: First, determine the specific action the FastAPI service should perform. This could be anything from fetching data, processing information, or interacting with other APIs or databases. 2. Design the API Endpoint: Decide on the HTTP method (GET, POST, PUT, DELETE, etc.) and the endpoint URI structure. Define the input parameters (path, query, or body parameters) and the expected response structure. 3. Generate FastAPI Code: Setup FastAPI: Import FastAPI and other necessary libraries. Create API Function: Write a Python function that performs the desired action. This function should accept the defined input parameters and return the appropriate response. 4. Decorate the Function: Use FastAPI's decorators (e.g., @app.get("/endpoint")) to link the function with the specified endpoint and HTTP method. Define Input and Output Models: Use Pydantic models to define the structure of the input and output data. This ensures validation and serialization of the data. 5. Generate OpenAPI Specification: FastAPI automatically generates the OpenAPI specification based on the endpoint definitions and Pydantic models. Ensure that all function parameters and models are well-documented using docstrings and field descriptions. Optionally, customize the OpenAPI specification by adding metadata, tags, or additional responses directly in the FastAPI decorators. 6. Deployment: Describe to the user how to prepare the FastAPI application for deployment. Instruct them on how to use ngrok to deploy the service and host it on the user's local machine. #1
+
+#1 This uses ngrok as an example to deploy the service locally.
+
+
+
+
+
+After preparing the assistant, ensure everything is set in the Configure panel (including setting the Code Interpreter checkbox), and then refresh your browser window. This will prepare the assistant for a new session. You can request the kind of service you want to build from here.
+
+
+
+Listing 3.9 shows the request to the Custom Action Assistant to create a daily task endpoint. If you understand how APIs work, you can suggest other options, such as POST. Of course, you can also ask the assistant to guide you and create your service.
+
+
+
+
+
+Listing 3.9 Prompt requesting task endpoint service
+
+
+I want to define a GET endpoint that replies with my list of daily tasks
+
+
+
+
+
+After you enter the prompt, the assistant will generate the code and instructions for creating and running the FastAPI endpoint. The following listing shows an example of the code generated from the previous request.
+
+
+
+
+
+Listing 3.10 daily_tasks_api.py (generated from assistant)
+
+
+from fastapi import FastAPI from pydantic import BaseModel from typing import List app = FastAPI() class Task(BaseModel): #1 id: int description: str completed: bool tasks = [ #2 Task(id=1, description="Buy groceries", completed=False), Task(id=2, description="Read a book", completed=True), Task(id=3, description="Complete FastAPI project", completed=False), ] @app.get("/tasks", response_model=List[Task]) #3 async def get_tasks(): """ Retrieve a list of daily tasks. """ return tasks
+
+#1 Use Pydantic to create a type for the task.
+
+#2 This is a static list of tasks to demonstrate.
+
+#3 The tasks endpoint
+
+
+
+
+
+Enter the code into Visual Studio Code (VS Code), and confirm that fastapi and uvicorn are installed with pip. Then, run the API using the command shown in the following listing, which runs the API in the chapter source file.
+
+
+
+
+
+Listing 3.11 Running the API
+
+
+uvicorn daily_tasks_api:app –reload #1
+
+#1 Change the name of the module/file if you’re using something different.
+
+
+
+
+
+Open a browser to http://127.0.0.1:8000/docs, the default location for the Swagger endpoint, as shown in figure 3.7.
+
+
+
+
+
+Figure 3.7 Navigating the Swagger docs and getting the openapi.json document
+
+
+
+
+Clicking the /openapi.json link will display the OpenAPI specification for the endpoint, as shown in listing 3.12 (JSON converted to YAML). You’ll need to copy and save this document for later use when setting up the custom action on the agent. The endpoint produces JSON, but you can also use specifications written in YAML.
+
+
+
+
+
+Listing 3.12 OpenAPI specification for the task API
+
+
+openapi: 3.1.0 info: title: FastAPI version: 0.1.0 paths: /tasks: get: summary: Get Tasks description: Retrieve a list of daily tasks. operationId: get_tasks_tasks_get responses: '200': description: Successful Response content: application/json: schema: type: array items: $ref: '#/components/schemas/Task' title: Response Get Tasks Tasks Get components: schemas: Task: type: object properties: id: type: integer title: Id description: type: string title: Description completed: type: boolean title: Completed required: - id - description - completed title: Task
+
+
+
+
+
+Before connecting an assistant to the service, you must set up and use ngrok to open a tunnel to your local machine running the service. Prompt the GPT to provide the instructions and help you set up ngrok, and run the application to open an endpoint to port 8000 on your machine, as shown in listing 3.13. If you change the port or use a different configuration, you must update it accordingly.
+
+
+
+
+
+Listing 3.13 Running ngrok (following the instructions setup)
+
+
+./ngrok authtoken <YOUR_AUTHTOKEN> #1 ./ngrok http 8000 #2
+
+#1 Enter your auth token obtained from ngrok.com.
+
+#2 Opens a tunnel on port 8000 to external internet traffic
+
+
+
+
+
+After you run ngrok, you’ll see an external URL that you can now use to access the service on your machine. Copy this URL for later use when setting up the assistant. In the next section, we’ll create the assistant that consumes this service as a custom action.
+
+
+
+
+

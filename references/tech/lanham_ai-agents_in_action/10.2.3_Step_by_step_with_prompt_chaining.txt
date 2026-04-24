@@ -1,0 +1,106 @@
+10.2.3 Step by step with prompt chaining
+
+
+
+
+We can extend the behavior of asking an LLM to think step by step into a chain of prompts that force the LLM to solve the problem in steps. In this section, we look at a technique called prompt chaining that forces an LLM to process problems in steps.
+
+
+
+Open the prompt_flow/prompt-chaining/flow.dag.yaml file in the visual editor, as shown in figure 10.5. Prompt chaining breaks up the reasoning method used to solve a problem into chains of prompts. This technique forces the LLM to answer the problem in terms of steps.
+
+
+
+
+
+Figure 10.5 The prompt chaining flow
+
+
+
+
+Listing 10.12 shows the YAML pseudocode that describes the flow in a few more details. This flow chains the output of the first LLM block into the second and then from the second into the third. Forcing the LLM to process the problem this way uncovers the reasoning pattern, but it can also be overly verbose.
+
+
+
+
+
+Listing 10.12 prompt-chaining flow
+
+
+Inputs: statement : the statement problem to be solved LLM: decompose_steps (the prompt used to decompose the problem) inputs: statement: -> input.statement #1 outputs: the breakdown of steps to solve the problem LLM: calculate_steps (the prompt used to calculate the steps) inputs: statement: -> input.statement decompose_steps: -> output.decompose_steps #2 outputs: the calculation for each step LLM: calculate_solution (attempts to solve the problem) inputs: statement: -> input.statement decompose_steps: -> output.decompose_steps calculate_steps: -> output.calculate_steps #3 outputs: the final solution statement Outputs: statement: -> input.statement decompose_steps: -> output.decompose_steps calculate_steps: -> output.calculate_steps calculate_solution: -> output.calculate_solution ### Example Output { "calculate_steps": "1. The days spent by Alex", "decompose_steps": "To figure out the …", "solution": "Alex spends 13 days in the ↪ ↪ past before the end of the battle.", #4 "statement": "In a sci-fi film, Alex …" }
+
+#1 Start of the chain of prompts
+
+#2 Output from the previous step injected into this step
+
+#3 Output from two previous steps injected into this step
+
+#4 The final solution statement, although wrong, is closer.
+
+
+
+
+
+Run the flow by pressing Shift-F5 from the visual editor, and you’ll see the output as shown in listing 10.12. The answer is still not correct for the Alex problem, but we can see all the work the LLM is doing to reason out the problem.
+
+
+
+Open up all three prompts: decompose_steps.jinja2, calculate_steps.jinja2, and calculate_solution.jinja2 (see listings 10.13, 10.14, and 10.15, respectively). All three prompts shown in the listings can be compared to show how outputs chain together.
+
+
+
+
+
+Listing 10.13 decompose_steps.jinja2
+
+
+system: You are a problem solving AI assistant. Your job is to break the users problem down into smaller steps and list the steps in the order you would solve them. Think step by step, not in generalities. Do not attempt to solve the problem, just list the steps. #1 user: {{statement}} #2
+
+#1 Forces the LLM to list only the steps and nothing else
+
+#2 The initial problem statement
+
+
+
+
+
+Listing 10.14 calculate_steps.jinja2
+
+
+system: You are a problem solving AI assistant. You will be given a list of steps that solve a problem. Your job is to calculate the output for each of the steps in order. Do not attempt to solve the whole problem, just list output for each of the steps. #1 Think step by step. #2 user: {{statement}} {{steps}} #3
+
+#1 Requests that the LLM not solve the whole problem, just the steps
+
+#2 Uses the magic statement to extract reasoning
+
+#3 Injects the steps produced by the decompose_steps step
+
+
+
+
+
+Listing 10.15 calculate_solution.jinja2
+
+
+system: You are a problem solving AI assistant. You will be given a list of steps and the calculated output for each step. Use the calculated output from each step to determine the final solution to the problem. Provide only the final solution to the problem in a single concise sentence. Do not include any steps in your answer. #1 user: {{statement}} {{steps}} #2 {{calculated}} #3
+
+#1 Requests that the LLM output the final answer and not any steps
+
+#2 The decomposed steps
+
+#3 The calculated steps
+
+
+
+
+
+In this exercise example, we’re not performing any evaluation and scoring. Without the evaluation, we can see that this sequence of prompts still has problems solving our more challenging time travel problem shown earlier in figure 10.3. However, that doesn’t mean this technique doesn’t have value, and this prompting format solves some complex problems well.
+
+
+
+What we want to find, however, is a reasoning and planning methodology that can solve such complex problems consistently. The following section moves from reasoning to evaluating the best solution.
+
+
+
+
+

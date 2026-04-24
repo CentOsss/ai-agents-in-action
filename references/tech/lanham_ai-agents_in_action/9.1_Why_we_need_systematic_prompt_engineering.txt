@@ -1,0 +1,102 @@
+9.1 Why we need systematic prompt engineering
+
+
+
+
+Prompt engineering, by its nature, is an iterative process. When building a prompt, you’ll often iterate and evaluate. To see this concept in action, consider the simple application of prompt engineering to a ChatGPT question.
+
+
+
+You can follow along by opening your browser to ChatGPT (https://chat.openai.com/), entering the following (text) prompt into ChatGPT, and clicking the Send Message button (an example of this conversation is shown in figure 9.1, on the left side):
+
+
+
+can you recommend something
+
+
+
+
+
+Figure 9.1 The differences in applying prompt engineering and iterating
+
+
+
+
+We can see that the response from ChatGPT is asking for more information. Go ahead and open a new conversation with ChatGPT, and enter the following prompt, as shown in figure 9.1, on the right side:
+
+
+
+Can you please recommend a time travel movie set in the medieval period.
+
+
+
+The results in figure 9.1 show a clear difference between leaving out details and being more specific in your request. We just applied the tactic of politely Writing Clear Instructions, and ChatGPT provided us with a good recommendation. But also notice how ChatGPT itself guides the user into better prompting. The refreshed screen shown in figure 9.2 shows the OpenAI prompt engineering strategies.
+
+
+
+
+
+Figure 9.2 OpenAI prompt engineering strategies, broken down by agent component
+
+
+
+
+We just applied simple iteration to improve our prompt. We can extend this example by using a system prompt/message. Figure 9.3 demonstrates the use and role of the system prompt in iterative communication. In chapter 2, we used the system message/prompt in various examples.
+
+
+
+
+
+Figure 9.3 The messages to and from an LLM conversation and the iteration of messages
+
+
+
+
+You can also try this in ChatGPT. This time, enter the following prompt and include the word system in lowercase, followed by a new line (enter a new line in the message window without sending the message by pressing Shift-Enter):
+
+
+
+system
+
+
+
+You are an expert on time travel movies.
+
+
+
+ChatGPT will respond with some pleasant comments, as shown in figure 9.4. Because of this, it’s happy to accept its new role and asks for any follow-up questions. Now enter the following generic prompt as we did previously:
+
+
+
+can you recommend something
+
+
+
+
+
+Figure 9.4 The effect of adding a system prompt to our previous conversation
+
+
+
+
+We’ve just seen the iteration of refining a prompt, the prompt engineering, to extract a better response. This was accomplished over three different conversations using the ChatGPT UI. While not the most efficient way, it works.
+
+
+
+However, we haven’t defined the iterative flow for evaluating the prompt and determining when a prompt is effective. Figure 9.5 shows a systemic method of prompt engineering using a system of iteration and evaluation.
+
+
+
+
+
+Figure 9.5 The systemic method of prompt engineering
+
+
+
+
+The system of iterating and evaluating prompts covers the broad Test Changes Systemically strategy. Evaluating the performance and effectiveness of prompts is still new, but we’ll use techniques from education, such as rubrics and grounding, which we’ll explore in a later section of this chapter. However, as spelled out in the next section, we need to understand the difference between a persona and an agent profile before we do so.
+
+
+
+
+

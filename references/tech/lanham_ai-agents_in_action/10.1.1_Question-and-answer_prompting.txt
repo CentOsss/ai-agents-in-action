@@ -1,0 +1,72 @@
+10.1.1 Question-and-answer prompting
+
+
+
+
+For the exercises in this chapter, we’ll employ prompt flow to build and evaluate the various techniques. (We already extensively covered this tool in chapter 9, so refer to that chapter if you need a review.) Prompt flow is an excellent tool for understanding how these techniques work and exploring the flow of the planning and reasoning process.
+
+
+
+Open Visual Studio Code (VS Code) to the chapter 10 source folder. Create a new virtual environment for the folder, and install the requirements.txt file. If you need help setting up a chapter’s Python environment, refer to appendix B.
+
+
+
+We’ll look at the first flow in the prompt_flow/question-answering-prompting folder. Open the flow.dag.yaml file in the visual editor, as shown in figure 10.2. On the right side, you’ll see the flow of components. At the top is the question_answer LLM prompt, followed by two Embedding components and a final LLM prompt to do the evaluation called evaluate.
+
+
+
+
+
+Figure 10.2 The flow.dag.yaml file, open in the visual editor, highlighting the various components of the flow
+
+
+
+
+The breakdown in listing 10.1 shows the structure and components of the flow in more detail using a sort of YAML-shortened pseudocode. You can also see the input and outputs to the various components and a sample output from running the flow.
+
+
+
+
+
+Listing 10.1 question-answer-prompting flow
+
+
+Inputs: context : the content to ask the question about question : question asked specific to the content expected : the expected answer LLM: Question-Answer (the prompt used to ask the question) inputs: context and question outputs: the prediction/answer to the question Embeddings: uses an LLM embedding model to create the embedding representation of the text Embedding_predicted: embeds the output of the Question-Answer LLM Embedding_expected: embeds the output of the expected answer Python: Evaluation (Python code to measure embedding similarity) Inputs: Embedding_predicted output Embedding_expected output Outputs: the similarity score between predicted and expected Outputs: context: -> input.context question: -> input.question expected: -> input.expected predicted: -> output.question_answer evaluation_score: output.evaluation ### Example Output { "context": "Back to the Future (1985)…", "evaluation_score": 0.9567478002354606, "expected": "Marty traveled back in time 30 years.", "predicted": "Marty traveled back in time 30 years from 1985 to 1955 in the movie \"Back to the Future.\"", "question": "How far did Marty travel back in time in the movie Back to the Future (1985)" }
+
+
+
+
+
+Before running this flow, make sure your LLM block is configured correctly. This may require you to set up a connection to your chosen LLM. Again, refer to chapter 9 if you need a review on how to complete this. You’ll need to configure the LLM and Embedding blocks with your connection if you’re not using OpenAI.
+
+
+
+After configuring your LLM connection, run the flow by clicking the Play button from the visual editor or using the Test (Shift-F5) link in the YAML editor window. If everything is connected and configured correctly, you should see output like that in listing 10.1.
+
+
+
+Open the question_answer.jinja2 file in VS Code, as shown in listing 10.2. This listing shows the basic question-and-answer-style prompt. In this style of prompt, the system message describes the basic rules and provides the context to answer the question. In chapter 4, we explored the retrieval augmented generation (RAG) pattern, and this prompt follows a similar pattern.
+
+
+
+
+
+Listing 10.2 question_answer.jinja2
+
+
+system: Answer the users question based on the context below. Keep the answer short and concise. Respond "Unsure about answer" if not sure about the answer. Context: {{context}} #1 user: Question: {{question}} #2
+
+#1 Replace with the content LLM should answer the question about.
+
+#2 Replace with the question.
+
+
+
+
+
+This exercise shows the simple method of using an LLM to ask questions about a piece of content. Then, the question response is evaluated using a similarity matching score. We can see from the output in listing 10.1 that the LLM does a good job of answering a question about the context. In the next section, we’ll explore a similar technique that uses direct prompting.
+
+
+
+
+

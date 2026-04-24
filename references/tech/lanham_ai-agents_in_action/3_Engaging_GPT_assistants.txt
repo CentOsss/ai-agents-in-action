@@ -1,0 +1,29 @@
+3 Engaging GPT assistants
+
+
+
+
+
+This chapter covers
+
+
+Introducing the OpenAI GPT Assistants platform and the ChatGPT UI
+
+Building a GPT that can use the code interpretation capabilities
+
+Extending an assistant via custom actions
+
+Adding knowledge to a GPT via file uploads
+
+Commercializing your GPT and publishing it to the GPT Store
+
+
+
+
+
+As we explore the OpenAI crusade into assistants and what has been hinted at, ultimately, an agent platform called GPT Assistants, we’ll introduce GPT assistants through the ChatGPT interface. Then, we’ll add in several fully developed assistants that can suggest recipes from ingredients, fully analyze data as a data scientist, guide readers through books, and be extended with custom actions. By the end of the chapter, we’ll be ready to build a fully functional agent that can be published to the OpenAI GPT Store.
+
+
+
+
+

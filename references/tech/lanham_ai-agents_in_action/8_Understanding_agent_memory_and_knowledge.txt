@@ -1,0 +1,29 @@
+8 Understanding agent memory and knowledge
+
+
+
+
+
+This chapter covers
+
+
+Retrieval in knowledge/memory in AI functions
+
+Building retrieval augmented generation workflows with LangChain
+
+Retrieval augmented generation for agentic knowledge systems in Nexus
+
+Retrieval patterns for memory in agents
+
+Improving augmented retrieval systems with memory and knowledge compression
+
+
+
+
+
+Now that we’ve explored agent actions using external tools, such as plugins in the form of native or semantic functions, we can look at the role of memory and knowledge using retrieval in agents and chat interfaces. We’ll describe memory and knowledge and how they relate to prompt engineering strategies, and then, to understand memory knowledge, we’ll investigate document indexing, construct retrieval systems with LangChain, use memory with LangChain, and build semantic memory using Nexus.
+
+
+
+
+

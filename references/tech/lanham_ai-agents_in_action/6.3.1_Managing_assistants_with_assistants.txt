@@ -1,0 +1,65 @@
+6.3.1 Managing assistants with assistants
+
+
+
+
+Fortunately, the Playground can help us quickly manage and create the assistants. We’ll first install the Manager Assistant, followed by installing the predefined assistants. let’s get started with installing the Manager Assistant using the following steps:
+
+
+
+Open Playground in your browser, and create a new simple assistant or use an existing assistant. If you need a new assistant, create it and then select it.
+
+With the assistant selected, open the Actions accordion, and select the create_ manager_assistant action. You don’t need to save; the interface will update the assistant automatically.
+
+Now, in the chat interface, prompt the assistant with the following: “Please create the manager assistant.”
+
+After a few seconds, the assistant will say it’s done. Refresh your browser, and confirm that the Manager Assistant is now available. If, for some reason, the new assistant isn’t shown, try restarting the Gradio app itself.
+
+
+
+The Manager Assistant is like an admin that has access to everything. When engaging the Manager Assistant, be sure to be specific about your requests. With the Manager Assistant active, you can now install new assistants used in the book using the following steps:
+
+
+
+Select the Manager Assistant. If you’ve modified the Manager Assistant, you can delete it and reinstall it anytime. Although it’s possible to have multiple Manager Assistants, it’s not recommended.
+
+Ask the Manager Assistant what assistants can be installed by typing the following in the chat interface:
+
+
+
+Please list all the installable assistants.
+
+
+
+
+
+3. Identify which assistant you want installed when you ask the Manager Assistant to install it:
+
+
+
+Please install the Python Coding Assistant.
+
+
+
+
+
+You can manage and install any available assistants using the Playground. You can also ask the Manager Assistant to save the definitions of all your assistants as JSON:
+
+
+
+Please save all the assistants as JSON to a file called assistants.json.
+
+
+
+
+
+The Manager Assistant can access all actions, which should be considered unique and used sparingly. When crafting assistants, it’s best to keep them goal specific and limit the actions to just what they need. This not only avoids giving the AI too many decisions but also avoids accidents or mistakes caused by hallucinations.
+
+
+
+As we go through the remaining exercises in this chapter, you’ll likely need to install the required assistants. Alternatively, you can ask the Manager Assistant to install all available assistants. Either way, we look at creating an ABT with assistants in the next section.
+
+
+
+
+

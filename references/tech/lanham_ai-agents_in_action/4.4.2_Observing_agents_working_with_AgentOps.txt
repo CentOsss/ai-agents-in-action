@@ -1,0 +1,113 @@
+4.4.2 Observing agents working with AgentOps
+
+
+
+
+Observing a complex assemblage such as a multi-agent system is critical to understanding the myriad of problems that can happen. Observability through application tracing is a key element of any complex system, especially one engaged in enterprise use.
+
+
+
+CrewAI supports connecting to a specialized agent operations platform appropriately called AgentOps. This observability platform is generic and designed to support observability with any agent platform specific to LLM usage. Currently, no pricing or commercialization details are available.
+
+
+
+Connecting to AgentOps is as simple as installing the package, getting an API key, and adding a line of code to your crew setup. This next exercise will go through the steps to connect and run AgentOps.
+
+
+
+Listing 4.14 shows installing the agentops package using pip. You can install the package alone or as an additional component of the crewai package. Remember that AgentOps can also be connected to other agent platforms for observability.
+
+
+
+
+
+Listing 4.14 Installing AgentOps
+
+
+pip install agentops or as an option with CrewAI pip install crewai[agentops]
+
+
+
+
+
+Before using AgentOps, you need to sign up for an API key. Following are the general steps to sign up for a key at the time of writing:
+
+
+
+Visit https://app.agentops.ai in your browser.
+
+Sign up for an account.
+
+Create a project, or use the default.
+
+Go to Settings > Projects and API Keys.
+
+Copy and/or generate a new API key; this will copy the key to your browser.
+
+Paste the key to your .env file in your project.
+
+
+
+After the API key is copied, it should resemble the example shown in the following listing.
+
+
+
+
+
+Listing 4.15 env.: Adding an AgentOps key
+
+
+AGENTOPS_API_KEY="your API key"
+
+
+
+
+
+Now, we need to add a few lines of code to the CrewAI script. Listing 4.16 shows the additions as they are added to the crewai_agentops.py file. When creating your own scripts, all you need to do is add the agentops package and initialize it when using CrewAI.
+
+
+
+
+
+Listing 4.16 crewai_agentops.py (AgentOps additions)
+
+
+import agentops #1 from crewai import Agent, Crew, Process, Task from dotenv import load_dotenv load_dotenv() agentops.init() #2
+
+#1 The addition of the required package
+
+#2 Make sure to initialize the package after the environment variables are loaded.
+
+
+
+
+
+Run the crewai_agentops.py file in VS Code (F5), and watch the agents work as before. However, you can now go to the AgentOps dashboard and view the agent interactions at various levels.
+
+
+
+Figure 4.11 shows the dashboard for running the joke crew to create the best joke. Several statistics include total duration, the run environment, prompt and completion tokens, LLM call timings, and estimated cost. Seeing the cost can be both sobering and indicative of how verbose agent conversations can become.
+
+
+
+
+
+Figure 4.11 The AgentOps dashboard for running the joke crew
+
+
+
+
+The AgentOps platform is an excellent addition to any agent platform. While it’s built into CrewAI, it’s helpful that the observability could be added to AutoGen or other frameworks. Another attractive thing about AgentOps is that it’s dedicated to observing agent interactions and not transforming from a machine learning operations platform. In the future, we’ll likely see the spawn of more agent observability patterns.
+
+
+
+One benefit that can’t be overstated is the cost observation that an observability platform can provide. Did you notice in figure 4.11 that creating a single joke costs a little over 50 cents? Agents can be very powerful, but they can also become very costly, and it’s essential to observe what those costs are in terms of practicality and commercialization.
+
+
+
+In the last section of this chapter, we’ll return to CrewAI and revisit building agents that can code games. This will provide an excellent comparison between the capabilities of AutoGen and CrewAI.
+
+
+
+
+

@@ -1,0 +1,100 @@
+2.1.2 Understanding the request and response
+
+
+
+
+Digging into the chat completions request and response features can be helpful. We’ll focus on the request first, as shown next. The request encapsulates the intended model, the messages, and the temperature.
+
+
+
+
+
+Listing 2.4 The chat completions request
+
+
+response = client.chat.completions.create( model="gpt-4-1106-preview", #1 messages=[{"role": "system", "content": "You are a helpful assistant."}, #2 {"role": "user", "content": user_message}], #3 temperature=0.7, #4 )
+
+#1 The model or deployment used to respond to the request
+
+#2 The system role message
+
+#3 The user role message
+
+#4 The temperature or variability of the request
+
+
+
+
+
+Within the request, the messages block describes a set of messages and roles used in a request. Messages for a chat completions model can be defined in three roles:
+
+
+
+System role —A message that describes the request’s rules and guidelines. It can often be used to describe the role of the LLM in making the request.
+
+User role —Represents and contains the message from the user.
+
+Assistant role —Can be used to capture the message history of previous responses from the LLM. It can also inject a message history when perhaps none existed.
+
+
+
+The message sent in a single request can encapsulate an entire conversation, as shown in the JSON in the following listing.
+
+
+
+
+
+Listing 2.5 Messages with history
+
+
+[ { "role": "system", "content": "You are a helpful assistant." }, { "role": "user", "content": "What is the capital of France?" }, { "role": "assistant", "content": "The capital of France is Paris." }, { "role": "user", "content": "What is an interesting fact of Paris." } ],
+
+
+
+
+
+You can see how this can be applied by opening message_history.py in VS Code and debugging it by pressing F5. After the file runs, be sure to check the output. Then, try to run the sample a few more times to see how the results change.
+
+
+
+The results will change from each run to the next due to the high temperature of .7. Go ahead and reduce the temperature to .0, and run the message_history.py sample a few more times. Keeping the temperature at 0 will show the same or similar results each time.
+
+
+
+Setting a request’s temperature will often depend on your particular use case. Sometimes, you may want to limit the responses’ stochastic nature (randomness). Reducing the temperature to 0 will give consistent results. Likewise, a value of 1.0 will give the most variability in the responses.
+
+
+
+Next, we also want to know what information is being returned for each request. The next listing shows the output format for the response. You can see this output by running the message_history.py file in VS Code.
+
+
+
+
+
+Listing 2.6 Chat completions response
+
+
+{ "id": "chatcmpl-8WWL23up3IRfK1nrDFQ3EHQfhx0U6", "choices": [ #1 { "finish_reason": "stop", "index": 0, "message": { "content": "… omitted", "role": "assistant", #2 "function_call": null, "tool_calls": null }, "logprobs": null } ], "created": 1702761496, "model": "gpt-4-1106-preview", #3 "object": "chat.completion", "system_fingerprint": "fp_3905aa4f79", "usage": { "completion_tokens": 78, #4 "prompt_tokens": 48, #4 "total_tokens": 126 #4 } }
+
+#1 A model may return more than one response.
+
+#2 Responses returned in the assistant role
+
+#3 Indicates the model used
+
+#4 Counts the number of input (prompt) and output (completion) tokens used
+
+
+
+
+
+It can be helpful to track the number of input tokens (those used in prompts) and the output tokens (the number returned through completions). Sometimes, minimizing and reducing the number of tokens can be essential. Having fewer tokens typically means LLM interactions will be cheaper, respond faster, and produce better and more consistent results.
+
+
+
+That covers the basics of connecting to an LLM and returning responses. Throughout this book, we’ll review and expand on how to interact with LLMs. Until then, we’ll explore in the next section how to load and use open source LLMs.
+
+
+
+
+

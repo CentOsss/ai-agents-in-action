@@ -1,0 +1,48 @@
+B.4 Installing VS Code Python extensions
+
+
+
+
+Thousands of extensions for VS Code can provide an excellent Python coding environment. The recommended ones are only the start of what you can explore independently. Beware, though, that not all extensions are created equally. When installing new extensions, look at the number of installs and ratings. Extensions with fewer than four stars are generally to be avoided. To install the extensions, follow these steps:
+
+
+
+Launch VS Code, and open the Extensions panel, as shown in figure B.1.
+
+
+
+
+
+Figure B.1 Installing VS Code extensions
+
+
+
+
+2. Install the following list of extensions: Python, for environment and language support
+
+Python Extension Pack, for covering other extensions
+
+Python Environment Manager, for managing environments
+
+Python Indent, for code formatting
+
+Flake8, for code formatting/linting
+
+Prompt Flow, for testing LLM prompts
+
+Semantic Kernel Tools, for working with the Semantic Kernel framework
+
+Docker, for managing Docker containers
+
+Dev Containers, for running development environments with containers
+
+
+
+
+
+You’ll only need to install the extensions for each VS Code environment you’re running. Typically, this will mean installing for just your operating system installation of VS Code. However, if you run VS Code in containers, you must install extensions for each container you’re running. Working with Python in the Dev Containers extension will be covered later in this appendix.
+
+
+
+
+

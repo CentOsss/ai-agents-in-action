@@ -1,0 +1,29 @@
+1 Introduction to agents and their world
+
+
+
+
+
+This chapter covers
+
+
+Defining the concept of agents
+
+Differentiating the components of an agent
+
+Analyzing the rise of the agent era: Why agents?
+
+Peeling back the AI interface
+
+Navigating the agent landscape
+
+
+
+
+
+The agent isn’t a new concept in machine learning and artificial intelligence (AI). In reinforcement learning, for instance, the word agent denotes an active decision-making and learning intelligence. In other areas, the word agent aligns more with an automated application or software that does something on your behalf.
+
+
+
+
+

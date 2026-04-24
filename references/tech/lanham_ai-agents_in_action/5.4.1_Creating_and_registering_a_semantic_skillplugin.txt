@@ -1,0 +1,100 @@
+5.4.1 Creating and registering a semantic skill/plugin
+
+
+
+
+The VS Code extension for SK provides helpful tools for creating plugins/skills. In this section, we’ll use the SK extension to create a plugin/skill and then edit the components of that extension. After that, we’ll register and execute the plugin in the SK.
+
+
+
+Figure 5.6 shows the process for creating a new skill within VS Code using the SK extension. (Refer to appendix B for directions if you need to install this extension.) You’ll then be given the option for the skill/plugin folder to place the function. Always group functions that are similar together. After creating a skill, enter the name and description of the function you want to develop. Be sure to describe the function as if the LLM were going to use it.
+
+
+
+
+
+Figure 5.6 The process of creating a new skill/plugin
+
+
+
+
+You can see the completed skills and functions by opening the skills/plugin folder and reviewing the files. We’ll follow the previously constructed example, so open the skills/Recommender/Recommend_Movies folder, as shown in figure 5.7. Inside this folder is a config.json file, the function description, and the semantic function/prompt in a file called skprompt.txt.
+
+
+
+
+
+Figure 5.7 The file and folder structure of a semantic function skill/plugin
+
+
+
+
+Listing 5.11 shows the contents of the semantic function definition, also known as the plugin definition. Note that the type is marked as completion and not of type function because this is a semantic function. We would define a native function as a type function.
+
+
+
+
+
+Listing 5.11 Recommend_Movies/config.json
+
+
+{ "schema": 1, "type": "completion", #1 "description": "A function to recommend movies based on users list of previously seen movies.", "completion": { #2 "max_tokens": 256, "temperature": 0, "top_p": 0, "presence_penalty": 0, "frequency_penalty": 0 }, "input": { "parameters": [ { "name": "input", #3 "description": "The users list of previously seen movies.", "defaultValue": "" } ] }, "default_backends": [] }
+
+#1 Semantic functions are functions of type completion.
+
+#2 We can also set the completion parameters for how the function is called.
+
+#3 Defines the parameters input into the semantic function
+
+
+
+
+
+Next, we can look at the definition of the semantic function prompt, as shown in listing 5.12. The format is a little different, but what we see here matches the earlier examples using templating. This prompt recommends movies based on a list of movies the user has previously seen.
+
+
+
+
+
+Listing 5.12 Recommend_Movies/skprompt.txt
+
+
+You are a wise movie recommender and you have been asked to recommend a movie to a user. You are provided a list of movies that the user has watched before. You want to recommend a movie that the user has not watched before. [INPUT] {{$input}} [END INPUT]
+
+
+
+
+
+Now, we’ll dive into the code that loads the skill/plugin and executes it in a simple example. Open the SK_first_skill.py file in VS Code. The following listing shows an abridged version highlighting the new sections.
+
+
+
+
+
+Listing 5.13 SK_first_skill.py (abridged listing)
+
+
+kernel = sk.Kernel() plugins_directory = "plugins" recommender = kernel.import_plugin_from_prompt_directory( plugins_directory, "Recommender", ) #1 recommend = recommender["Recommend_Movies"] seen_movie_list = [ #2 "Back to the Future", "The Terminator", "12 Monkeys", "Looper", "Groundhog Day", "Primer", "Donnie Darko", "Interstellar", "Time Bandits", "Doctor Strange", ] async def run(): result = await kernel.invoke( recommend, sk.KernelArguments( #3 settings=execution_settings, input=", ".join(seen_movie_list) ), ) print(result) asyncio.run(run()) #4 ###Output Based on the list of movies you've provided, it seems you have an interest in science fiction, time travel, and mind-bending narratives. Given that you've watched a mix of classics and modern films in this genre, I would recommend the following movie that you have not watched before: "Edge of Tomorrow" (also known as "Live Die Repeat: Edge of Tomorrow")…
+
+#1 Loads the prompt from the plugins folder
+
+#2 List of user’s previously seen movies
+
+#3 Input is set to joined list of seen movies.
+
+#4 Function is executed asynchronously.
+
+
+
+
+
+The code loads the skill/plugin from the skills directory and the plugin folder. When a skill is loaded into the kernel and not just created, it becomes a registered plugin. That means it can be executed directly as is done here or through an LLM chat conversation via the plugin interface.
+
+
+
+Run the code (F5), and you should see an output like listing 5.13. We now have a simple semantic function that can be hosted as a plugin. However, this function requires users to input a complete list of movies they have watched. We’ll look at a means to fix this by introducing native functions in the next section.
+
+
+
+
+

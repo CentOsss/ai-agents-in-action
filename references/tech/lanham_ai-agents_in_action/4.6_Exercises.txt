@@ -1,0 +1,146 @@
+4.6 Exercises
+
+
+
+
+Use the following exercises to improve your knowledge of the material:
+
+
+
+Exercise 1 —Basic Agent Communication with AutoGen
+
+
+
+Objective —Familiarize yourself with basic agent communications and setup in AutoGen.
+
+
+
+Tasks:
+
+
+
+Set up AutoGen Studio on your local machine, following the instructions provided in this chapter.
+
+Create a simple multi-agent system with a user proxy and two assistant agents.
+
+Implement a basic task where the user proxy coordinates between the assistant agents to generate a simple text output, such as summarizing a short paragraph.
+
+
+
+
+
+Exercise 2 —Implementing Advanced Agent Skills in AutoGen Studio
+
+
+
+Objective —Enhance agent capabilities by adding advanced skills.
+
+
+
+Tasks:
+
+
+
+Develop and integrate a new skill into an AutoGen agent that allows it to fetch and display real-time data from a public API (e.g., weather information or stock prices).
+
+Ensure the agent can ask for user preferences (e.g., city for weather, type of stocks) and display the fetched data accordingly.
+
+
+
+
+
+Exercise 3 —Role-Based Task Management with CrewAI
+
+
+
+Objective —Explore role-based task management in CrewAI.
+
+
+
+Tasks:
+
+
+
+Design a CrewAI setup where multiple agents are assigned specific roles (e.g., data fetcher, analyzer, presenter).
+
+Configure a task sequence where the data fetcher collects data, the analyzer processes the data, and the presenter generates a report.
+
+Execute the sequence and observe the flow of information and task delegation among agents.
+
+
+
+
+
+Exercise 4 —Multi-Agent Collaboration in Group Chat Using AutoGen
+
+
+
+Objective —Understand and implement a group chat system in AutoGen to facilitate agent collaboration.
+
+
+
+Tasks:
+
+
+
+Set up a scenario where multiple agents need to collaborate to solve a complex problem (e.g., planning an itinerary for a business trip).
+
+Use the group chat feature to allow agents to share information, ask questions, and provide updates to each other.
+
+Monitor the agents’ interactions and effectiveness in collaborative problem solving.
+
+
+
+
+
+Exercise 5 —Adding and Testing Observability with AgentOps in CrewAI
+
+
+
+Objective —Implement and evaluate the observability of agents using AgentOps in a CrewAI environment.
+
+
+
+Tasks:
+
+
+
+Integrate AgentOps into a CrewAI multi-agent system.
+
+Design a task for the agents that involves significant computation or data processing (e.g., analyzing customer reviews to determine sentiment trends).
+
+Use AgentOps to monitor the performance, cost, and output accuracy of the agents. Identify any potential inefficiencies or errors in agent interactions.
+
+
+
+
+
+Summary
+
+
+
+
+AutoGen, developed by Microsoft, is a conversational multi-agent platform that employs a variety of agent types, such as user proxies and assistant agents, to facilitate task execution through natural language interactions.
+
+AutoGen Studio acts as a development environment that allows users to create, test, and manage multi-agent systems, enhancing the usability of AutoGen.
+
+AutoGen supports multiple communication patterns, including group chats and hierarchical and proxy communications. Proxy communication involves a primary agent (proxy) that interfaces between the user and other agents to streamline task completion.
+
+CrewAI offers a structured approach to building multi-agent systems with a focus on enterprise applications. It emphasizes role-based and autonomous agent functionalities, allowing for flexible, sequential, or hierarchical task management.
+
+Practical exercises in the chapter illustrate how to set up and use AutoGen Studio, including installing necessary components and running basic multi-agent systems.
+
+Agents in AutoGen can be equipped with specific skills to perform tasks such as code generation, image analysis, and data retrieval, thereby broadening their application scope.
+
+CrewAI is distinguished by its ability to structure agent interactions more rigidly than AutoGen, which can be advantageous in settings that require precise and controlled agent behavior.
+
+CrewAI supports integrating memory and tools for agents to consume through task completion.
+
+CrewAI supports integration with observability tools such as AgentOps, which provides insights into agent performance, interaction efficiency, and cost management.
+
+AgentOps is an agent observability platform that can help you easily monitor extensive agent interactions.
+
+
+
+
+

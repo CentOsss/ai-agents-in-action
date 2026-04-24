@@ -1,0 +1,109 @@
+5.5.3 Interactive chat with the semantic service layer
+
+
+
+
+With the TMDB functions exposed semantically, we can move on to integrating them into a chat interface. This will allow us to converse naturally in this interface to get various information, such as current top movies.
+
+
+
+Open SK_service_chat.py in VS Code. Scroll down to the start of the new section of code that creates the functions, as shown in listing 5.21. The functions created here are now exposed as plugins, except we filter out the chat function, which we don’t want to expose as a plugin. The chat function here allows the user to converse directly with the LLM and shouldn’t be a plugin.
+
+
+
+
+
+Listing 5.21 SK_service_chat.py (function setup)
+
+
+system_message = "You are a helpful AI assistant." tmdb_service = kernel.import_plugin_from_object( TMDbService(), "TMDBService") #1 # extracted section of code execution_settings = sk_oai.OpenAIChatPromptExecutionSettings( service_id=service_id, ai_model_id=model_id, max_tokens=2000, temperature=0.7, top_p=0.8, tool_choice="auto", tools=get_tool_call_object( kernel, {"exclude_plugin": ["ChatBot"]}), #2 ) prompt_config = sk.PromptTemplateConfig.from_completion_parameters( max_tokens=2000, temperature=0.7, top_p=0.8, function_call="auto", chat_system_prompt=system_message, ) #3 prompt_template = OpenAIChatPromptTemplate( "{{$user_input}}", kernel.prompt_template_engine, prompt_config ) #4 history = ChatHistory() history.add_system_message("You recommend movies and TV Shows.") history.add_user_message("Hi there, who are you?") history.add_assistant_message( "I am Rudy, the recommender chat bot. I'm trying to figure out what people need." ) #5 chat_function = kernel.create_function_from_prompt( prompt_template_config=prompt_template, plugin_name="ChatBot", function_name="Chat", ) #6
+
+#1 Imports the TMDbService as a plugin
+
+#2 Configures the execution settings and adds filtered tools
+
+#3 Configures the prompt configuration
+
+#4 Defines the input template and takes full strings as user input
+
+#5 Adds the chat history object and populates some history
+
+#6 Creates the chat function
+
+
+
+
+
+Next, we can continue by scrolling in the same file to review the chat function, as shown in the following listing.
+
+
+
+
+
+Listing 5.22 SK_service_chat.py (chat function)
+
+
+async def chat() -> bool: try: user_input = input("User:> ") #1 except KeyboardInterrupt: print("\n\nExiting chat...") return False except EOFError: print("\n\nExiting chat...") return False if user_input == "exit": #2 print("\n\nExiting chat...") return False arguments = sk.KernelArguments( #3 user_input=user_input, history=("\n").join( [f"{msg.role}: {msg.content}" for msg in history]), ) result = await chat_completion_with_tool_call( #4 kernel=kernel, arguments=arguments, chat_plugin_name="ChatBot", chat_function_name="Chat", chat_history=history, ) print(f"AI Agent:> {result}") return True
+
+#1 Input is taken directly from the terminal/console.
+
+#2 If the user types exit, then exit the chat.
+
+#3 Creates arguments to pass to the function
+
+#4 Uses the utility function to call the function and execute the tool
+
+
+
+
+
+Lastly, scroll down to the bottom of the file, and review the primary function. This is the code that calls the chat function in a loop.
+
+
+
+
+
+Listing 5.23 SK_service_chat.py (main function)
+
+
+async def main() -> None: chatting = True context = kernel.create_new_context() print("Welcome to your first AI Agent\ #1 \n Type 'exit' to exit.\ \n Ask to get a list of currently playing movies by genre." ) while chatting: #2 chatting, context = await chat(context) #3 if __name__ == "__main__": asyncio.run(main())
+
+#1 Introduction to the user
+
+#2 Continues until chatting is False
+
+#3 Calls the chat function asynchronously
+
+
+
+
+
+Run the chat interface, run the file (F5), and then ask about movies or television shows of a particular genre. An example conversation session is shown in listing 5.24. This output shows how a request to list movies from two genres made the chat interface make multiple calls to the get_top_movie_by_genre function.
+
+
+
+
+
+Listing 5.24 SK_service_chat.py (example conversation)
+
+
+Welcome to your first AI Agent Type 'exit' to exit. Ask to get a list of currently playing movies by genre. User:> Input: can you give me list of the current top playing movies for the action and comedy genres? Function name: get_top_movies_by_genre #1 Arguments: genre = action Function name: get_movie_genre_id #2 Arguments: genre_name = action Function name: get_top_movies_by_genre #1 Arguments: genre = comedy Function name: get_movie_genre_id #2 Arguments: genre_name = comedy Agent:> Here are the current top-playing movies for the action and comedy genres: **Action:** #3 1. The Hunger Games: The Ballad of Songbirds & Snakes 2. Rebel Moon - Part One: A Child of Fire 3. Aquaman and the Lost Kingdom 4. Silent Night 5. The Family Plan 6. Freelance 7. Migration 8. Sound of Freedom 9. Godzilla Minus One **Comedy:** #4 1. The Family Plan 2. Wonka 3. Freelance 4. Saltburn 5. Chicken Run: Dawn of the Nugget 6. Trolls Band Together 7. There's Something in the Barn 8. Migration Please note that some movies may overlap in both genres, such as "The Family Plan" and "Freelance ."
+
+#1 LLM makes two calls to get_top_movies_by_genre.
+
+#2 Internal call to get the genre id
+
+#3 List of the top current action movies
+
+#4 List of the top current comedy movies
+
+
+
+
+
+Be sure to explore the chat interface’s boundaries and what you can ask for from the TMDB service. For example, try asking for a list of genres for movies or television shows. This service is a good first try, but we can perhaps do better, as we’ll see in the next section.
+
+
+
+
+
